@@ -1,7 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowLeft, CheckCircle2, Phone, Shield, Lock, Loader2, PartyPopper, MessageCircle } from "lucide-react";
+import { ArrowRight, ArrowLeft, CheckCircle2, Phone, Shield, Lock, Loader2, MessageCircle } from "lucide-react";
 
 const procedures = [
   "Circumcision", "Piles (Hemorrhoids)", "Fissure", "Fistula", "Abscess", "Pilonidal Sinus", "Not sure — need guidance"
@@ -17,9 +17,28 @@ export default function BookConsultation() {
   const [error, setError] = useState("");
   const [consultationId, setConsultationId] = useState("");
 
+  // Hold a single pending auto-advance timer so quickly re-tapping a tile
+  // doesn't queue up multiple step transitions.
+  const advanceTimer = useRef(null);
+  useEffect(() => () => {
+    if (advanceTimer.current) clearTimeout(advanceTimer.current);
+  }, []);
+
   const handleChange = (key, val) => {
-    setForm({ ...form, [key]: val });
+    setForm((prev) => ({ ...prev, [key]: val }));
     setError("");
+  };
+
+  // Auto-advance helper: user taps a single-choice tile, we record the
+  // selection and slide to the next step after a short delay so the
+  // selected highlight is visible before the page swaps.
+  const selectAndAdvance = (key, val, nextStep) => {
+    handleChange(key, val);
+    if (advanceTimer.current) clearTimeout(advanceTimer.current);
+    advanceTimer.current = setTimeout(() => {
+      setStep(nextStep);
+      advanceTimer.current = null;
+    }, 220);
   };
 
   const handleSubmit = async () => {
@@ -147,14 +166,15 @@ export default function BookConsultation() {
               <p className="text-[var(--color-text-muted)] mb-8">Select your condition. Don&apos;t worry — everything is confidential.</p>
               <div className="space-y-3">
                 {procedures.map((p) => (
-                  <button key={p} onClick={() => handleChange("procedure", p)} className={`w-full text-left px-5 py-4 rounded-xl border-2 transition-all text-sm font-medium ${form.procedure === p ? "border-[var(--color-primary)] bg-[var(--color-primary)]/5 text-[var(--color-primary)]" : "border-[var(--color-card-border)] hover:border-[var(--color-primary-light)] text-[var(--color-text-body)]"}`}>
+                  <button
+                    key={p}
+                    onClick={() => selectAndAdvance("procedure", p, 2)}
+                    className={`w-full text-left px-5 py-4 rounded-xl border-2 transition-all text-sm font-medium ${form.procedure === p ? "border-[var(--color-primary)] bg-[var(--color-primary)]/5 text-[var(--color-primary)]" : "border-[var(--color-card-border)] hover:border-[var(--color-primary-light)] text-[var(--color-text-body)]"}`}
+                  >
                     {p}
                   </button>
                 ))}
               </div>
-              <button onClick={() => form.procedure && setStep(2)} disabled={!form.procedure} className="btn-primary w-full justify-center mt-8 disabled:opacity-50 disabled:cursor-not-allowed">
-                Continue <ArrowRight size={18} />
-              </button>
             </div>
           )}
 
@@ -165,16 +185,17 @@ export default function BookConsultation() {
               </button>
               <h1 className="text-2xl lg:text-3xl font-bold mb-2">Choose your city</h1>
               <p className="text-[var(--color-text-muted)] mb-8">We&apos;ll connect you with the best surgeons in your area.</p>
-              <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="grid grid-cols-2 gap-4">
                 {cities.map((c) => (
-                  <button key={c} onClick={() => handleChange("city", c)} className={`px-5 py-6 rounded-xl border-2 transition-all font-semibold text-center ${form.city === c ? "border-[var(--color-primary)] bg-[var(--color-primary)]/5 text-[var(--color-primary)]" : "border-[var(--color-card-border)] hover:border-[var(--color-primary-light)] text-[var(--color-text-body)]"}`}>
+                  <button
+                    key={c}
+                    onClick={() => selectAndAdvance("city", c, 3)}
+                    className={`px-5 py-6 rounded-xl border-2 transition-all font-semibold text-center ${form.city === c ? "border-[var(--color-primary)] bg-[var(--color-primary)]/5 text-[var(--color-primary)]" : "border-[var(--color-card-border)] hover:border-[var(--color-primary-light)] text-[var(--color-text-body)]"}`}
+                  >
                     {c}
                   </button>
                 ))}
               </div>
-              <button onClick={() => form.city && setStep(3)} disabled={!form.city} className="btn-primary w-full justify-center disabled:opacity-50 disabled:cursor-not-allowed">
-                Continue <ArrowRight size={18} />
-              </button>
             </div>
           )}
 

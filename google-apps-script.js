@@ -55,10 +55,10 @@ function doPost(e) {
     }
 
     // HMAC verification — without a valid signature we refuse the write so the
-    // public deployment URL is not a public write API.
-    const provided = (e.parameter && e.parameter.signature) ||
-      (e.headers && (e.headers["X-Signature"] || e.headers["x-signature"])) ||
-      "";
+    // public deployment URL is not a public write API. Apps Script web apps
+    // cannot read HTTP headers, so the Next.js relay sends the HMAC as a
+    // ?signature=<hex> query parameter and we read it from e.parameter.
+    const provided = (e.parameter && e.parameter.signature) || "";
     if (CONFIG.SHARED_SECRET && CONFIG.SHARED_SECRET !== "CHANGE_ME_TO_A_LONG_RANDOM_STRING") {
       const expected = computeHmac(rawBody, CONFIG.SHARED_SECRET);
       if (!safeEquals(provided, expected)) {
