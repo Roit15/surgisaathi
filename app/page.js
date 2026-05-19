@@ -1,65 +1,385 @@
-import Image from "next/image";
+import Link from "next/link";
+import {
+  Shield, Heart, Clock, IndianRupee, Star, ChevronRight,
+  UserCheck, Building2, Stethoscope, CheckCircle2, ArrowRight,
+  Phone, Zap, Award, Users, HeartPulse, Sparkles
+} from "lucide-react";
+
+/* ── STATIC DATA ────────────────────────────────────────── */
+
+const surgeries = [
+  { name: "Circumcision", slug: "circumcision", icon: "🔵", price: "₹25,000", desc: "Safe laser circumcision with same-day discharge", tag: "Most Popular" },
+  { name: "Piles", slug: "piles", icon: "🟠", price: "₹36,000", desc: "Painless laser piles treatment. Walk the next day", tag: "High Demand" },
+  { name: "Fissure", slug: "fissure", icon: "🟢", price: "₹35,000", desc: "Laser fissure surgery with rapid recovery", tag: null },
+  { name: "Fistula", slug: "fistula", icon: "🔴", price: "₹40,000", desc: "Advanced laser fistula treatment by experts", tag: null },
+  { name: "Abscess", slug: "abscess", icon: "🟡", price: "₹20,000", desc: "Quick abscess drainage with minimal discomfort", tag: null },
+  { name: "Pilonidal Sinus", slug: "pilonidal-sinus", icon: "🟣", price: "₹35,000", desc: "Laser pilonidal sinus surgery. No recurrence", tag: null },
+];
+
+const steps = [
+  { num: "01", title: "Share Your Concern", desc: "Tell us about your condition — privately and confidentially.", icon: HeartPulse },
+  { num: "02", title: "Get Expert Guidance", desc: "Our care coordinator connects you with the right surgeon.", icon: UserCheck },
+  { num: "03", title: "Book & Prepare", desc: "We handle insurance, scheduling, and pre-op preparation.", icon: Clock },
+  { num: "04", title: "Surgery & Recovery", desc: "Day-care laser surgery with complete post-op support.", icon: Sparkles },
+];
+
+const trustPillars = [
+  { icon: Shield, title: "100% Verified Surgeons", desc: "Every surgeon is credential-verified with 10+ years experience" },
+  { icon: IndianRupee, title: "Transparent Pricing", desc: "No hidden costs. All-inclusive packages with upfront pricing" },
+  { icon: Heart, title: "Complete Care Support", desc: "From consultation to recovery — we're with you every step" },
+  { icon: Zap, title: "Advanced Laser Technology", desc: "Minimally invasive procedures with faster recovery" },
+  { icon: Award, title: "NABH Accredited Hospitals", desc: "Partnered only with top-quality accredited facilities" },
+  { icon: Users, title: "Insurance & EMI Support", desc: "Cashless insurance processing and 0% EMI options" },
+];
+
+const stats = [
+  { value: "10,000+", label: "Successful Surgeries" },
+  { value: "100+", label: "Expert Surgeons" },
+  { value: "4.8★", label: "Patient Rating" },
+  { value: "50+", label: "Partner Hospitals" },
+];
+
+const doctors = [
+  { name: "Dr. Rajesh Sharma", spec: "Proctologist", exp: "18 yrs", rating: "4.9", hospital: "Apollo Hospital, Mumbai", surgeries: "2,400+" },
+  { name: "Dr. Priya Mehta", spec: "General Surgeon", exp: "14 yrs", rating: "4.8", hospital: "Fortis Hospital, Mumbai", surgeries: "1,800+" },
+  { name: "Dr. Amandeep Singh", spec: "Colorectal Surgeon", exp: "16 yrs", rating: "4.9", hospital: "Max Hospital, Chandigarh", surgeries: "2,100+" },
+];
+
+const testimonials = [
+  { name: "Rahul M.", city: "Mumbai", surgery: "Piles Surgery", text: "I was scared and embarrassed to talk about my condition. SURGISAATHI made the entire process so comfortable and private. The surgery was painless and I was back to work in 3 days!", rating: 5 },
+  { name: "Amit K.", city: "Chandigarh", surgery: "Circumcision", text: "The care coordinator was incredibly supportive. They handled my insurance, booked the best surgeon, and even followed up daily after surgery. Truly a saathi!", rating: 5 },
+  { name: "Deepak S.", city: "Mumbai", surgery: "Fistula Treatment", text: "After suffering for 2 years, SURGISAATHI connected me with an amazing surgeon. The laser treatment was quick, and the recovery was much faster than expected.", rating: 5 },
+];
+
+const insurancePartners = [
+  "Star Health", "HDFC Ergo", "ICICI Lombard", "Bajaj Allianz",
+  "New India Assurance", "Max Bupa", "Care Health", "Niva Bupa",
+];
+
+const faqs = [
+  { q: "Is the consultation really free?", a: "Yes, your initial consultation with our care coordinator is completely free. We'll understand your condition, recommend the right surgeon, and provide a transparent cost estimate — all at no charge." },
+  { q: "Are laser surgeries safe?", a: "Absolutely. Laser surgeries are FDA-approved, minimally invasive procedures performed by experienced surgeons. They offer less pain, faster recovery, and minimal scarring compared to traditional methods." },
+  { q: "Will my insurance cover the surgery?", a: "Most health insurance policies cover these procedures. Our dedicated insurance team will check your eligibility, handle pre-authorization, and ensure cashless processing at the hospital." },
+  { q: "How long is the recovery?", a: "Most laser procedures are day-care surgeries. You can typically return to normal activities within 2-5 days, depending on the procedure. Our team provides a detailed recovery guide." },
+  { q: "Is my information kept private?", a: "100%. We follow strict data privacy protocols. Your medical information is encrypted and shared only with your assigned surgeon. We understand the sensitive nature of these conditions." },
+];
+
+/* ── HOMEPAGE COMPONENT ─────────────────────────────────── */
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="pt-16 lg:pt-[72px]">
+      {/* ─── HERO ──────────────────────────────────────── */}
+      <section className="gradient-hero relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 right-20 w-72 h-72 bg-white/20 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 left-10 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative">
+          <div className="max-w-3xl">
+            <div className="trust-badge !bg-white/15 !text-white mb-6">
+              <CheckCircle2 size={14} /> Trusted by 10,000+ patients across India
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+              Get Trusted Care for{" "}
+              <span className="text-[var(--color-accent)]">Sensitive Surgeries</span>
+            </h1>
+            <p className="text-lg sm:text-xl text-white/80 mb-8 max-w-2xl leading-relaxed">
+              Expert laser treatments for Piles, Circumcision, Fissure, Fistula & more.
+              Transparent pricing. Insurance support. Complete care coordination.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Link href="/book-consultation" className="btn-primary !bg-[var(--color-accent)] !text-white animate-pulse-glow !text-base !py-4 !px-8">
+                Book Free Consultation <ArrowRight size={18} />
+              </Link>
+              <a href="tel:+917011473737" className="btn-secondary !border-white/30 !text-white hover:!bg-white/10 !text-base !py-4 !px-8">
+                <Phone size={18} /> Talk to Care Expert
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── STATS BAR ─────────────────────────────────── */}
+      <section className="bg-white border-b border-[var(--color-card-border)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {stats.map((s) => (
+              <div key={s.label} className="text-center">
+                <div className="text-2xl lg:text-3xl font-bold text-[var(--color-primary)]">{s.value}</div>
+                <div className="text-sm text-[var(--color-text-muted)] mt-1">{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── HOW IT WORKS ──────────────────────────────── */}
+      <section className="section bg-[var(--color-bg-warm)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <span className="trust-badge mb-4 inline-flex">Simple 4-Step Process</span>
+            <h2 className="text-3xl lg:text-4xl font-bold mt-3">How SURGISAATHI Works</h2>
+            <p className="text-[var(--color-text-muted)] mt-3 max-w-xl mx-auto">
+              From your first call to full recovery — we handle everything so you can focus on healing.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {steps.map((step) => (
+              <div key={step.num} className="card text-center relative group">
+                <div className="text-xs font-bold text-[var(--color-accent)] mb-3">{step.num}</div>
+                <div className="w-14 h-14 rounded-2xl bg-[var(--color-primary)]/10 flex items-center justify-center mx-auto mb-4 group-hover:bg-[var(--color-primary)] transition-colors">
+                  <step.icon size={24} className="text-[var(--color-primary)] group-hover:text-white transition-colors" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
+                <p className="text-sm text-[var(--color-text-muted)]">{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── SURGERY CATEGORIES ────────────────────────── */}
+      <section className="section bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <span className="trust-badge mb-4 inline-flex">Specialized Procedures</span>
+            <h2 className="text-3xl lg:text-4xl font-bold mt-3">Surgeries We Specialize In</h2>
+            <p className="text-[var(--color-text-muted)] mt-3 max-w-xl mx-auto">
+              Advanced laser treatments performed by India&apos;s top surgeons at accredited hospitals.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {surgeries.map((s) => (
+              <Link href={`/surgeries/${s.slug}`} key={s.slug} className="card group relative overflow-hidden">
+                {s.tag && (
+                  <span className="absolute top-4 right-4 bg-[var(--color-accent)]/10 text-[var(--color-accent)] text-xs font-semibold px-3 py-1 rounded-full">
+                    {s.tag}
+                  </span>
+                )}
+                <div className="text-3xl mb-4">{s.icon}</div>
+                <h3 className="text-xl font-semibold mb-1 group-hover:text-[var(--color-primary)] transition-colors">
+                  {s.name}
+                </h3>
+                <p className="text-sm text-[var(--color-text-muted)] mb-4">{s.desc}</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-semibold text-[var(--color-primary)]">
+                    Starting {s.price}
+                  </span>
+                  <span className="flex items-center text-sm text-[var(--color-accent)] font-medium gap-1 group-hover:gap-2 transition-all">
+                    Learn more <ChevronRight size={14} />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── WHY SURGISAATHI ───────────────────────────── */}
+      <section className="section gradient-warm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <span className="trust-badge mb-4 inline-flex">Why Choose Us</span>
+            <h2 className="text-3xl lg:text-4xl font-bold mt-3">Your Surgery, Our Responsibility</h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {trustPillars.map((p) => (
+              <div key={p.title} className="card">
+                <div className="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center mb-4">
+                  <p.icon size={22} className="text-[var(--color-primary)]" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">{p.title}</h3>
+                <p className="text-sm text-[var(--color-text-muted)]">{p.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FEATURED DOCTORS ──────────────────────────── */}
+      <section className="section bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-end justify-between mb-10">
+            <div>
+              <span className="trust-badge mb-4 inline-flex">Top Surgeons</span>
+              <h2 className="text-3xl lg:text-4xl font-bold mt-3">Meet Our Expert Surgeons</h2>
+            </div>
+            <Link href="/doctors" className="hidden sm:flex items-center gap-1 text-sm font-semibold text-[var(--color-primary)] hover:underline">
+              View all doctors <ChevronRight size={14} />
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {doctors.map((d) => (
+              <div key={d.name} className="card">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="w-16 h-16 rounded-2xl bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0">
+                    <Stethoscope size={28} className="text-[var(--color-primary)]" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg">{d.name}</h3>
+                    <p className="text-sm text-[var(--color-primary)]">{d.spec}</p>
+                    <p className="text-xs text-[var(--color-text-muted)]">{d.hospital}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 mb-4 text-sm">
+                  <span className="flex items-center gap-1 text-[var(--color-text-muted)]">
+                    <Clock size={14} /> {d.exp}
+                  </span>
+                  <span className="flex items-center gap-1 text-amber-500">
+                    <Star size={14} fill="currentColor" /> {d.rating}
+                  </span>
+                  <span className="text-[var(--color-text-muted)]">{d.surgeries} surgeries</span>
+                </div>
+                <Link href="/book-consultation" className="btn-primary w-full justify-center !py-3 !text-sm">
+                  Book Consultation
+                </Link>
+              </div>
+            ))}
+          </div>
+          <Link href="/doctors" className="sm:hidden flex items-center justify-center gap-1 mt-6 text-sm font-semibold text-[var(--color-primary)]">
+            View all doctors <ChevronRight size={14} />
+          </Link>
+        </div>
+      </section>
+
+      {/* ─── COST TRANSPARENCY ─────────────────────────── */}
+      <section className="section gradient-warm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <span className="trust-badge mb-4 inline-flex">Transparent Pricing</span>
+            <h2 className="text-3xl lg:text-4xl font-bold mt-3">Know Your Surgery Cost Upfront</h2>
+            <p className="text-[var(--color-text-muted)] mt-3">No hidden charges. All-inclusive packages.</p>
+          </div>
+          <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-[var(--color-card-border)]">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-[var(--color-primary)]/5">
+                    <th className="text-left px-6 py-4 text-sm font-semibold text-[var(--color-text-heading)]">Surgery</th>
+                    <th className="text-left px-6 py-4 text-sm font-semibold text-[var(--color-text-heading)]">Mumbai</th>
+                    <th className="text-left px-6 py-4 text-sm font-semibold text-[var(--color-text-heading)]">Chandigarh</th>
+                    <th className="text-left px-6 py-4 text-sm font-semibold text-[var(--color-text-heading)]">Insurance</th>
+                    <th className="px-6 py-4"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { name: "Laser Circumcision", mumbai: "₹30K – ₹42K", chd: "₹25K – ₹40K", ins: "Covered" },
+                    { name: "Laser Piles Surgery", mumbai: "₹38K – ₹80K", chd: "₹36K – ₹75K", ins: "Covered" },
+                    { name: "Laser Fissure", mumbai: "₹35K – ₹60K", chd: "₹30K – ₹55K", ins: "Covered" },
+                    { name: "Laser Fistula", mumbai: "₹40K – ₹85K", chd: "₹38K – ₹80K", ins: "Covered" },
+                    { name: "Abscess Drainage", mumbai: "₹20K – ₹40K", chd: "₹18K – ₹35K", ins: "Covered" },
+                    { name: "Pilonidal Sinus", mumbai: "₹35K – ₹70K", chd: "₹30K – ₹65K", ins: "Covered" },
+                  ].map((r) => (
+                    <tr key={r.name} className="border-t border-[var(--color-card-border)] hover:bg-[var(--color-primary)]/[0.02] transition-colors">
+                      <td className="px-6 py-4 text-sm font-medium text-[var(--color-text-heading)]">{r.name}</td>
+                      <td className="px-6 py-4 text-sm text-[var(--color-text-body)]">{r.mumbai}</td>
+                      <td className="px-6 py-4 text-sm text-[var(--color-text-body)]">{r.chd}</td>
+                      <td className="px-6 py-4">
+                        <span className="text-xs font-semibold text-[var(--color-success)] bg-[var(--color-success)]/10 px-2 py-1 rounded-full">
+                          ✓ {r.ins}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4">
+                        <Link href="/book-consultation" className="text-sm font-semibold text-[var(--color-accent)] hover:underline">
+                          Get Exact Cost →
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── TESTIMONIALS ──────────────────────────────── */}
+      <section className="section bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <span className="trust-badge mb-4 inline-flex">Patient Stories</span>
+            <h2 className="text-3xl lg:text-4xl font-bold mt-3">Real Patients, Real Results</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((t) => (
+              <div key={t.name} className="card">
+                <div className="flex gap-1 mb-3">
+                  {Array.from({ length: t.rating }).map((_, i) => (
+                    <Star key={i} size={16} className="text-amber-400" fill="currentColor" />
+                  ))}
+                </div>
+                <p className="text-sm text-[var(--color-text-body)] leading-relaxed mb-4">&ldquo;{t.text}&rdquo;</p>
+                <div className="border-t border-[var(--color-card-border)] pt-3">
+                  <p className="text-sm font-semibold">{t.name}</p>
+                  <p className="text-xs text-[var(--color-text-muted)]">{t.surgery} • {t.city}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link href="/testimonials" className="text-sm font-semibold text-[var(--color-primary)] hover:underline inline-flex items-center gap-1">
+              Read more patient stories <ChevronRight size={14} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── INSURANCE PARTNERS ────────────────────────── */}
+      <section className="py-12 bg-[var(--color-bg-section)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-center text-sm font-semibold text-[var(--color-text-muted)] mb-6 uppercase tracking-wider">Insurance Partners</p>
+          <div className="flex flex-wrap justify-center gap-6">
+            {insurancePartners.map((p) => (
+              <div key={p} className="bg-white px-5 py-3 rounded-xl text-sm font-medium text-[var(--color-text-body)] shadow-sm border border-[var(--color-card-border)]">
+                {p}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FAQ ───────────────────────────────────────── */}
+      <section className="section bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl lg:text-4xl font-bold">Frequently Asked Questions</h2>
+          </div>
+          <div className="space-y-4">
+            {faqs.map((f) => (
+              <details key={f.q} className="card group cursor-pointer">
+                <summary className="flex items-center justify-between font-semibold text-[var(--color-text-heading)] list-none">
+                  {f.q}
+                  <ChevronRight size={18} className="text-[var(--color-text-muted)] group-open:rotate-90 transition-transform" />
+                </summary>
+                <p className="text-sm text-[var(--color-text-body)] mt-3 leading-relaxed">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FINAL CTA ─────────────────────────────────── */}
+      <section className="gradient-hero py-20">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+            Take the First Step Towards Relief
+          </h2>
+          <p className="text-white/80 text-lg mb-8">
+            Book a free, private consultation with our care experts. No obligation, no judgment — just trusted guidance.
           </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/book-consultation" className="btn-primary !bg-[var(--color-accent)] !text-white !text-base !py-4 !px-10 animate-pulse-glow">
+              Book Free Consultation <ArrowRight size={18} />
+            </Link>
+            <a href="tel:+917011473737" className="btn-secondary !border-white/30 !text-white hover:!bg-white/10 !text-base !py-4 !px-10">
+              <Phone size={18} /> Call Now
+            </a>
+          </div>
+          <p className="text-white/50 text-sm mt-6">🔒 Your information is 100% confidential</p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      </section>
     </div>
   );
 }
