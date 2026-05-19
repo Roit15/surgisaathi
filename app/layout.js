@@ -17,7 +17,10 @@ const plusJakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://surgisaathi.com";
+
 export const metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "SURGISAATHI — Trusted Care for Sensitive Surgeries",
   description:
     "India's trusted surgery coordination platform for Circumcision, Piles, Fissure, Fistula, Abscess & Pilonidal Sinus. Expert surgeons, transparent pricing, complete support.",

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, IndianRupee, Shield, Phone, Building2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Building2 } from "lucide-react";
+import PartnerForm from "./PartnerForm";
 
 export const metadata = {
   title: "Partner With SURGISAATHI — Hospitals & Doctors",
@@ -105,42 +106,7 @@ export default function PartnerPage() {
       {/* CONTACT FORM */}
       <section id="doctor-form" className="section gradient-warm">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="card !p-8">
-            <h2 className="text-xl font-bold mb-6">Partner Application</h2>
-            <form className="space-y-4">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium mb-1.5">Full Name</label>
-                  <input type="text" placeholder="Dr. / Hospital name" className="w-full px-4 py-3 rounded-xl border border-[var(--color-card-border)] text-sm outline-none focus:border-[var(--color-primary)]" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-1.5">Type</label>
-                  <select className="w-full px-4 py-3 rounded-xl border border-[var(--color-card-border)] text-sm outline-none focus:border-[var(--color-primary)] bg-white">
-                    <option>Doctor</option>
-                    <option>Hospital / Clinic</option>
-                  </select>
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-1.5">Phone</label>
-                <input type="tel" placeholder="+91 XXXXX XXXXX" className="w-full px-4 py-3 rounded-xl border border-[var(--color-card-border)] text-sm outline-none focus:border-[var(--color-primary)]" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-1.5">City</label>
-                <select className="w-full px-4 py-3 rounded-xl border border-[var(--color-card-border)] text-sm outline-none focus:border-[var(--color-primary)] bg-white">
-                  <option>Mumbai</option>
-                  <option>Chandigarh</option>
-                </select>
-              </div>
-              <div>
-                <label className="block text-sm font-medium mb-1.5">Specialization / Procedures</label>
-                <input type="text" placeholder="e.g., Proctology, Laser Surgery" className="w-full px-4 py-3 rounded-xl border border-[var(--color-card-border)] text-sm outline-none focus:border-[var(--color-primary)]" />
-              </div>
-              <button type="submit" className="btn-primary w-full justify-center !py-4">
-                Submit Application <ArrowRight size={18} />
-              </button>
-            </form>
-          </div>
+          <PartnerForm />
         </div>
       </section>
     </div>

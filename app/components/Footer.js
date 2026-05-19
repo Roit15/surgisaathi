@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin } from "lucide-react";
 
+
 const surgeryLinks = [
   { name: "Circumcision", href: "/surgeries/circumcision" },
   { name: "Piles Treatment", href: "/surgeries/piles" },
@@ -14,7 +15,6 @@ const surgeryLinks = [
 const companyLinks = [
   { name: "About Us", href: "/about" },
   { name: "Testimonials", href: "/testimonials" },
-  { name: "Blog", href: "/blog" },
   { name: "Partner With Us", href: "/partner" },
   { name: "Contact", href: "/contact" },
   { name: "FAQ", href: "/faq" },
@@ -23,10 +23,9 @@ const companyLinks = [
 const patientLinks = [
   { name: "Find Doctors", href: "/doctors" },
   { name: "Find Hospitals", href: "/hospitals" },
+  { name: "Surgeries", href: "/surgeries" },
   { name: "Insurance Support", href: "/insurance" },
-  { name: "EMI Financing", href: "/emi-financing" },
   { name: "Book Consultation", href: "/book-consultation" },
-  { name: "Emergency Help", href: "/emergency" },
 ];
 
 export default function Footer() {
@@ -37,10 +36,11 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Link href="/" className="flex items-center gap-2.5 mb-4 group">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/images/logo/logo-icon.png"
                 alt=""
+                width={40}
+                height={40}
                 className="h-10 w-10 rounded-xl object-contain"
               />
               <span className="font-bold text-xl tracking-tight text-white font-[var(--font-display)]">

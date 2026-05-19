@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { CheckCircle2, Clock, IndianRupee, Shield, Star, ArrowRight, Phone, Zap, ChevronRight, Stethoscope, Building2 } from "lucide-react";
+import { notFound } from "next/navigation";
+import { CheckCircle2, Clock, IndianRupee, ArrowRight, Phone, Zap, ChevronRight, Building2 } from "lucide-react";
 
 const surgeryData = {
   circumcision: {
@@ -154,7 +155,7 @@ export default async function SurgeryPage({ params }) {
   const data = surgeryData[p.slug];
 
   if (!data) {
-    return <div className="pt-32 text-center"><h1 className="text-2xl font-bold">Surgery not found</h1></div>;
+    notFound();
   }
 
   return (
@@ -165,7 +166,7 @@ export default async function SurgeryPage({ params }) {
           <nav className="flex items-center gap-2 text-white/60 text-sm mb-6">
             <Link href="/" className="hover:text-white">Home</Link>
             <ChevronRight size={14} />
-            <Link href="/surgeries/circumcision" className="hover:text-white">Surgeries</Link>
+            <Link href="/surgeries" className="hover:text-white">Surgeries</Link>
             <ChevronRight size={14} />
             <span className="text-white">{data.title.replace("Laser ", "").replace(" Surgery", "")}</span>
           </nav>

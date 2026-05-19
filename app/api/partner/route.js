@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { validateContact } from "@/lib/validation";
+import { validatePartner } from "@/lib/validation";
 import { clientIp, rateLimit } from "@/lib/rate-limit";
 import { isAllowedOrigin } from "@/lib/origin";
 import { forwardToSheet } from "@/lib/google-sheet";
@@ -15,7 +15,7 @@ export async function POST(request) {
   }
 
   const ip = clientIp(request);
-  const limit = rateLimit(`contact:${ip}`, { max: 5, windowMs: 60_000 });
+  const limit = rateLimit(`partner:${ip}`, { max: 5, windowMs: 60_000 });
   if (!limit.ok) {
     return NextResponse.json(
       { success: false, message: "Too many requests. Please try again shortly." },
@@ -33,7 +33,7 @@ export async function POST(request) {
     );
   }
 
-  const parsed = validateContact(body);
+  const parsed = validatePartner(body);
   if (!parsed.ok) {
     return NextResponse.json(
       { success: false, message: parsed.message },
@@ -41,36 +41,34 @@ export async function POST(request) {
     );
   }
 
-  const id = `CT-${Date.now()}`;
+  const id = `PT-${Date.now()}`;
   const stored = await forwardToSheet({
     id,
-    source: "contact-form",
+    source: "partner-form",
     fields: {
       ...parsed.value,
-      // Apps Script slots the message into the procedure column with a short
-      // prefix so operators see context in the email subject line.
-      procedure: `Contact: ${parsed.value.message.slice(0, 50)}`,
-      preferred: parsed.value.email || "—",
-      city: "—",
+      procedure: `Partner (${parsed.value.type}): ${parsed.value.specialization}`,
+      preferred: "—",
     },
   });
 
   if (!stored) {
-    console.error(`Contact relay failed for ${id}`);
+    console.error(`Partner relay failed for ${id}`);
     return NextResponse.json(
       {
         success: false,
         message:
-          "We couldn't send your message right now. Please call us at +91 70114 73737.",
+          "We couldn't submit your application right now. Please email partners@surgisaathi.com or call +91 70114 73737.",
       },
       { status: 502 }
     );
   }
 
-  console.log(`New contact message: ${id}`);
+  console.log(`New partner application: ${id}`);
 
   return NextResponse.json({
     success: true,
-    message: "Message sent successfully! We'll respond within 4 hours.",
+    message: "Application submitted! Our partnerships team will reach out within 2 business days.",
+    applicationId: id,
   });
 }

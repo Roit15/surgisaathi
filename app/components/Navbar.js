@@ -23,10 +23,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 lg:h-[72px]">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/images/logo/logo-icon.png"
               alt=""
+              width={40}
+              height={40}
+              priority
               className="h-10 w-10 object-contain"
             />
             <span className="text-[var(--color-text-heading)] font-bold text-lg tracking-tight font-[var(--font-display)]">

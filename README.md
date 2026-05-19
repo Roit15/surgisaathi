@@ -1,5 +1,16 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Environment variables
+
+Copy `.env.example` to `.env.local` and fill in:
+
+- `NEXT_PUBLIC_SITE_URL` — public URL used for metadata, sitemap, and robots.
+- `GOOGLE_SCRIPT_URL` — Google Apps Script Web App URL (see `google-apps-script.js`).
+- `GOOGLE_SCRIPT_SECRET` — shared HMAC secret. Must match `SHARED_SECRET` inside
+  `google-apps-script.js`. Generate with `openssl rand -hex 32`.
+- `ALLOWED_ORIGINS` (optional) — comma-separated list of additional Origins
+  allowed to call the POST APIs.
+
 ## Getting Started
 
 First, run the development server:
