@@ -1,16 +1,19 @@
 import Link from "next/link";
 import { ArrowRight, IndianRupee, Clock } from "lucide-react";
+import JsonLd from "../components/JsonLd";
+import { breadcrumbSchema } from "../../lib/seo";
 
 export const metadata = {
-  title: "Laser Surgery Procedures | SURGISAATHI",
-  description: "Compare laser surgical procedures for piles, fissure, fistula, circumcision, abscess, and pilonidal sinus. Transparent pricing, expert surgeons, day-care recovery.",
+  title: "Laser Surgery Procedures — Costs, Recovery & Verified Surgeons",
+  description: "Compare laser surgical procedures for piles, fissure, fistula, circumcision, abscess, and pilonidal sinus. Transparent pricing, verified surgeons, day-care recovery in Mumbai & Chandigarh.",
+  alternates: { canonical: "/surgeries" },
 };
 
 const surgeries = [
-  { name: "Laser Circumcision", slug: "circumcision", price: "₹25,000 – ₹42,500", recovery: "3-5 days", desc: "Safe, painless circumcision with same-day discharge." },
-  { name: "Laser Piles Surgery", slug: "piles", price: "₹36,000 – ₹80,000", recovery: "2-3 days", desc: "Painless laser treatment for hemorrhoids with rapid recovery." },
+  { name: "Laser Circumcision", slug: "circumcision", price: "₹25,000 – ₹42,500", recovery: "3-5 days", desc: "Safe laser circumcision with same-day discharge and minimal discomfort." },
+  { name: "Laser Piles Surgery", slug: "piles", price: "₹36,000 – ₹80,000", recovery: "2-3 days", desc: "Minimally invasive laser treatment for hemorrhoids with rapid recovery." },
   { name: "Laser Fissure Treatment", slug: "fissure", price: "₹30,000 – ₹60,000", recovery: "3-5 days", desc: "Advanced laser surgery for anal fissure with minimal discomfort." },
-  { name: "Laser Fistula Surgery", slug: "fistula", price: "₹38,000 – ₹85,000", recovery: "5-7 days", desc: "Expert FiLaC laser fistula treatment with low recurrence." },
+  { name: "Laser Fistula Surgery", slug: "fistula", price: "₹38,000 – ₹85,000", recovery: "5-7 days", desc: "Sphincter-preserving FiLaC laser fistula treatment with low recurrence." },
   { name: "Abscess Drainage", slug: "abscess", price: "₹18,000 – ₹40,000", recovery: "2-4 days", desc: "Quick abscess drainage with minimal discomfort." },
   { name: "Pilonidal Sinus Surgery", slug: "pilonidal-sinus", price: "₹30,000 – ₹70,000", recovery: "5-7 days", desc: "Laser pilonidal sinus surgery with low recurrence." },
 ];
@@ -18,6 +21,12 @@ const surgeries = [
 export default function SurgeriesIndexPage() {
   return (
     <div className="pt-16 lg:pt-[72px]">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", href: "/" },
+          { name: "Surgeries", href: "/surgeries" },
+        ])}
+      />
       <section className="gradient-hero py-14 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl lg:text-4xl font-bold text-white mb-3">Surgeries We Cover</h1>

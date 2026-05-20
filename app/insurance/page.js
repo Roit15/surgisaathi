@@ -2,8 +2,9 @@ import Link from "next/link";
 import { Shield, CheckCircle2, ArrowRight, Phone, FileCheck, Clock, HelpCircle, ChevronRight } from "lucide-react";
 
 export const metadata = {
-  title: "Insurance Support for Surgery — Cashless Claims | SURGISAATHI",
-  description: "Get complete insurance support for piles, circumcision, fistula surgery. Cashless processing, pre-authorization, claim assistance. 25+ insurer tie-ups.",
+  title: "Cashless Insurance for Surgery — Claims & Pre-Authorisation",
+  description: "Cashless insurance support for laser piles, circumcision, fistula and pilonidal sinus surgery. Pre-authorisation, claim assistance, and tie-ups with leading Indian insurers.",
+  alternates: { canonical: "/insurance" },
 };
 
 const insurers = [

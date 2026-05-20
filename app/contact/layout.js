@@ -1,6 +1,8 @@
 export const metadata = {
-  title: "Contact SURGISAATHI — Get Help for Surgery Queries",
-  description: "Contact SURGISAATHI for surgery queries, insurance help, or to book a consultation. Available 8 AM - 10 PM, 7 days a week.",
+  title: "Contact SURGISAATHI — Call, WhatsApp or Email Us",
+  description:
+    "Talk to a care coordinator about laser piles, circumcision, fissure, fistula, abscess or pilonidal sinus surgery. Call +91 70114 73737, WhatsApp, or email support@surgisaathi.com. Offices in Mumbai & Chandigarh.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactLayout({ children }) {

@@ -1,5 +1,6 @@
 "use client";
 import { MessageCircle } from "lucide-react";
+import { track } from "../../lib/track";
 
 export default function WhatsAppFloat() {
   return (
@@ -7,6 +8,7 @@ export default function WhatsAppFloat() {
       href="https://wa.me/917011473737?text=Hi%20SURGISAATHI%2C%20I%20need%20help%20with%20a%20surgery%20consultation"
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => track("whatsapp_click", { source: "float_button" })}
       className="whatsapp-float animate-float"
       aria-label="Chat on WhatsApp"
     >

@@ -2,7 +2,8 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Terms of Service | SURGISAATHI",
-  description: "Terms governing the use of the SURGISAATHI surgery coordination platform.",
+  description: "Terms governing the use of the SURGISAATHI surgery coordination platform, including limitations of liability and user obligations.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

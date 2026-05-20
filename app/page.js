@@ -9,7 +9,7 @@ import {
 
 const surgeries = [
   { name: "Circumcision", slug: "circumcision", icon: "🔵", price: "₹25,000", desc: "Safe laser circumcision with same-day discharge", tag: "Most Popular" },
-  { name: "Piles", slug: "piles", icon: "🟠", price: "₹36,000", desc: "Painless laser piles treatment. Walk the next day", tag: "High Demand" },
+  { name: "Piles", slug: "piles", icon: "🟠", price: "₹36,000", desc: "Minimally invasive laser piles treatment with rapid recovery", tag: "High Demand" },
   { name: "Fissure", slug: "fissure", icon: "🟢", price: "₹35,000", desc: "Laser fissure surgery with rapid recovery", tag: null },
   { name: "Fistula", slug: "fistula", icon: "🔴", price: "₹40,000", desc: "Advanced laser fistula treatment by experts", tag: null },
   { name: "Abscess", slug: "abscess", icon: "🟡", price: "₹20,000", desc: "Quick abscess drainage with minimal discomfort", tag: null },
@@ -78,7 +78,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative">
           <div className="max-w-3xl">
             <div className="trust-badge !bg-white/15 !text-white mb-6">
-              <CheckCircle2 size={14} /> Trusted by 10,000+ patients across India
+              <CheckCircle2 size={14} /> Verified surgeons · Mumbai & Chandigarh
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
               Get Trusted Care for{" "}

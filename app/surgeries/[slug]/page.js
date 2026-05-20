@@ -1,11 +1,17 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CheckCircle2, Clock, IndianRupee, ArrowRight, Phone, Zap, ChevronRight, Building2 } from "lucide-react";
+import { CheckCircle2, Clock, IndianRupee, ArrowRight, Phone, Zap, ChevronRight, Building2, ShieldCheck } from "lucide-react";
+import JsonLd from "../../components/JsonLd";
+import {
+  medicalProcedureSchema,
+  faqPageSchema,
+  breadcrumbSchema,
+} from "../../../lib/seo";
 
 const surgeryData = {
   circumcision: {
     title: "Laser Circumcision Surgery",
-    subtitle: "Safe, painless circumcision with same-day discharge",
+    subtitle: "Safe laser circumcision with same-day discharge and minimal discomfort",
     priceRange: "₹25,000 – ₹42,500",
     recovery: "3-5 days",
     duration: "20-30 minutes",
@@ -22,12 +28,12 @@ const surgeryData = {
       { q: "Is laser circumcision painful?", a: "The procedure is performed under anesthesia, so you won't feel pain during surgery. Post-operative discomfort is minimal and managed with prescribed medications." },
       { q: "How long does recovery take?", a: "Most patients recover within 3-5 days and can resume normal activities. Complete healing typically takes 2-3 weeks." },
       { q: "Is it covered by insurance?", a: "Yes, circumcision for medical reasons (phimosis, recurrent infections) is covered by most health insurance policies." },
-      { q: "What is the success rate?", a: "Laser circumcision has a success rate of over 99% with experienced surgeons. Complications are extremely rare." },
+      { q: "What is the success rate?", a: "Laser circumcision is a well-established technique with a high success rate when performed by experienced surgeons. Complication rates are low, but every surgery carries some risk — your surgeon will explain risks specific to your case during consultation." },
     ],
   },
   piles: {
     title: "Laser Piles Surgery",
-    subtitle: "Painless laser treatment for hemorrhoids with rapid recovery",
+    subtitle: "Minimally invasive laser treatment for hemorrhoids with rapid recovery",
     priceRange: "₹36,000 – ₹80,000",
     recovery: "2-3 days",
     duration: "30-45 minutes",
@@ -58,20 +64,20 @@ const surgeryData = {
     symptoms: ["Sharp pain during bowel movements", "Bleeding with stools", "Visible crack or tear", "Itching around the anus", "Muscle spasm after passing stool", "Pain lasting hours after bowel movement"],
     treatments: [
       { name: "Laser Sphincterotomy", pros: ["Minimal pain", "Precise treatment", "Fast recovery", "Low recurrence"], recommended: true },
-      { name: "Lateral Internal Sphincterotomy", pros: ["High success rate", "Well-established"], recommended: false },
+      { name: "Lateral Internal Sphincterotomy", pros: ["Well-established technique", "Widely available"], recommended: false },
       { name: "Medical Management", pros: ["Non-surgical", "First-line treatment"], recommended: false },
     ],
     steps: ["Clinical examination", "Pre-operative assessment", "Anesthesia administration", "Laser treatment of fissure", "Same-day discharge", "Follow-up in 3-5 days"],
     faqs: [
       { q: "When should I consider surgery for fissure?", a: "Surgery is recommended for chronic fissures (lasting more than 6-8 weeks) that haven't responded to medication and dietary changes." },
-      { q: "Is the laser treatment permanent?", a: "Yes, laser treatment has a success rate of over 95% for chronic fissures. Following post-operative dietary advice further reduces any chance of recurrence." },
+      { q: "Is the laser treatment permanent?", a: "Laser treatment offers a high success rate for chronic fissures when combined with post-operative dietary changes. Recurrence is uncommon but not impossible; your surgeon will explain expected outcomes for your specific case." },
       { q: "Will I have incontinence after surgery?", a: "No. Laser sphincterotomy is precisely controlled, preserving sphincter function. The risk of incontinence is extremely low with experienced surgeons." },
       { q: "Is it covered by insurance?", a: "Yes, fissure surgery is covered by most health insurance plans when deemed medically necessary." },
     ],
   },
   fistula: {
     title: "Laser Fistula Surgery",
-    subtitle: "Expert laser treatment for anal fistula with high success rate",
+    subtitle: "Sphincter-preserving laser treatment for anal fistula",
     priceRange: "₹40,000 – ₹85,000",
     recovery: "5-7 days",
     duration: "45-60 minutes",
@@ -144,9 +150,16 @@ export async function generateMetadata({ params }) {
   const p = await params;
   const data = surgeryData[p.slug];
   if (!data) return {};
+  const path = `/surgeries/${p.slug}`;
   return {
-    title: `${data.title} — Cost, Recovery & Best Doctors | SURGISAATHI`,
-    description: `${data.subtitle}. Starting at ${data.priceRange}. Book a free consultation with India's top surgeons. Insurance support available.`,
+    title: `${data.title} — Cost ${data.priceRange}, Recovery & Verified Surgeons`,
+    description: `${data.subtitle}. Starting at ${data.priceRange}. Book a free consultation with verified surgeons in Mumbai & Chandigarh. Cashless insurance support. ☎ +91 70114 73737`,
+    alternates: { canonical: path },
+    openGraph: {
+      title: `${data.title} | SURGISAATHI`,
+      description: `${data.subtitle}. Starting at ${data.priceRange}.`,
+      url: path,
+    },
   };
 }
 
@@ -158,8 +171,22 @@ export default async function SurgeryPage({ params }) {
     notFound();
   }
 
+  const path = `/surgeries/${p.slug}`;
+  const shortName = data.title.replace("Laser ", "").replace(" Surgery", "");
+
   return (
     <div className="pt-16 lg:pt-[72px]">
+      <JsonLd
+        data={[
+          medicalProcedureSchema({ slug: p.slug, data, path }),
+          faqPageSchema(data.faqs, path),
+          breadcrumbSchema([
+            { name: "Home", href: "/" },
+            { name: "Surgeries", href: "/surgeries" },
+            { name: shortName, href: path },
+          ]),
+        ]}
+      />
       {/* HERO */}
       <section className="gradient-hero py-16 lg:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -289,10 +316,32 @@ export default async function SurgeryPage({ params }) {
       <section className="gradient-hero py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Ready to Get Expert Treatment?</h2>
-          <p className="text-white/80 mb-8">Book a free consultation and get a personalized treatment plan from our expert surgeons.</p>
+          <p className="text-white/80 mb-8">Book a free consultation and get a personalised treatment plan from a verified surgeon.</p>
           <Link href="/book-consultation" className="btn-primary !bg-[var(--color-accent)] !py-4 !px-10 animate-pulse-glow">
             Book Free Consultation <ArrowRight size={18} />
           </Link>
+        </div>
+      </section>
+
+      {/* MEDICAL REVIEW + DISCLAIMER */}
+      <section className="bg-[var(--color-bg-warm)] border-t border-[var(--color-card-border)]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-sm text-[var(--color-text-muted)] space-y-3">
+          <p className="flex items-start gap-2">
+            <ShieldCheck size={16} className="text-[var(--color-primary)] flex-shrink-0 mt-0.5" />
+            <span>
+              <strong className="text-[var(--color-text-heading)]">Medically reviewed by</strong>{" "}
+              the SURGISAATHI clinical team. <strong>Last updated:</strong> May 2026.
+            </span>
+          </p>
+          <p className="text-xs leading-relaxed">
+            This information is for educational purposes only and is not a
+            substitute for professional medical advice, diagnosis, or treatment.
+            Surgical outcomes, recovery times, and costs vary by individual
+            case. Always consult a qualified surgeon for advice tailored to
+            your condition. Prices shown are indicative ranges, may change
+            without notice, and depend on the hospital, surgeon, and complexity
+            of the procedure.
+          </p>
         </div>
       </section>
     </div>

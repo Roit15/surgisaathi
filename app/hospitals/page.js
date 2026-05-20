@@ -1,8 +1,11 @@
 import HospitalsBrowser from "./HospitalsBrowser";
+import JsonLd from "../components/JsonLd";
+import { hospitalListSchema, breadcrumbSchema } from "../../lib/seo";
 
 export const metadata = {
-  title: "Best Hospitals for Laser Surgery in Mumbai & Chandigarh | SURGISAATHI",
-  description: "Compare NABH-accredited hospitals for laser piles, circumcision, fistula surgery. Transparent pricing, insurance support, and expert surgical teams.",
+  title: "NABH-Accredited Hospitals for Laser Surgery in Mumbai & Chandigarh",
+  description: "Compare NABH-accredited hospitals for laser piles, circumcision, fissure, fistula and pilonidal sinus surgery. Transparent pricing, cashless insurance, and verified surgical teams.",
+  alternates: { canonical: "/hospitals" },
 };
 
 const hospitals = [
@@ -17,6 +20,15 @@ const hospitals = [
 export default function HospitalsPage() {
   return (
     <div className="pt-16 lg:pt-[72px]">
+      <JsonLd
+        data={[
+          hospitalListSchema(hospitals, "/hospitals"),
+          breadcrumbSchema([
+            { name: "Home", href: "/" },
+            { name: "Hospitals", href: "/hospitals" },
+          ]),
+        ]}
+      />
       <section className="gradient-hero py-14 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl lg:text-4xl font-bold text-white mb-3">Partner Hospitals</h1>

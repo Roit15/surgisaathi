@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ArrowLeft, CheckCircle2, Phone, Shield, Lock, Loader2, PartyPopper, MessageCircle } from "lucide-react";
+import { track } from "../../lib/track";
 
 const procedures = [
   "Circumcision", "Piles (Hemorrhoids)", "Fissure", "Fistula", "Abscess", "Pilonidal Sinus", "Not sure — need guidance"
@@ -54,6 +55,12 @@ export default function BookConsultation() {
       if (data.success) {
         setConsultationId(data.consultationId);
         setSubmitted(true);
+        track("lead_submitted", {
+          procedure: form.procedure,
+          city: form.city,
+          preferred: form.preferred,
+          consultation_id: data.consultationId,
+        });
       } else {
         setError(data.message || "Something went wrong. Please try again.");
       }
