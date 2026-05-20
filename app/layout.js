@@ -35,10 +35,6 @@ export const metadata = {
   description: SITE_DESCRIPTION,
   applicationName: "SURGISAATHI",
   alternates: { canonical: "/" },
-  icons: {
-    icon: "/images/logo/logo-icon.png",
-    apple: "/images/logo/logo-icon.png",
-  },
   openGraph: {
     siteName: "SURGISAATHI",
     title: SITE_TITLE,
