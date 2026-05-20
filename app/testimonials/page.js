@@ -1,71 +1,82 @@
 import Link from "next/link";
-import { Star, ChevronRight, ArrowRight, Quote } from "lucide-react";
+import { Lock, Shield, MessageCircle, ArrowRight, Phone } from "lucide-react";
 
 export const metadata = {
-  title: "Patient Stories & Testimonials | SURGISAATHI",
-  description: "Read patient stories and testimonials from people who chose SURGISAATHI for laser piles, circumcision, fistula and other sensitive surgeries. Identities anonymised for privacy.",
+  title: "Patient Stories — Privacy Protected | SURGISAATHI",
+  description: "SURGISAATHI does not publish patient testimonials by default. Surgical conditions like piles, circumcision and fistula are sensitive — we share patient stories only with explicit, written consent. If you would like to share or hear from past patients, contact our care team.",
   alternates: { canonical: "/testimonials" },
+  robots: { index: false, follow: true },
 };
-
-const testimonials = [
-  { name: "Rahul M.", age: 34, city: "Mumbai", surgery: "Laser Piles Surgery", rating: 5, text: "I suffered from piles for almost 3 years but was too embarrassed to seek help. SURGISAATHI made the entire process so comfortable — from the first WhatsApp message to post-surgery follow-ups. The laser surgery was painless, and I was back at work in just 3 days. The care coordinator was like having a friend in the hospital.", doctor: "Dr. Rajesh Sharma" },
-  { name: "Amit K.", age: 29, city: "Chandigarh", surgery: "Laser Circumcision", rating: 5, text: "I was nervous about circumcision surgery. The SURGISAATHI team answered all my questions patiently and connected me with an excellent surgeon. The procedure took just 20 minutes, and the recovery was much smoother than I expected. Their insurance team even got my claim approved within 48 hours!", doctor: "Dr. Amandeep Singh" },
-  { name: "Deepak S.", age: 42, city: "Mumbai", surgery: "Laser Fistula Treatment", rating: 5, text: "After suffering from a recurring fistula for 2 years and two failed surgeries elsewhere, SURGISAATHI connected me with a specialist who performed FiLaC laser treatment. It's been 8 months now with zero recurrence. I can't thank them enough for giving me my life back.", doctor: "Dr. Vikram Desai" },
-  { name: "Priya T.", age: 31, city: "Mumbai", surgery: "Fissure Surgery", rating: 5, text: "As a woman, discussing these issues felt very uncomfortable. The female care coordinator at SURGISAATHI made me feel completely at ease. The entire process was handled with utmost privacy and professionalism. The surgery was quick, and recovery was faster than expected.", doctor: "Dr. Priya Mehta" },
-  { name: "Gurmeet S.", age: 38, city: "Chandigarh", surgery: "Pilonidal Sinus", rating: 5, text: "I had a pilonidal sinus that kept getting infected. SURGISAATHI's laser treatment was a game-changer — minimal cutting, no big wound, and I was walking normally within a week. The follow-up care was exceptional. Every patient should know about this platform.", doctor: "Dr. Amandeep Singh" },
-  { name: "Vikash R.", age: 45, city: "Mumbai", surgery: "Abscess Drainage", rating: 4, text: "When I developed a perianal abscess, I was in severe pain. SURGISAATHI arranged an emergency consultation within 2 hours and surgery the same evening. The quick response probably saved me from developing a fistula. Grateful for the prompt care.", doctor: "Dr. Suresh Patel" },
-];
 
 export default function TestimonialsPage() {
   return (
     <div className="pt-16 lg:pt-[72px]">
+      {/* HERO */}
       <section className="gradient-hero py-16 lg:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl lg:text-5xl font-bold text-white mb-4">Patient Stories</h1>
-          <p className="text-lg text-white/80">Real experiences from real patients. Every review is from a verified SURGISAATHI patient.</p>
-          <div className="flex items-center justify-center gap-6 mt-8">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white">4.8★</div>
-              <div className="text-sm text-white/60">Average Rating</div>
-            </div>
-            <div className="w-px h-12 bg-white/20" />
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white">10,000+</div>
-              <div className="text-sm text-white/60">Patients Treated</div>
-            </div>
-            <div className="w-px h-12 bg-white/20" />
-            <div className="text-center">
-              <div className="text-3xl font-bold text-white">98%</div>
-              <div className="text-sm text-white/60">Would Recommend</div>
-            </div>
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="trust-badge !bg-white/15 !text-white mb-5 inline-flex">
+            <Lock size={14} /> Privacy Protected
           </div>
+          <h1 className="text-3xl lg:text-5xl font-bold text-white mb-4">
+            Patient Stories on Request
+          </h1>
+          <p className="text-lg text-white/80">
+            We do not publish patient testimonials publicly. Conditions like piles, fistula and circumcision are personal, and we share patient experiences only with written, withdrawable consent — never identifying details.
+          </p>
         </div>
       </section>
 
-      <section className="section bg-[var(--color-bg-warm)]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* WHY */}
+      <section className="section bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-6">
-            {testimonials.map((t) => (
-              <div key={t.name} className="card !p-8 relative">
-                <Quote size={40} className="absolute top-6 right-6 text-[var(--color-primary)]/10" />
-                <div className="flex gap-1 mb-4">
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star key={i} size={18} className="text-amber-400" fill="currentColor" />
-                  ))}
+            <div className="card">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0">
+                  <Shield size={22} className="text-[var(--color-primary)]" />
                 </div>
-                <p className="text-[var(--color-text-body)] leading-relaxed mb-6">&ldquo;{t.text}&rdquo;</p>
-                <div className="flex items-center justify-between border-t border-[var(--color-card-border)] pt-4">
-                  <div>
-                    <p className="font-semibold">{t.name}, {t.age}</p>
-                    <p className="text-sm text-[var(--color-text-muted)]">{t.surgery} • {t.city}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-xs text-[var(--color-text-muted)]">Treated by</p>
-                    <p className="text-sm font-medium text-[var(--color-primary)]">{t.doctor}</p>
-                  </div>
+                <div>
+                  <h2 className="font-semibold text-lg mb-2">Why we don&rsquo;t publish testimonials</h2>
+                  <p className="text-[var(--color-text-body)] leading-relaxed text-sm">
+                    Sharing a patient&rsquo;s name, photograph or surgical history alongside a review can identify them indirectly — especially in smaller cities or with rarer conditions. India&rsquo;s DPDP Act 2023, the NMC Code of Ethics, and basic patient dignity all push us toward the same answer: do not publish identifying patient material without explicit, informed, and withdrawable consent.
+                  </p>
                 </div>
               </div>
-            ))}
+            </div>
+
+            <div className="card">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0">
+                  <MessageCircle size={22} className="text-[var(--color-primary)]" />
+                </div>
+                <div>
+                  <h2 className="font-semibold text-lg mb-2">If you want to hear from a past patient</h2>
+                  <p className="text-[var(--color-text-body)] leading-relaxed text-sm mb-3">
+                    Some of our patients have offered to speak with new patients about their experience. If that would help you decide, mention it during your free consultation and we will see whether a past patient is willing to share — always with their consent and on their terms.
+                  </p>
+                  <Link href="/book-consultation" className="text-sm font-semibold text-[var(--color-primary)] hover:underline inline-flex items-center gap-1">
+                    Ask during a free consultation <ArrowRight size={14} />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            <div className="card">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0">
+                  <Phone size={22} className="text-[var(--color-primary)]" />
+                </div>
+                <div>
+                  <h2 className="font-semibold text-lg mb-2">If you would like to share your story</h2>
+                  <p className="text-[var(--color-text-body)] leading-relaxed text-sm">
+                    Past patients are welcome to share their experience with us. We will record it only with your written consent, can anonymise it before publishing, and you can withdraw consent at any time. Reach our care team at{" "}
+                    <a href="tel:+917011473737" className="text-[var(--color-primary)] font-semibold hover:underline">+91 70114 73737</a>
+                    {" "}or{" "}
+                    <a href="mailto:support@surgisaathi.com" className="text-[var(--color-primary)] font-semibold hover:underline">support@surgisaathi.com</a>.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -73,9 +84,12 @@ export default function TestimonialsPage() {
       {/* CTA */}
       <section className="gradient-hero py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Join 10,000+ Happy Patients</h2>
-          <p className="text-white/80 mb-8">Your story of relief starts with a free consultation.</p>
-          <Link href="/book-consultation" className="btn-primary !bg-[var(--color-accent)] !py-4 !px-10 animate-pulse-glow">
+          <h2 className="text-3xl font-bold text-white mb-4">Ready to take the first step?</h2>
+          <p className="text-white/80 mb-8">A free, private consultation with our care team — no obligation, no judgement.</p>
+          <Link
+            href="/book-consultation"
+            className="btn-primary !bg-[var(--color-accent)] !text-white !py-4 !px-10"
+          >
             Book Free Consultation <ArrowRight size={18} />
           </Link>
         </div>

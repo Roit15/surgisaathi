@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {
-  Shield, Heart, Clock, IndianRupee, Star, ChevronRight,
+  Shield, Heart, Clock, IndianRupee, ChevronRight,
   UserCheck, Building2, Stethoscope, CheckCircle2, ArrowRight,
   Phone, Zap, Award, Users, HeartPulse, Sparkles
 } from "lucide-react";
@@ -37,18 +37,6 @@ const stats = [
   { value: "100+", label: "Expert Surgeons" },
   { value: "4.8★", label: "Patient Rating" },
   { value: "50+", label: "Partner Hospitals" },
-];
-
-const doctors = [
-  { name: "Dr. Rajesh Sharma", spec: "Proctologist", exp: "18 yrs", rating: "4.9", hospital: "Apollo Hospital, Mumbai", surgeries: "2,400+" },
-  { name: "Dr. Priya Mehta", spec: "General Surgeon", exp: "14 yrs", rating: "4.8", hospital: "Fortis Hospital, Mumbai", surgeries: "1,800+" },
-  { name: "Dr. Amandeep Singh", spec: "Colorectal Surgeon", exp: "16 yrs", rating: "4.9", hospital: "Max Hospital, Chandigarh", surgeries: "2,100+" },
-];
-
-const testimonials = [
-  { name: "Rahul M.", city: "Mumbai", surgery: "Piles Surgery", text: "I was scared and embarrassed to talk about my condition. SURGISAATHI made the entire process so comfortable and private. The surgery was painless and I was back to work in 3 days!", rating: 5 },
-  { name: "Amit K.", city: "Chandigarh", surgery: "Circumcision", text: "The care coordinator was incredibly supportive. They handled my insurance, booked the best surgeon, and even followed up daily after surgery. Truly a saathi!", rating: 5 },
-  { name: "Deepak S.", city: "Mumbai", surgery: "Fistula Treatment", text: "After suffering for 2 years, SURGISAATHI connected me with an amazing surgeon. The laser treatment was quick, and the recovery was much faster than expected.", rating: 5 },
 ];
 
 const insurancePartners = [
@@ -197,49 +185,44 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── FEATURED DOCTORS ──────────────────────────── */}
+      {/* ─── SURGEON NETWORK ──────────────────────────── */}
       <section className="section bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-10">
-            <div>
-              <span className="trust-badge mb-4 inline-flex">Top Surgeons</span>
-              <h2 className="text-3xl lg:text-4xl font-bold mt-3">Meet Our Expert Surgeons</h2>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <span className="trust-badge mb-4 inline-flex">Our Surgeon Network</span>
+            <h2 className="text-3xl lg:text-4xl font-bold mt-3">Verified Surgeons Across Mumbai &amp; Chandigarh</h2>
+            <p className="text-[var(--color-text-muted)] mt-3 max-w-2xl mx-auto">
+              We do not publish surgeon profiles publicly — instead we match each patient privately with the right surgeon for their case during the consultation. Every partner surgeon is credential-verified with the relevant State Medical Council and operates at NABH-aligned hospitals.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+            <div className="card text-center">
+              <div className="w-12 h-12 rounded-2xl bg-[var(--color-primary)]/10 flex items-center justify-center mx-auto mb-3">
+                <UserCheck size={22} className="text-[var(--color-primary)]" />
+              </div>
+              <h3 className="font-semibold text-base">Credential-verified</h3>
+              <p className="text-sm text-[var(--color-text-muted)] mt-1">MBBS, MS / MCh registration confirmed with State Medical Council.</p>
             </div>
-            <Link href="/doctors" className="hidden sm:flex items-center gap-1 text-sm font-semibold text-[var(--color-primary)] hover:underline">
-              View all doctors <ChevronRight size={14} />
+            <div className="card text-center">
+              <div className="w-12 h-12 rounded-2xl bg-[var(--color-primary)]/10 flex items-center justify-center mx-auto mb-3">
+                <Stethoscope size={22} className="text-[var(--color-primary)]" />
+              </div>
+              <h3 className="font-semibold text-base">Procedure-specialised</h3>
+              <p className="text-sm text-[var(--color-text-muted)] mt-1">Matched to your condition — proctology, laser surgery, general surgery.</p>
+            </div>
+            <div className="card text-center">
+              <div className="w-12 h-12 rounded-2xl bg-[var(--color-primary)]/10 flex items-center justify-center mx-auto mb-3">
+                <Award size={22} className="text-[var(--color-primary)]" />
+              </div>
+              <h3 className="font-semibold text-base">Accredited hospitals</h3>
+              <p className="text-sm text-[var(--color-text-muted)] mt-1">NABH-aligned facilities with current infection-control standards.</p>
+            </div>
+          </div>
+          <div className="text-center">
+            <Link href="/doctors" className="text-sm font-semibold text-[var(--color-primary)] hover:underline inline-flex items-center gap-1">
+              How we vet surgeons <ChevronRight size={14} />
             </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {doctors.map((d) => (
-              <div key={d.name} className="card">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-16 h-16 rounded-2xl bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0">
-                    <Stethoscope size={28} className="text-[var(--color-primary)]" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg">{d.name}</h3>
-                    <p className="text-sm text-[var(--color-primary)]">{d.spec}</p>
-                    <p className="text-xs text-[var(--color-text-muted)]">{d.hospital}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-4 mb-4 text-sm">
-                  <span className="flex items-center gap-1 text-[var(--color-text-muted)]">
-                    <Clock size={14} /> {d.exp}
-                  </span>
-                  <span className="flex items-center gap-1 text-amber-500">
-                    <Star size={14} fill="currentColor" /> {d.rating}
-                  </span>
-                  <span className="text-[var(--color-text-muted)]">{d.surgeries} surgeries</span>
-                </div>
-                <Link href="/book-consultation" className="btn-primary w-full justify-center !py-3 !text-sm">
-                  Book Consultation
-                </Link>
-              </div>
-            ))}
-          </div>
-          <Link href="/doctors" className="sm:hidden flex items-center justify-center gap-1 mt-6 text-sm font-semibold text-[var(--color-primary)]">
-            View all doctors <ChevronRight size={14} />
-          </Link>
         </div>
       </section>
 
@@ -295,32 +278,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── TESTIMONIALS ──────────────────────────────── */}
+      {/* ─── PRIVACY FIRST ─────────────────────────────── */}
       <section className="section bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <span className="trust-badge mb-4 inline-flex">Patient Stories</span>
-            <h2 className="text-3xl lg:text-4xl font-bold mt-3">Real Patients, Real Results</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {testimonials.map((t) => (
-              <div key={t.name} className="card">
-                <div className="flex gap-1 mb-3">
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star key={i} size={16} className="text-amber-400" fill="currentColor" />
-                  ))}
-                </div>
-                <p className="text-sm text-[var(--color-text-body)] leading-relaxed mb-4">&ldquo;{t.text}&rdquo;</p>
-                <div className="border-t border-[var(--color-card-border)] pt-3">
-                  <p className="text-sm font-semibold">{t.name}</p>
-                  <p className="text-xs text-[var(--color-text-muted)]">{t.surgery} • {t.city}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="trust-badge mb-4 inline-flex">Privacy First</span>
+          <h2 className="text-3xl lg:text-4xl font-bold mt-3">Your Story Stays Yours</h2>
+          <p className="text-[var(--color-text-muted)] mt-4 leading-relaxed">
+            We do not publish patient testimonials by default. Conditions like piles, fistula and circumcision are personal, and we share patient experiences only with explicit, withdrawable consent — never identifying details. If you would like to hear from a past patient before deciding, ask during your free consultation and we will see whether someone is willing to talk on their terms.
+          </p>
+          <div className="mt-6">
             <Link href="/testimonials" className="text-sm font-semibold text-[var(--color-primary)] hover:underline inline-flex items-center gap-1">
-              Read more patient stories <ChevronRight size={14} />
+              How we handle patient stories <ChevronRight size={14} />
             </Link>
           </div>
         </div>
