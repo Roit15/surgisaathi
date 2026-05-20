@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Phone, Mail, MapPin, MessageCircle, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
+import { Phone, Mail, MapPin, MessageCircle, ArrowRight, CheckCircle2, Loader2, ShieldCheck } from "lucide-react";
+import { track } from "../../lib/track";
 
 const contactMethods = [
-  { icon: Phone, title: "Call Us", value: "+91 70114 73737", subtitle: "Available 8 AM - 10 PM", href: "tel:+917011473737" },
-  { icon: MessageCircle, title: "WhatsApp", value: "+91 70114 73737", subtitle: "Quick replies, 24/7", href: "https://wa.me/917011473737" },
-  { icon: Mail, title: "Email", value: "support@surgisaathi.com", subtitle: "Response within 4 hours", href: "mailto:support@surgisaathi.com" },
+  { icon: Phone, title: "Call Us", value: "+91 70114 73737", subtitle: "Available 8 AM - 10 PM", href: "tel:+917011473737", event: "phone_click" },
+  { icon: MessageCircle, title: "WhatsApp", value: "+91 70114 73737", subtitle: "Quick replies, 24/7", href: "https://wa.me/917011473737", event: "whatsapp_click" },
+  { icon: Mail, title: "Email", value: "support@surgisaathi.com", subtitle: "Response within 4 hours", href: "mailto:support@surgisaathi.com", event: "email_click" },
 ];
 
 const offices = [
@@ -46,6 +47,7 @@ export default function ContactPage() {
 
       if (data.success) {
         setSubmitted(true);
+        track("contact_submitted", {});
       } else {
         setError(data.message || "Something went wrong.");
       }
@@ -72,7 +74,12 @@ export default function ContactPage() {
             <div className="space-y-6">
               <h2 className="text-2xl font-bold">Get in Touch</h2>
               {contactMethods.map((m) => (
-                <a key={m.title} href={m.href} className="card flex items-start gap-4 !p-5 hover:!border-[var(--color-primary)]">
+                <a
+                  key={m.title}
+                  href={m.href}
+                  onClick={() => track(m.event, { source: "contact_page" })}
+                  className="card flex items-start gap-4 !p-5 hover:!border-[var(--color-primary)]"
+                >
                   <div className="w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0">
                     <m.icon size={22} className="text-[var(--color-primary)]" />
                   </div>
@@ -95,6 +102,29 @@ export default function ContactPage() {
                   </div>
                 </div>
               ))}
+
+              {/* Grievance Officer — IT Rules 2021 / DPDP 2023 compliance */}
+              <div className="card !p-5 !bg-[var(--color-bg-warm)]">
+                <div className="flex items-start gap-3">
+                  <ShieldCheck size={18} className="text-[var(--color-primary)] flex-shrink-0 mt-1" />
+                  <div className="text-sm">
+                    <p className="font-semibold mb-1">Grievance Officer</p>
+                    <p className="text-[var(--color-text-muted)] leading-relaxed">
+                      For complaints relating to content, services, or data
+                      protection, write to{" "}
+                      <a
+                        href="mailto:grievance@surgisaathi.com"
+                        className="text-[var(--color-primary)] underline"
+                      >
+                        grievance@surgisaathi.com
+                      </a>
+                      . We acknowledge complaints within 48 hours and resolve
+                      them within 15 days as required under the IT Rules
+                      2021 and the DPDP Act 2023.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Contact Form */}

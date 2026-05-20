@@ -4,6 +4,10 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import WhatsAppFloat from "./components/WhatsAppFloat";
 import StickyCTA from "./components/StickyCTA";
+import JsonLd from "./components/JsonLd";
+import Analytics from "./components/analytics/Analytics";
+import ConsentBanner from "./components/analytics/ConsentBanner";
+import { organizationSchema, websiteSchema, SITE_URL } from "../lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,45 +21,65 @@ const plusJakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://surgisaathi.com";
+const SITE_TITLE =
+  "Laser Piles, Circumcision, Fissure & Fistula Surgery in Mumbai & Chandigarh | SURGISAATHI";
+const SITE_DESCRIPTION =
+  "Book free consultation for laser piles, circumcision, fissure, fistula, abscess & pilonidal sinus surgery in Mumbai & Chandigarh. Verified surgeons, transparent pricing, cashless insurance. Call +91 70114 73737.";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "SURGISAATHI — Trusted Care for Sensitive Surgeries",
-  description:
-    "India's trusted surgery coordination platform for Circumcision, Piles, Fissure, Fistula, Abscess & Pilonidal Sinus. Expert surgeons, transparent pricing, complete support.",
-  keywords:
-    "laser piles surgery, circumcision surgery, fistula treatment, fissure surgery, pilonidal sinus treatment, best piles doctor, laser surgery India",
+  title: {
+    default: SITE_TITLE,
+    template: "%s | SURGISAATHI",
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: "SURGISAATHI",
+  alternates: { canonical: "/" },
   icons: {
     icon: "/images/logo/logo-icon.png",
     apple: "/images/logo/logo-icon.png",
   },
   openGraph: {
-    title: "SURGISAATHI — Trusted Care for Sensitive Surgeries",
-    description:
-      "Book consultations with expert surgeons for Piles, Circumcision, Fissure, Fistula & more. Transparent pricing. Insurance support. Complete care.",
+    siteName: "SURGISAATHI",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     type: "website",
     locale: "en_IN",
+    url: SITE_URL,
     images: [
       {
-        url: "/images/logo/logo-primary.png",
+        url: "/images/logo/logo-social.png",
         width: 1024,
         height: 1024,
-        alt: "SURGISAATHI Logo",
+        alt: "SURGISAATHI — Trusted Care for Sensitive Surgeries",
       },
     ],
+  },
+  twitter: {
+    card: "summary",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: ["/images/logo/logo-social.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} ${plusJakarta.variable}`}>
+    <html lang="en-IN" className={`${inter.variable} ${plusJakarta.variable}`}>
       <body>
+        <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <Navbar />
         <main>{children}</main>
         <Footer />
         <WhatsAppFloat />
         <StickyCTA />
+        <ConsentBanner />
+        <Analytics />
       </body>
     </html>
   );

@@ -2,8 +2,9 @@ import Link from "next/link";
 import { Star, ChevronRight, ArrowRight, Quote } from "lucide-react";
 
 export const metadata = {
-  title: "Patient Testimonials — Real Stories, Real Results | SURGISAATHI",
-  description: "Read verified patient stories and testimonials from people who chose SURGISAATHI for their surgery. 4.8★ average rating across 10,000+ patients.",
+  title: "Patient Stories & Testimonials | SURGISAATHI",
+  description: "Read patient stories and testimonials from people who chose SURGISAATHI for laser piles, circumcision, fistula and other sensitive surgeries. Identities anonymised for privacy.",
+  alternates: { canonical: "/testimonials" },
 };
 
 const testimonials = [

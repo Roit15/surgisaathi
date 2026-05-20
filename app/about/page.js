@@ -2,8 +2,9 @@ import Link from "next/link";
 import { Heart, Shield, Users, Target, Award, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export const metadata = {
-  title: "About SURGISAATHI — Our Mission & Team | Trusted Surgery Coordination",
-  description: "SURGISAATHI is India's trusted surgery coordination platform for sensitive procedures. Learn about our mission, values, and commitment to patient care.",
+  title: "About SURGISAATHI — Our Mission, Team & Commitment",
+  description: "SURGISAATHI is a surgery coordination platform for sensitive procedures (piles, fissure, fistula, circumcision) in Mumbai and Chandigarh. Learn about our mission, values, and commitment to patient privacy and care.",
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {

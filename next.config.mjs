@@ -12,16 +12,18 @@ const SECURITY_HEADERS = [
     value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
   },
   {
-    // Allow Next.js inline runtime scripts/styles (Tailwind injects styles)
-    // and Google Fonts assets used by next/font.
+    // Allow Next.js inline runtime scripts/styles (Tailwind injects styles),
+    // Google Fonts assets used by next/font, and the analytics tags that
+    // load only after the visitor grants cookie consent.
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://connect.facebook.net https://www.clarity.ms",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "img-src 'self' data: https:",
       "font-src 'self' https://fonts.gstatic.com data:",
-      "connect-src 'self' https://script.google.com",
+      "connect-src 'self' https://script.google.com https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com https://connect.facebook.net https://www.facebook.com https://www.clarity.ms https://*.clarity.ms",
+      "frame-src https://www.googletagmanager.com",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",

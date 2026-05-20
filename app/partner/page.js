@@ -3,8 +3,9 @@ import { ArrowRight, CheckCircle2, Building2 } from "lucide-react";
 import PartnerForm from "./PartnerForm";
 
 export const metadata = {
-  title: "Partner With SURGISAATHI — Hospitals & Doctors",
-  description: "Partner with SURGISAATHI to grow your practice. Get qualified patient leads, insurance coordination, and marketing support. Zero upfront costs.",
+  title: "Partner With SURGISAATHI — For Surgeons & Hospitals",
+  description: "Partner with SURGISAATHI to grow your practice. Receive qualified patient leads, insurance coordination, and marketing support. Zero upfront costs.",
+  alternates: { canonical: "/partner" },
 };
 
 export default function PartnerPage() {

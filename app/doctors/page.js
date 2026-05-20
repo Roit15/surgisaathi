@@ -1,8 +1,11 @@
 import DoctorsBrowser from "./DoctorsBrowser";
+import JsonLd from "../components/JsonLd";
+import { breadcrumbSchema } from "../../lib/seo";
 
 export const metadata = {
-  title: "Best Surgeons for Piles, Circumcision, Fistula & More | SURGISAATHI",
-  description: "Find top-rated, verified surgeons for laser piles surgery, circumcision, fissure, fistula, and pilonidal sinus treatment in Mumbai and Chandigarh.",
+  title: "Verified Surgeons for Piles, Circumcision, Fistula & More",
+  description: "Find verified surgeons for laser piles surgery, circumcision, fissure, fistula, and pilonidal sinus treatment in Mumbai and Chandigarh. Profiles, experience and patient ratings.",
+  alternates: { canonical: "/doctors" },
 };
 
 const doctors = [
@@ -17,6 +20,12 @@ const doctors = [
 export default function DoctorsPage() {
   return (
     <div className="pt-16 lg:pt-[72px]">
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", href: "/" },
+          { name: "Doctors", href: "/doctors" },
+        ])}
+      />
       <DoctorsBrowser doctors={doctors} />
     </div>
   );

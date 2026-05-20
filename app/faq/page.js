@@ -1,6 +1,10 @@
+import JsonLd from "../components/JsonLd";
+import { faqPageSchema, breadcrumbSchema } from "../../lib/seo";
+
 export const metadata = {
   title: "Frequently Asked Questions | SURGISAATHI",
-  description: "Common questions about laser surgery, costs, insurance, recovery, and the SURGISAATHI process.",
+  description: "Common questions about laser surgery costs, insurance coverage, recovery time, and the SURGISAATHI care process.",
+  alternates: { canonical: "/faq" },
 };
 
 const faqs = [
@@ -33,6 +37,15 @@ const faqs = [
 export default function FAQPage() {
   return (
     <div className="pt-16 lg:pt-[72px]">
+      <JsonLd
+        data={[
+          faqPageSchema(faqs, "/faq"),
+          breadcrumbSchema([
+            { name: "Home", href: "/" },
+            { name: "FAQ", href: "/faq" },
+          ]),
+        ]}
+      />
       <section className="gradient-hero py-14 lg:py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl lg:text-4xl font-bold text-white mb-3">Frequently Asked Questions</h1>

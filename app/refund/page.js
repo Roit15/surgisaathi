@@ -1,8 +1,9 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Refund Policy | SURGISAATHI",
-  description: "How refunds, cancellations, and reschedules work at SURGISAATHI.",
+  title: "Refund & Cancellation Policy | SURGISAATHI",
+  description: "How refunds, cancellations, and reschedules work at SURGISAATHI — timelines, processing details, and exceptions.",
+  alternates: { canonical: "/refund" },
 };
 
 export default function RefundPage() {
