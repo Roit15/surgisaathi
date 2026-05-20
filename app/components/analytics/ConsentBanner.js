@@ -31,7 +31,7 @@ export default function ConsentBanner() {
       role="dialog"
       aria-live="polite"
       aria-label="Cookie preferences"
-      className="fixed bottom-4 left-4 right-4 sm:right-auto sm:max-w-md z-[60] bg-white border border-[var(--color-card-border)] rounded-2xl shadow-2xl p-5"
+      className="fixed bottom-24 sm:bottom-4 left-4 right-4 sm:right-auto sm:max-w-md z-[1001] bg-white border border-[var(--color-card-border)] rounded-2xl shadow-2xl p-5"
     >
       <p className="text-sm text-[var(--color-text-body)] leading-relaxed">
         We use cookies to understand how visitors use SURGISAATHI and to
