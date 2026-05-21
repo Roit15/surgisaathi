@@ -7,7 +7,7 @@ import StickyCTA from "./components/StickyCTA";
 import JsonLd from "./components/JsonLd";
 import Analytics from "./components/analytics/Analytics";
 import ConsentBanner from "./components/analytics/ConsentBanner";
-import { organizationSchema, websiteSchema, SITE_URL } from "../lib/seo";
+import { organizationSchema, websiteSchema, aggregateRatingSchema, SITE_URL } from "../lib/seo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,9 +22,9 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 const SITE_TITLE =
-  "Laser Piles, Circumcision, Fissure & Fistula Surgery in Mumbai & Chandigarh | SURGISAATHI";
+  "Laser Piles & Surgery Specialists in Mumbai | SURGISAATHI";
 const SITE_DESCRIPTION =
-  "Book free consultation for laser piles, circumcision, fissure, fistula, abscess & pilonidal sinus surgery in Mumbai & Chandigarh. Verified surgeons, transparent pricing, cashless insurance. Call +91 70114 73737.";
+  "Same-day consultation available. Expert laser surgery for piles, circumcision, fissure, fistula & more in Mumbai & Chandigarh. Verified surgeons, transparent pricing from ₹25,000, cashless insurance. Call +91 70114 73737.";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -44,18 +44,18 @@ export const metadata = {
     url: SITE_URL,
     images: [
       {
-        url: "/images/logo/logo-social.png",
-        width: 1024,
-        height: 1024,
-        alt: "SURGISAATHI — Trusted Care for Sensitive Surgeries",
+        url: "/images/og/og-home.png",
+        width: 1200,
+        height: 630,
+        alt: "SURGISAATHI — Expert Laser Surgery in Mumbai & Chandigarh",
       },
     ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    images: ["/images/logo/logo-social.png"],
+    images: ["/images/og/og-home.png"],
   },
   robots: {
     index: true,
@@ -68,7 +68,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en-IN" className={`${inter.variable} ${plusJakarta.variable}`}>
       <body>
-        <JsonLd data={[organizationSchema(), websiteSchema()]} />
+        <JsonLd data={[organizationSchema(), websiteSchema(), aggregateRatingSchema()]} />
         <Navbar />
         <main>{children}</main>
         <Footer />
