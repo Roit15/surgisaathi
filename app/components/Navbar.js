@@ -72,6 +72,9 @@ export default function Navbar() {
             <Link href="/about" className="px-4 py-2 text-sm font-medium text-[var(--color-text-body)] hover:text-[var(--color-primary)] transition-colors rounded-lg hover:bg-[var(--color-primary)]/5">
               About
             </Link>
+            <Link href="/blog" className="px-4 py-2 text-sm font-medium text-[var(--color-text-body)] hover:text-[var(--color-primary)] transition-colors rounded-lg hover:bg-[var(--color-primary)]/5">
+              Health Guide
+            </Link>
           </nav>
 
           {/* Desktop CTA */}
@@ -106,6 +109,7 @@ export default function Navbar() {
             <Link href="/hospitals" onClick={() => setOpen(false)} className="block px-3 py-2.5 text-sm font-medium text-[var(--color-text-body)]">Hospitals</Link>
             <Link href="/insurance" onClick={() => setOpen(false)} className="block px-3 py-2.5 text-sm font-medium text-[var(--color-text-body)]">Insurance</Link>
             <Link href="/about" onClick={() => setOpen(false)} className="block px-3 py-2.5 text-sm font-medium text-[var(--color-text-body)]">About</Link>
+            <Link href="/blog" onClick={() => setOpen(false)} className="block px-3 py-2.5 text-sm font-medium text-[var(--color-text-body)]">Health Guide</Link>
             <hr className="my-3 border-[var(--color-card-border)]" />
             <Link href="/book-consultation" onClick={() => setOpen(false)} className="btn-primary w-full justify-center !text-sm">
               Book Free Consultation

@@ -25,6 +25,7 @@ const patientLinks = [
   { name: "Find Hospitals", href: "/hospitals" },
   { name: "Surgeries", href: "/surgeries" },
   { name: "Insurance Support", href: "/insurance" },
+  { name: "Health Guide (Blog)", href: "/blog" },
   { name: "Book Consultation", href: "/book-consultation" },
 ];
 
