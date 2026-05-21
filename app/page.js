@@ -5,7 +5,7 @@ import {
   UserCheck, Building2, Stethoscope, CheckCircle2, ArrowRight,
   Phone, Zap, Award, Users, HeartPulse, Sparkles
 } from "lucide-react";
-import HeroCarousel from "./components/HeroCarousel";
+import InlineLeadForm from "./components/InlineLeadForm";
 
 /* ── STATIC DATA ────────────────────────────────────────── */
 
@@ -80,53 +80,26 @@ export default function Home() {
                 Expert laser treatments for Piles, Circumcision, Fissure, Fistula & more.
                 Transparent pricing. Insurance support. Complete care coordination.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/book-consultation" className="btn-primary !bg-[var(--color-accent)] !text-white animate-pulse-glow !text-base !py-4 !px-8">
-                  Book Free Consultation <ArrowRight size={18} />
-                </Link>
-                <a href="tel:+917011473737" className="btn-secondary !border-white/30 !text-white hover:!bg-white/10 !text-base !py-4 !px-8">
-                  <Phone size={18} /> Talk to Care Expert
-                </a>
+              
+              <div className="flex items-center gap-3">
+                <div className="flex -space-x-2">
+                  {["A","P","S","R","M"].map((l) => (
+                    <div key={l} className="w-8 h-8 rounded-full bg-white/20 border-2 border-white/40 flex items-center justify-center text-xs font-bold text-white">{l}</div>
+                  ))}
+                </div>
+                <p className="text-white/70 text-sm"><span className="text-white font-semibold">10,000+ patients</span> treated successfully</p>
               </div>
             </div>
 
-            {/* Right — Dynamic Carousel (Desktop) */}
+            {/* Right — Inline Lead Form (Desktop) */}
             <div className="hidden lg:flex justify-end">
-              <div className="relative w-[480px] h-[480px]">
-                {/* Decorative glow ring */}
-                <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-white/20 to-transparent blur-2xl" />
-                <div className="relative w-full h-full rounded-3xl overflow-hidden border-4 border-white/20 shadow-2xl">
-                  <HeroCarousel />
-                </div>
-                {/* Floating badge — bottom-left */}
-                <div className="absolute -bottom-2 -left-4 bg-white rounded-2xl shadow-xl px-5 py-3 flex items-center gap-3 z-10">
-                  <div className="w-10 h-10 rounded-xl bg-[var(--color-success)]/10 flex items-center justify-center">
-                    <CheckCircle2 size={20} className="text-[var(--color-success)]" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-[var(--color-text-heading)]">10,000+</p>
-                    <p className="text-xs text-[var(--color-text-muted)]">Successful Surgeries</p>
-                  </div>
-                </div>
-                {/* Floating badge — top-right */}
-                <div className="absolute -top-2 -right-4 bg-white rounded-2xl shadow-xl px-5 py-3 flex items-center gap-3 z-10">
-                  <div className="w-10 h-10 rounded-xl bg-[var(--color-accent)]/10 flex items-center justify-center">
-                    <Award size={20} className="text-[var(--color-accent)]" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-[var(--color-text-heading)]">4.8 ★</p>
-                    <p className="text-xs text-[var(--color-text-muted)]">Patient Rating</p>
-                  </div>
-                </div>
-              </div>
+              <InlineLeadForm />
             </div>
           </div>
 
-          {/* Mobile Carousel — below CTA buttons */}
-          <div className="mt-10 lg:hidden">
-            <div className="relative w-full h-[280px] sm:h-[340px] rounded-2xl overflow-hidden border-2 border-white/20 shadow-xl">
-              <HeroCarousel />
-            </div>
+          {/* Mobile Form — below text */}
+          <div className="mt-10 lg:hidden flex justify-center">
+             <InlineLeadForm />
           </div>
         </div>
       </section>

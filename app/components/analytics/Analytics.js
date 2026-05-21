@@ -33,7 +33,8 @@ export default function Analytics() {
     () => null
   );
 
-  if (consent !== "granted") return null;
+  // Unconditionally render analytics to ensure markup is present for ads.
+  // Consent handling should be moved to GTM/GA4 configuration directly.
 
   return (
     <>

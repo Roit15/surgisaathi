@@ -1,5 +1,5 @@
 /**
- * Render one or more JSON-LD blobs into the document.
+ * Render JSON-LD blob into the document.
  *
  * Usage:
  *   <JsonLd data={organizationSchema()} />
@@ -9,16 +9,11 @@
  * is available to crawlers without executing client-side JS.
  */
 export default function JsonLd({ data }) {
-  const blobs = Array.isArray(data) ? data : [data];
+  if (!data) return null;
   return (
-    <>
-      {blobs.filter(Boolean).map((blob, i) => (
-        <script
-          key={i}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(blob) }}
-        />
-      ))}
-    </>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
   );
 }

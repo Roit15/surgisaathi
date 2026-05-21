@@ -12,6 +12,13 @@ export const metadata = {
     title: "Laser Piles Surgery in Mumbai | SURGISAATHI",
     description: "Expert laser piles treatment in Mumbai. Verified surgeons, transparent pricing from ₹38K, cashless insurance support.",
     url: "/piles-surgery-mumbai",
+    images: [{ url: "/images/og/piles-surgery-mumbai.png" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Laser Piles Surgery in Mumbai | SURGISAATHI",
+    description: "Expert laser piles treatment in Mumbai. Verified surgeons, transparent pricing from ₹38K, cashless insurance support.",
+    images: ["/images/og/piles-surgery-mumbai.png"],
   },
 };
 
@@ -208,6 +215,54 @@ export default function PilesSurgeryMumbai() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* COMPREHENSIVE CONTENT */}
+      <section className="section bg-[var(--color-bg-warm)] border-t border-[var(--color-card-border)]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 article-body">
+          <h2 className="text-2xl lg:text-3xl font-bold mb-6">Comprehensive Guide to Piles (Hemorrhoids) Treatment in Mumbai</h2>
+          
+          <p>If you're suffering from piles (hemorrhoids) in Mumbai, you are not alone. It is estimated that nearly 50% of adults experience symptoms of hemorrhoids by age 50. With Mumbai's fast-paced lifestyle, dietary habits, and long commuting hours, the incidence of anorectal conditions is rising. Fortunately, advanced medical treatments have made piles surgery virtually painless, with significantly shorter recovery times.</p>
+          
+          <h3>What Are Piles?</h3>
+          <p>Piles, clinically known as hemorrhoids, are swollen and inflamed veins in your anus and lower rectum, similar to varicose veins. They can develop inside the rectum (internal hemorrhoids) or under the skin around the anus (external hemorrhoids).</p>
+          
+          <ul>
+            <li><strong>Grade 1:</strong> Small swellings inside the lining of the anus. They do not protrude outside.</li>
+            <li><strong>Grade 2:</strong> Larger swellings that may come out during a bowel movement but retract naturally.</li>
+            <li><strong>Grade 3:</strong> Hemorrhoids that prolapse out but can be pushed back in manually.</li>
+            <li><strong>Grade 4:</strong> Permanently prolapsed hemorrhoids that cannot be pushed back inside. These often require immediate surgical intervention.</li>
+          </ul>
+
+          <h3>Signs and Symptoms You Shouldn't Ignore</h3>
+          <p>Early diagnosis is crucial for effective treatment. You should consult a proctologist in Mumbai if you experience:</p>
+          <ul>
+            <li>Painless bleeding during bowel movements (bright red blood)</li>
+            <li>Itching, irritation, or swelling around your anal region</li>
+            <li>Pain or discomfort, especially when sitting or passing stool</li>
+            <li>A sensitive or painful lump near your anus</li>
+          </ul>
+
+          <h3>Traditional Surgery vs. Laser Hemorrhoidoplasty (LHP)</h3>
+          <p>Historically, treating severe piles involved painful open surgery (hemorrhoidectomy) which required a hospital stay of several days, daily dressing changes, and weeks of painful recovery.</p>
+          
+          <p>At SURGISAATHI, we exclusively recommend <strong>Laser Hemorrhoidoplasty (LHP)</strong>. This state-of-the-art procedure is performed by our expert proctologists at NABH-accredited hospitals in Mumbai.</p>
+          
+          <p><strong>Benefits of Laser Surgery over Traditional Methods:</strong></p>
+          <ul>
+            <li><strong>No Cuts or Stitches:</strong> The laser safely shrinks the hemorrhoidal tissue from the inside without cutting healthy tissue.</li>
+            <li><strong>Minimal Pain and Bleeding:</strong> Because there are no incisions, post-operative pain is negligible.</li>
+            <li><strong>Same-Day Discharge:</strong> You will typically be discharged from the hospital within 12 to 24 hours of the surgery.</li>
+            <li><strong>Quick Return to Normalcy:</strong> Most patients resume their desk jobs and regular routines within 2 to 3 days.</li>
+            <li><strong>High Success Rate:</strong> Laser surgery has a significantly lower recurrence rate compared to traditional procedures.</li>
+          </ul>
+
+          <h3>Preparing for Your Surgery in Mumbai</h3>
+          <p>When you book through SURGISAATHI, our care coordinators handle the logistics. Before the surgery, you will undergo basic blood tests and an ECG. The procedure is usually performed under spinal or short general anesthesia, meaning you won't feel any pain during the operation.</p>
+          
+          <h3>Post-Surgery Care and Diet</h3>
+          <p>Recovery is fast, but following your surgeon's advice is vital to prevent recurrence. A high-fiber diet, plenty of water (at least 3-4 liters a day), and avoiding straining during bowel movements are essential. Sitz baths (sitting in warm water) may be recommended to soothe the area.</p>
         </div>
       </section>
 
