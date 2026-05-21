@@ -5,6 +5,7 @@ import {
   UserCheck, Building2, Stethoscope, CheckCircle2, ArrowRight,
   Phone, Zap, Award, Users, HeartPulse, Sparkles
 } from "lucide-react";
+import HeroCarousel from "./components/HeroCarousel";
 
 /* ── STATIC DATA ────────────────────────────────────────── */
 
@@ -64,8 +65,8 @@ export default function Home() {
           <div className="absolute top-20 right-20 w-72 h-72 bg-white/20 rounded-full blur-3xl" />
           <div className="absolute bottom-10 left-10 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-28 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left — Text */}
             <div>
               <div className="trust-badge !bg-white/15 !text-white mb-6">
@@ -89,20 +90,13 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right — Hero Image */}
+            {/* Right — Dynamic Carousel (Desktop) */}
             <div className="hidden lg:flex justify-end">
               <div className="relative w-[480px] h-[480px]">
                 {/* Decorative glow ring */}
                 <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-white/20 to-transparent blur-2xl" />
                 <div className="relative w-full h-full rounded-3xl overflow-hidden border-4 border-white/20 shadow-2xl">
-                  <Image
-                    src="/images/hero/hero-doctor.png"
-                    alt="Expert surgeon at SURGISAATHI partner hospital"
-                    fill
-                    className="object-cover"
-                    priority
-                    sizes="480px"
-                  />
+                  <HeroCarousel />
                 </div>
                 {/* Floating badge — bottom-left */}
                 <div className="absolute -bottom-2 -left-4 bg-white rounded-2xl shadow-xl px-5 py-3 flex items-center gap-3 z-10">
@@ -125,6 +119,13 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Mobile Carousel — below CTA buttons */}
+          <div className="mt-10 lg:hidden">
+            <div className="relative w-full h-[280px] sm:h-[340px] rounded-2xl overflow-hidden border-2 border-white/20 shadow-xl">
+              <HeroCarousel />
             </div>
           </div>
         </div>
