@@ -1,4 +1,6 @@
 import { blogPosts } from "../lib/blog-data";
+import { cityData } from "../lib/city-data";
+import { surgeryData } from "../lib/surgery-data";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://surgisaathi.com";
 
@@ -20,17 +22,10 @@ const STATIC_ROUTES = [
   "/refund",
 ];
 
-const SURGERY_SLUGS = [
-  "circumcision",
-  "piles",
-  "fissure",
-  "fistula",
-  "abscess",
-  "pilonidal-sinus",
-];
+const SURGERY_SLUGS = Object.keys(surgeryData);
 
-// City-specific landing pages — high-priority for SEO
-const CITY_PAGES = [
+// Old hardcoded city pages (still useful for redirects, but keeping them just in case)
+const OLD_CITY_PAGES = [
   "/piles-surgery-mumbai",
   "/piles-surgery-chandigarh",
   "/circumcision-surgery-mumbai",
@@ -54,13 +49,34 @@ export default function sitemap() {
     priority: 0.8,
   }));
 
-  // City landing pages — high priority (local SEO targets)
-  const cityEntries = CITY_PAGES.map((path) => ({
+  // Old hardcoded city landing pages
+  const oldCityEntries = OLD_CITY_PAGES.map((path) => ({
     url: `${SITE_URL}${path}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
+  // Programmatic city landing pages
+  const cityEntries = Object.keys(cityData).map((citySlug) => ({
+    url: `${SITE_URL}/${citySlug}`,
     lastModified: now,
     changeFrequency: "monthly",
     priority: 0.9,
   }));
+
+  // Programmatic city + surgery landing pages
+  const citySurgeryEntries = [];
+  for (const citySlug of Object.keys(cityData)) {
+    for (const surgerySlug of Object.keys(surgeryData)) {
+      citySurgeryEntries.push({
+        url: `${SITE_URL}/${citySlug}/${surgerySlug}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.9,
+      });
+    }
+  }
 
   // Blog posts — medium priority, highest change frequency
   const blogEntries = blogPosts.map((post) => ({
@@ -70,5 +86,5 @@ export default function sitemap() {
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...surgeryEntries, ...cityEntries, ...blogEntries];
+  return [...staticEntries, ...surgeryEntries, ...oldCityEntries, ...cityEntries, ...citySurgeryEntries, ...blogEntries];
 }

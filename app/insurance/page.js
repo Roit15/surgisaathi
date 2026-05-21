@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Shield, CheckCircle2, ArrowRight, Phone, FileCheck, Clock, HelpCircle, ChevronRight } from "lucide-react";
+import InsuranceChecker from "../components/InsuranceChecker";
 
 export const metadata = {
   title: "Cashless Insurance for Surgery — Claims & Pre-Authorisation",
@@ -28,15 +29,19 @@ export default function InsurancePage() {
       <section className="gradient-hero py-16 lg:py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl lg:text-5xl font-bold text-white mb-4">Complete Insurance Support</h1>
-          <p className="text-lg text-white/80 max-w-2xl">Don&apos;t pay out of pocket. Most surgeries are covered by insurance. We handle the entire claim process — from pre-auth to settlement.</p>
+          <p className="text-lg text-white/80 max-w-2xl">Don't pay out of pocket. Most surgeries are covered by insurance. We handle the entire claim process — from pre-auth to settlement.</p>
           <div className="flex flex-col sm:flex-row gap-4 mt-8">
-            <Link href="/book-consultation" className="btn-primary !bg-[var(--color-accent)] !py-4 !px-8 animate-pulse-glow">
-              Check My Insurance <ArrowRight size={18} />
-            </Link>
-            <a href="tel:+917011473737" className="btn-secondary !border-white/30 !text-white hover:!bg-white/10 !py-4 !px-8">
+            <a href="tel:+917011473737" className="btn-secondary !border-white/30 !text-white hover:!bg-white/10 !py-4 !px-8 inline-flex justify-center items-center gap-2">
               <Phone size={18} /> Talk to Insurance Expert
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* INSURANCE CHECKER WIDGET */}
+      <section className="section bg-[var(--color-bg-warm)] -mt-12 relative z-10 pb-0">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <InsuranceChecker />
         </div>
       </section>
 

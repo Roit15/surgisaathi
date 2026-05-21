@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { surgeryContent } from "../../../lib/surgery-content";
 import { CheckCircle2, Clock, IndianRupee, ArrowRight, Phone, Zap, ChevronRight, Building2, ShieldCheck } from "lucide-react";
 import JsonLd from "../../components/JsonLd";
 import {
@@ -8,139 +9,7 @@ import {
   breadcrumbSchema,
 } from "../../../lib/seo";
 
-const surgeryData = {
-  circumcision: {
-    title: "Laser Circumcision Surgery",
-    subtitle: "Safe laser circumcision with same-day discharge and minimal discomfort",
-    priceRange: "₹25,000 – ₹42,500",
-    recovery: "3-5 days",
-    duration: "20-30 minutes",
-    hospital: "Day-care procedure",
-    description: "Circumcision is the surgical removal of the foreskin covering the tip of the penis. Laser circumcision is a modern, minimally invasive technique that uses laser energy for precise cutting with minimal bleeding and faster healing.",
-    symptoms: ["Phimosis (tight foreskin)", "Paraphimosis", "Recurrent infections", "Balanitis", "Difficulty in hygiene maintenance", "Religious or cultural reasons"],
-    treatments: [
-      { name: "Laser Circumcision", pros: ["Minimal bleeding", "Faster healing", "Less pain", "Same-day discharge"], recommended: true },
-      { name: "Stapler Circumcision", pros: ["Quick procedure", "Uniform cut", "Less pain", "Good cosmetic result"], recommended: false },
-      { name: "Conventional Surgery", pros: ["Lower cost", "Widely available"], recommended: false },
-    ],
-    steps: ["Consultation & Assessment", "Pre-operative tests", "Local/general anesthesia", "Laser removal of foreskin", "Dressing & discharge (same day)", "Follow-up in 3-5 days"],
-    faqs: [
-      { q: "Is laser circumcision painful?", a: "The procedure is performed under anesthesia, so you won't feel pain during surgery. Post-operative discomfort is minimal and managed with prescribed medications." },
-      { q: "How long does recovery take?", a: "Most patients recover within 3-5 days and can resume normal activities. Complete healing typically takes 2-3 weeks." },
-      { q: "Is it covered by insurance?", a: "Yes, circumcision for medical reasons (phimosis, recurrent infections) is covered by most health insurance policies." },
-      { q: "What is the success rate?", a: "Laser circumcision is a well-established technique with a high success rate when performed by experienced surgeons. Complication rates are low, but every surgery carries some risk — your surgeon will explain risks specific to your case during consultation." },
-    ],
-  },
-  piles: {
-    title: "Laser Piles Surgery",
-    subtitle: "Minimally invasive laser treatment for hemorrhoids with rapid recovery",
-    priceRange: "₹36,000 – ₹80,000",
-    recovery: "2-3 days",
-    duration: "30-45 minutes",
-    hospital: "Day-care procedure",
-    description: "Piles (hemorrhoids) are swollen blood vessels in the rectal area. Laser piles surgery uses focused laser energy to shrink hemorrhoidal tissue with minimal pain and bleeding, offering a significantly faster recovery than traditional surgery.",
-    symptoms: ["Bleeding during bowel movements", "Itching or irritation around the anus", "Pain or discomfort while sitting", "Swelling around the anus", "A lump near the anus", "Mucus discharge"],
-    treatments: [
-      { name: "Laser Hemorrhoidoplasty", pros: ["Minimal pain", "No cuts or stitches", "30-min procedure", "Same-day discharge"], recommended: true },
-      { name: "Stapler Hemorrhoidopexy", pros: ["Less post-op pain", "Quick recovery", "Good for prolapsed piles"], recommended: false },
-      { name: "Open Hemorrhoidectomy", pros: ["Lower cost", "Suitable for grade 4"], recommended: false },
-    ],
-    steps: ["Proctoscopy examination", "Pre-operative blood tests", "Spinal/local anesthesia", "Laser shrinkage of hemorrhoids", "Observation & discharge (same day)", "Follow-up in 2-3 days"],
-    faqs: [
-      { q: "Can piles be treated without surgery?", a: "Grade 1-2 piles can often be managed with lifestyle changes and medication. Grade 3-4 piles typically require surgical intervention for lasting relief." },
-      { q: "Will piles come back after laser surgery?", a: "Laser surgery has a very low recurrence rate (less than 5%) when performed by experienced surgeons and combined with lifestyle modifications." },
-      { q: "Is laser piles surgery covered by insurance?", a: "Yes, piles surgery is covered by most health insurance policies as it is considered a medically necessary procedure." },
-      { q: "How soon can I return to work?", a: "Most patients return to desk work within 2-3 days. Physical labor may require 1-2 weeks of rest." },
-    ],
-  },
-  fissure: {
-    title: "Laser Fissure Treatment",
-    subtitle: "Advanced laser surgery for anal fissure with minimal discomfort",
-    priceRange: "₹30,000 – ₹60,000",
-    recovery: "3-5 days",
-    duration: "20-30 minutes",
-    hospital: "Day-care procedure",
-    description: "An anal fissure is a small tear in the lining of the anus. Laser fissure treatment uses controlled laser energy to heal the fissure and relax the internal sphincter muscle, providing lasting relief with minimal pain.",
-    symptoms: ["Sharp pain during bowel movements", "Bleeding with stools", "Visible crack or tear", "Itching around the anus", "Muscle spasm after passing stool", "Pain lasting hours after bowel movement"],
-    treatments: [
-      { name: "Laser Sphincterotomy", pros: ["Minimal pain", "Precise treatment", "Fast recovery", "Low recurrence"], recommended: true },
-      { name: "Lateral Internal Sphincterotomy", pros: ["Well-established technique", "Widely available"], recommended: false },
-      { name: "Medical Management", pros: ["Non-surgical", "First-line treatment"], recommended: false },
-    ],
-    steps: ["Clinical examination", "Pre-operative assessment", "Anesthesia administration", "Laser treatment of fissure", "Same-day discharge", "Follow-up in 3-5 days"],
-    faqs: [
-      { q: "When should I consider surgery for fissure?", a: "Surgery is recommended for chronic fissures (lasting more than 6-8 weeks) that haven't responded to medication and dietary changes." },
-      { q: "Is the laser treatment permanent?", a: "Laser treatment offers a high success rate for chronic fissures when combined with post-operative dietary changes. Recurrence is uncommon but not impossible; your surgeon will explain expected outcomes for your specific case." },
-      { q: "Will I have incontinence after surgery?", a: "No. Laser sphincterotomy is precisely controlled, preserving sphincter function. The risk of incontinence is extremely low with experienced surgeons." },
-      { q: "Is it covered by insurance?", a: "Yes, fissure surgery is covered by most health insurance plans when deemed medically necessary." },
-    ],
-  },
-  fistula: {
-    title: "Laser Fistula Surgery",
-    subtitle: "Sphincter-preserving laser treatment for anal fistula",
-    priceRange: "₹40,000 – ₹85,000",
-    recovery: "5-7 days",
-    duration: "45-60 minutes",
-    hospital: "Day-care / 1-day stay",
-    description: "An anal fistula is an abnormal tunnel between the anal canal and the skin near the anus. Laser fistula surgery (FiLaC) uses radial laser energy to close the fistula tract from inside, preserving sphincter muscle and reducing recurrence.",
-    symptoms: ["Persistent anal pain", "Swelling near the anus", "Pus or blood discharge", "Recurrent abscess", "Fever with anal symptoms", "Difficulty sitting"],
-    treatments: [
-      { name: "FiLaC (Laser Fistula)", pros: ["Sphincter-preserving", "Minimal scarring", "Low recurrence", "Quick recovery"], recommended: true },
-      { name: "VAAFT", pros: ["Video-assisted", "Precise identification", "Sphincter-sparing"], recommended: false },
-      { name: "Fistulotomy", pros: ["Simple technique", "High success for simple fistula"], recommended: false },
-    ],
-    steps: ["MRI fistulogram (if needed)", "Pre-operative blood work", "Anesthesia administration", "Laser closure of fistula tract", "Monitoring & discharge", "Follow-up in 5-7 days"],
-    faqs: [
-      { q: "Can fistula heal without surgery?", a: "Unfortunately, anal fistulas rarely heal on their own. Surgery is the most effective treatment for permanent resolution." },
-      { q: "What's the advantage of laser over conventional surgery?", a: "Laser treatment preserves the sphincter muscle (reducing incontinence risk), causes less pain, and has faster recovery compared to traditional fistulotomy." },
-      { q: "Will the fistula come back?", a: "With advanced laser techniques like FiLaC, recurrence rates are significantly lower (5-10%) compared to traditional methods." },
-      { q: "Is insurance applicable?", a: "Yes, fistula surgery is covered under most insurance policies. Our team handles the complete insurance process for you." },
-    ],
-  },
-  abscess: {
-    title: "Abscess Drainage Surgery",
-    subtitle: "Quick, safe abscess drainage with expert surgical care",
-    priceRange: "₹18,000 – ₹40,000",
-    recovery: "2-3 days",
-    duration: "15-20 minutes",
-    hospital: "Day-care procedure",
-    description: "A perianal abscess is a painful, pus-filled cavity near the anus. Surgical drainage is the standard treatment, providing immediate pain relief. Modern techniques ensure minimal scarring and faster healing.",
-    symptoms: ["Severe pain near the anus", "Swelling and redness", "Fever and chills", "Pus discharge", "Difficulty sitting", "General malaise"],
-    treatments: [
-      { name: "Incision & Drainage", pros: ["Immediate relief", "Quick procedure", "Outpatient"], recommended: true },
-      { name: "Drainage with Fistula Prevention", pros: ["Reduces fistula risk", "Comprehensive treatment"], recommended: false },
-    ],
-    steps: ["Emergency assessment", "Imaging if needed", "Local/general anesthesia", "Incision and drainage", "Wound packing & dressing", "Follow-up in 2-3 days"],
-    faqs: [
-      { q: "Is abscess drainage urgent?", a: "Yes, perianal abscesses should be treated promptly to prevent complications. Delayed treatment can lead to fistula formation or systemic infection." },
-      { q: "Can an abscess be treated with antibiotics alone?", a: "Antibiotics alone are usually insufficient. Surgical drainage is necessary to remove the pus and allow healing." },
-      { q: "Will the abscess come back?", a: "With proper drainage and post-operative care, recurrence is less common. About 30-50% of abscesses may develop into a fistula, which we monitor and treat proactively." },
-      { q: "Is insurance applicable?", a: "Yes, abscess drainage is covered by most insurance policies, especially when deemed medically urgent." },
-    ],
-  },
-  "pilonidal-sinus": {
-    title: "Pilonidal Sinus Laser Surgery",
-    subtitle: "Advanced laser treatment for pilonidal sinus with no recurrence",
-    priceRange: "₹30,000 – ₹70,000",
-    recovery: "5-7 days",
-    duration: "30-45 minutes",
-    hospital: "Day-care procedure",
-    description: "A pilonidal sinus is an abnormal skin growth containing hair and debris, usually near the tailbone. Laser surgery (SiLaC) uses radial laser energy to destroy the sinus tract without extensive cutting, resulting in minimal scarring.",
-    symptoms: ["Pain at the tailbone area", "Swelling above the buttocks", "Redness and tenderness", "Pus or blood drainage", "Foul-smelling discharge", "Recurrent infections"],
-    treatments: [
-      { name: "SiLaC (Laser Treatment)", pros: ["Minimal incision", "Low recurrence", "Quick recovery", "Less scarring"], recommended: true },
-      { name: "Excision with Flap", pros: ["Comprehensive removal", "Suitable for complex cases"], recommended: false },
-      { name: "Open Excision", pros: ["Simple technique", "Widely available"], recommended: false },
-    ],
-    steps: ["Clinical examination", "Pre-operative assessment", "Anesthesia administration", "Laser ablation of sinus tract", "Minimal wound closure", "Follow-up in 5-7 days"],
-    faqs: [
-      { q: "Can pilonidal sinus heal without surgery?", a: "While small, early-stage cases may respond to conservative treatment, most pilonidal sinuses require surgical intervention for permanent resolution." },
-      { q: "What's the advantage of laser treatment?", a: "Laser treatment involves minimal cutting, preserves surrounding tissue, has lower recurrence rates, and allows faster return to daily activities compared to open surgery." },
-      { q: "Will it recur after laser surgery?", a: "Laser surgery has a significantly lower recurrence rate (around 5-8%) compared to conventional surgery (15-30%). Following post-operative hygiene advice further reduces this risk." },
-      { q: "Is insurance applicable?", a: "Yes, pilonidal sinus surgery is covered by most health insurance policies. Our insurance desk manages the entire claim process." },
-    ],
-  },
-};
+import { surgeryData } from "../../../lib/surgery-data";
 
 export async function generateStaticParams() {
   return Object.keys(surgeryData).map((slug) => ({ slug }));
@@ -230,7 +99,14 @@ export default async function SurgeryPage({ params }) {
       <section className="section bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl lg:text-3xl font-bold mb-4">What is {data.title.replace("Laser ", "").replace(" Surgery", "")}?</h2>
-          <p className="text-[var(--color-text-body)] leading-relaxed">{data.description}</p>
+          {surgeryContent[p.slug] ? (
+            <div 
+              className="article-body prose-headings:mb-4 prose-p:mb-4 prose-ul:list-disc prose-ul:pl-5 prose-ul:mb-6 prose-li:mb-2"
+              dangerouslySetInnerHTML={{ __html: surgeryContent[p.slug] }} 
+            />
+          ) : (
+            <p className="text-[var(--color-text-body)] leading-relaxed">{data.description}</p>
+          )}
         </div>
       </section>
 
