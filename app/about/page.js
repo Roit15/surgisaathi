@@ -11,20 +11,20 @@ export const metadata = {
 
 const founders = [
   {
-    name: "Arjun Kapoor",
+    name: "Rohit",
     role: "Co-Founder & CEO",
-    background: "Former healthcare operations lead at Fortis Hospitals (8 years). MBA from IIM Bangalore. Experienced first-hand how patients with sensitive conditions struggled to navigate the system — and built SURGISAATHI to fix it.",
-    initials: "AK",
+    background: "10 Years of IT experience who built many working software for healthcare and many more. Experienced first-hand how patients with sensitive conditions struggled to navigate the system — and built SURGISAATHI to fix it.",
+    initials: "RO",
     linkedin: "#",
-    highlights: ["8 yrs healthcare ops", "IIM Bangalore MBA", "Ex-Fortis Hospitals"],
+    highlights: ["10 yrs IT experience", "Healthcare Software Expert", "Tech Innovator"],
   },
   {
-    name: "Dr. Sneha Rao",
+    name: "Neeraj Jangra",
     role: "Co-Founder & Chief Medical Officer",
-    background: "MS General Surgery, AIIMS Delhi. 12 years of surgical practice specialising in proctology. Brings clinical rigour to every surgeon vetting process and protocol at SURGISAATHI.",
-    initials: "SR",
+    background: "7 years of exp in healthcare handling surgeries working for hospitals and patients doctors closely, worked with Hexa Health, Pristyn Care. Brings clinical rigour to every surgeon vetting process and protocol at SURGISAATHI.",
+    initials: "NJ",
     linkedin: "#",
-    highlights: ["MS Surgery, AIIMS Delhi", "12 yrs surgical practice", "Clinical Head, Vetting"],
+    highlights: ["7 yrs healthcare ops", "Ex-Hexa Health", "Ex-Pristyn Care"],
   },
 ];
 
@@ -38,7 +38,7 @@ const team = [
 ];
 
 const milestones = [
-  { year: "2020", event: "SURGISAATHI founded in Mumbai by Arjun & Dr. Sneha" },
+  { year: "2020", event: "SURGISAATHI founded in Mumbai by Rohit & Neeraj" },
   { year: "2021", event: "First 500 surgeries coordinated — 4.9★ patient satisfaction" },
   { year: "2022", event: "Expanded to Chandigarh · Max Hospital partnership signed" },
   { year: "2023", event: "Crossed 5,000 surgeries · 8 insurance TPA partnerships secured" },
@@ -76,10 +76,10 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-12">
             <div>
               <p className="text-[var(--color-text-body)] leading-relaxed mb-4">
-                <strong className="text-[var(--color-text-heading)]">Arjun spent 8 years at Fortis Hospitals</strong> watching patients delay life-changing surgeries — not because they couldn't afford it, but because no one explained the process, the cost, or what to expect. Especially for conditions like piles and fistula, the stigma made it worse.
+                <strong className="text-[var(--color-text-heading)]">Rohit spent 10 years in IT building healthcare software,</strong> watching patients delay life-changing surgeries — not because they couldn't afford it, but because no one explained the process, the cost, or what to expect. Especially for conditions like piles and fistula, the stigma made it worse.
               </p>
               <p className="text-[var(--color-text-body)] leading-relaxed mb-4">
-                <strong className="text-[var(--color-text-heading)]">Dr. Sneha</strong> saw the same problem from inside the operating room. Patients arriving too late, with complications that could have been avoided — simply because they were too embarrassed to seek help earlier.
+                <strong className="text-[var(--color-text-heading)]">Neeraj</strong> saw the same problem handling surgeries and working closely with hospitals, doctors, and patients. Patients arriving too late, with complications that could have been avoided — simply because they were too embarrassed to seek help earlier.
               </p>
               <p className="text-[var(--color-text-body)] leading-relaxed">
                 In 2020, they built SURGISAATHI: <strong className="text-[var(--color-text-heading)]">a private, judgment-free platform</strong> where patients can get expert surgical care with complete transparency, insurance support, and a dedicated human coordinator — not just a booking link.
