@@ -39,7 +39,7 @@ export default function Footer() {
             <Link href="/" className="flex items-center gap-2.5 mb-4 group">
               <Image
                 src="/images/logo/logo-icon.png"
-                alt=""
+                alt="SURGISAATHI logo"
                 width={40}
                 height={40}
                 className="h-10 w-10 rounded-xl object-contain"
@@ -67,7 +67,7 @@ export default function Footer() {
           {/* Surgeries */}
           <div>
             <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">Surgeries</h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {surgeryLinks.map((l) => (
                 <li key={l.name}>
                   <Link href={l.href} className="text-sm hover:text-white transition-colors">{l.name}</Link>
@@ -79,7 +79,7 @@ export default function Footer() {
           {/* For Patients */}
           <div>
             <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-4">For Patients</h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {patientLinks.map((l) => (
                 <li key={l.name}>
                   <Link href={l.href} className="text-sm hover:text-white transition-colors">{l.name}</Link>

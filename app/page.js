@@ -3,19 +3,20 @@ import Image from "next/image";
 import {
   Shield, Heart, Clock, IndianRupee, ChevronRight,
   UserCheck, Building2, Stethoscope, CheckCircle2, ArrowRight,
-  Phone, Zap, Award, Users, HeartPulse, Sparkles
+  Phone, Zap, Award, Users, HeartPulse, Sparkles,
+  CircleDot, Star, Lock, Scissors, Activity, Flame, Target, Droplets
 } from "lucide-react";
 import InlineLeadForm from "./components/InlineLeadForm";
 
 /* ── STATIC DATA ────────────────────────────────────────── */
 
 const surgeries = [
-  { name: "Circumcision", slug: "circumcision", icon: "🔵", price: "₹25,000", desc: "Safe laser circumcision with same-day discharge", tag: "Most Popular" },
-  { name: "Piles", slug: "piles", icon: "🟠", price: "₹36,000", desc: "Minimally invasive laser piles treatment with rapid recovery", tag: "High Demand" },
-  { name: "Fissure", slug: "fissure", icon: "🟢", price: "₹35,000", desc: "Laser fissure surgery with rapid recovery", tag: null },
-  { name: "Fistula", slug: "fistula", icon: "🔴", price: "₹40,000", desc: "Advanced laser fistula treatment by experts", tag: null },
-  { name: "Abscess", slug: "abscess", icon: "🟡", price: "₹20,000", desc: "Quick abscess drainage with minimal discomfort", tag: null },
-  { name: "Pilonidal Sinus", slug: "pilonidal-sinus", icon: "🟣", price: "₹35,000", desc: "Laser pilonidal sinus surgery. No recurrence", tag: null },
+  { name: "Circumcision", slug: "circumcision", icon: Scissors, iconColor: "text-blue-500", price: "₹25,000", desc: "Safe laser circumcision with same-day discharge", tag: "Most Popular" },
+  { name: "Piles", slug: "piles", icon: Activity, iconColor: "text-orange-500", price: "₹36,000", desc: "Minimally invasive laser piles treatment with rapid recovery", tag: "High Demand" },
+  { name: "Fissure", slug: "fissure", icon: Flame, iconColor: "text-emerald-500", price: "₹35,000", desc: "Laser fissure surgery with rapid recovery", tag: null },
+  { name: "Fistula", slug: "fistula", icon: Target, iconColor: "text-red-500", price: "₹40,000", desc: "Advanced laser fistula treatment by experts", tag: null },
+  { name: "Abscess", slug: "abscess", icon: Droplets, iconColor: "text-amber-500", price: "₹20,000", desc: "Quick abscess drainage with minimal discomfort", tag: null },
+  { name: "Pilonidal Sinus", slug: "pilonidal-sinus", icon: CircleDot, iconColor: "text-purple-500", price: "₹35,000", desc: "Laser pilonidal sinus surgery. No recurrence", tag: null },
 ];
 
 const steps = [
@@ -37,7 +38,7 @@ const trustPillars = [
 const stats = [
   { value: "10,000+", label: "Successful Surgeries" },
   { value: "100+", label: "Expert Surgeons" },
-  { value: "4.8★", label: "Patient Rating" },
+  { value: "4.8", label: "Patient Rating" },
   { value: "50+", label: "Partner Hospitals" },
 ];
 
@@ -110,7 +111,10 @@ export default function Home() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {stats.map((s) => (
               <div key={s.label} className="text-center">
-                <div className="text-2xl lg:text-3xl font-bold text-[var(--color-primary)]">{s.value}</div>
+                <div className="text-2xl lg:text-3xl font-bold text-[var(--color-primary)] flex items-center justify-center gap-1">
+                  {s.value}
+                  {s.label === "Patient Rating" && <Star size={20} fill="currentColor" />}
+                </div>
                 <div className="text-sm text-[var(--color-text-muted)] mt-1">{s.label}</div>
               </div>
             ))}
@@ -161,7 +165,9 @@ export default function Home() {
                     {s.tag}
                   </span>
                 )}
-                <div className="text-3xl mb-4">{s.icon}</div>
+                <div className="w-12 h-12 rounded-xl bg-[var(--color-bg-warm)] flex items-center justify-center mb-4">
+                  <s.icon size={24} className={s.iconColor} />
+                </div>
                 <h3 className="text-xl font-semibold mb-1 group-hover:text-[var(--color-primary)] transition-colors">
                   {s.name}
                 </h3>
@@ -361,7 +367,7 @@ export default function Home() {
               <Phone size={18} /> Call Now
             </a>
           </div>
-          <p className="text-white/50 text-sm mt-6">🔒 Your information is 100% confidential</p>
+          <p className="text-white/50 text-sm mt-6 flex items-center justify-center gap-1.5"><Lock size={14} /> Your information is 100% confidential</p>
         </div>
       </section>
     </div>

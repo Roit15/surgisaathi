@@ -25,7 +25,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-2.5">
             <Image
               src="/images/logo/logo-icon.png"
-              alt=""
+              alt="SURGISAATHI logo"
               width={40}
               height={40}
               priority
@@ -43,7 +43,12 @@ export default function Navbar() {
               onMouseEnter={() => setDropdownOpen(true)}
               onMouseLeave={() => setDropdownOpen(false)}
             >
-              <button className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-[var(--color-text-body)] hover:text-[var(--color-primary)] transition-colors rounded-lg hover:bg-[var(--color-primary)]/5">
+              <button
+                className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-[var(--color-text-body)] hover:text-[var(--color-primary)] transition-colors rounded-lg hover:bg-[var(--color-primary)]/5"
+                aria-haspopup="true"
+                aria-expanded={dropdownOpen}
+                aria-label="Surgeries menu"
+              >
                 Surgeries <ChevronDown size={14} />
               </button>
               {dropdownOpen && (
@@ -100,16 +105,16 @@ export default function Navbar() {
           <div className="px-4 py-4 space-y-1">
             <p className="text-xs font-semibold text-[var(--color-text-muted)] uppercase tracking-wider px-3 pb-2">Surgeries</p>
             {surgeries.map((s) => (
-              <Link key={s.name} href={s.href} onClick={() => setOpen(false)} className="block px-3 py-2.5 text-sm text-[var(--color-text-body)] hover:text-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary)]/5">
+              <Link key={s.name} href={s.href} onClick={() => setOpen(false)} className="block px-3 py-3 text-sm text-[var(--color-text-body)] hover:text-[var(--color-primary)] rounded-lg hover:bg-[var(--color-primary)]/5">
                 {s.name}
               </Link>
             ))}
             <hr className="my-3 border-[var(--color-card-border)]" />
-            <Link href="/doctors" onClick={() => setOpen(false)} className="block px-3 py-2.5 text-sm font-medium text-[var(--color-text-body)]">Doctors</Link>
-            <Link href="/hospitals" onClick={() => setOpen(false)} className="block px-3 py-2.5 text-sm font-medium text-[var(--color-text-body)]">Hospitals</Link>
-            <Link href="/insurance" onClick={() => setOpen(false)} className="block px-3 py-2.5 text-sm font-medium text-[var(--color-text-body)]">Insurance</Link>
-            <Link href="/about" onClick={() => setOpen(false)} className="block px-3 py-2.5 text-sm font-medium text-[var(--color-text-body)]">About</Link>
-            <Link href="/blog" onClick={() => setOpen(false)} className="block px-3 py-2.5 text-sm font-medium text-[var(--color-text-body)]">Health Guide</Link>
+            <Link href="/doctors" onClick={() => setOpen(false)} className="block px-3 py-3 text-sm font-medium text-[var(--color-text-body)]">Doctors</Link>
+            <Link href="/hospitals" onClick={() => setOpen(false)} className="block px-3 py-3 text-sm font-medium text-[var(--color-text-body)]">Hospitals</Link>
+            <Link href="/insurance" onClick={() => setOpen(false)} className="block px-3 py-3 text-sm font-medium text-[var(--color-text-body)]">Insurance</Link>
+            <Link href="/about" onClick={() => setOpen(false)} className="block px-3 py-3 text-sm font-medium text-[var(--color-text-body)]">About</Link>
+            <Link href="/blog" onClick={() => setOpen(false)} className="block px-3 py-3 text-sm font-medium text-[var(--color-text-body)]">Health Guide</Link>
             <hr className="my-3 border-[var(--color-card-border)]" />
             <Link href="/book-consultation" onClick={() => setOpen(false)} className="btn-primary w-full justify-center !text-sm">
               Book Free Consultation
