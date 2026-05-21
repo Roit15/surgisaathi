@@ -31,12 +31,25 @@ const heroSlides = [
 ];
 
 export default function HeroCarousel() {
+  const [slides, setSlides] = useState(heroSlides);
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  const next = useCallback(() => {
-    setCurrent((prev) => (prev + 1) % heroSlides.length);
+  // Shuffle on mount so every visit gets a fresh order
+  useEffect(() => {
+    setSlides((prev) => {
+      const shuffled = [...prev];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    });
   }, []);
+
+  const next = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % slides.length);
+  }, [slides.length]);
 
   useEffect(() => {
     if (isPaused) return;
@@ -53,7 +66,7 @@ export default function HeroCarousel() {
       onTouchEnd={() => setTimeout(() => setIsPaused(false), 5000)}
     >
       {/* Images */}
-      {heroSlides.map((slide, i) => (
+      {slides.map((slide, i) => (
         <div
           key={slide.src}
           className="absolute inset-0 transition-opacity duration-700 ease-in-out"
@@ -75,7 +88,7 @@ export default function HeroCarousel() {
 
       {/* Dot indicators */}
       <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-        {heroSlides.map((_, i) => (
+        {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => setCurrent(i)}
