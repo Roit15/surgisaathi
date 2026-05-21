@@ -11,20 +11,20 @@ export const metadata = {
 
 const founders = [
   {
-    name: "Rohit",
-    role: "Co-Founder & CEO",
-    background: "10 Years of IT experience who built many working software for healthcare and many more. Experienced first-hand how patients with sensitive conditions struggled to navigate the system — and built SURGISAATHI to fix it.",
-    initials: "RO",
-    linkedin: "#",
-    highlights: ["10 yrs IT experience", "Healthcare Software Expert", "Tech Innovator"],
-  },
-  {
     name: "Neeraj Jangra",
     role: "Co-Founder & Chief Medical Officer",
     background: "7 years of exp in healthcare handling surgeries working for hospitals and patients doctors closely, worked with Hexa Health, Pristyn Care. Brings clinical rigour to every surgeon vetting process and protocol at SURGISAATHI.",
     initials: "NJ",
     linkedin: "#",
     highlights: ["7 yrs healthcare ops", "Ex-Hexa Health", "Ex-Pristyn Care"],
+  },
+  {
+    name: "Rohit",
+    role: "Co-Founder & CEO",
+    background: "10 Years of IT experience who built many working software for healthcare and many more. Experienced first-hand how patients with sensitive conditions struggled to navigate the system — and built SURGISAATHI to fix it.",
+    initials: "RO",
+    linkedin: "#",
+    highlights: ["10 yrs IT experience", "Healthcare Software Expert", "Tech Innovator"],
   },
 ];
 
