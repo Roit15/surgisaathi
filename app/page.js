@@ -61,13 +61,32 @@ export default function Home() {
   return (
     <div className="pt-16 lg:pt-[72px]">
       {/* ─── HERO ──────────────────────────────────────── */}
-      <section className="gradient-hero relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 right-20 w-72 h-72 bg-white/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 left-10 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-28 relative">
+      <section className="relative overflow-hidden min-h-[560px] sm:min-h-[620px] lg:min-h-[680px]">
+
+        {/* Background photo — doctor + patient (hero-recovery.png) */}
+        <Image
+          src="/images/hero/hero-recovery.png"
+          alt="Doctor attending to a patient at a SurgiSaathi partner hospital"
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+
+        {/* Multi-layer overlay — ensures text is readable at all viewports */}
+        {/* Mobile: heavy full-bleed teal so white text pops */}
+        {/* Desktop: left-heavy so photo peeks through on right */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A4A6E]/92 via-[#0A4A6E]/85 to-[#0A4A6E]/95 lg:bg-none" />
+        <div className="absolute inset-0 hidden lg:block bg-gradient-to-r from-[#0A4A6E]/95 via-[#0A4A6E]/80 to-[#0A4A6E]/40" />
+
+        {/* Subtle decorative blobs — keep the original aesthetic */}
+        <div className="absolute top-16 right-16 w-72 h-72 bg-white/5 rounded-full blur-3xl pointer-events-none hidden lg:block" />
+        <div className="absolute bottom-10 left-10 w-80 h-80 bg-white/5 rounded-full blur-3xl pointer-events-none" />
+
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-28">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+
             {/* Left — Text */}
             <div>
               <div className="trust-badge !bg-white/15 !text-white mb-6">
@@ -81,28 +100,43 @@ export default function Home() {
                 Expert laser treatments for Piles, Circumcision, Fissure, Fistula & more.
                 Transparent pricing. Insurance support. Complete care coordination.
               </p>
-              
+
               <div className="flex items-center gap-3">
                 <div className="flex -space-x-2">
                   {["A","P","S","R","M"].map((l) => (
                     <div key={l} className="w-8 h-8 rounded-full bg-white/20 border-2 border-white/40 flex items-center justify-center text-xs font-bold text-white">{l}</div>
                   ))}
                 </div>
-                <p className="text-white/70 text-sm"><span className="text-white font-semibold">10,000+ patients</span> treated successfully</p>
+                <p className="text-white/70 text-sm">
+                  <span className="text-white font-semibold">10,000+ patients</span> treated successfully
+                </p>
+              </div>
+
+              {/* Mobile CTA buttons — sit below text, above form */}
+              <div className="flex flex-col sm:flex-row gap-3 mt-8 lg:hidden">
+                <Link href="/book-consultation" className="btn-primary flex-1 justify-center text-center">
+                  Book Free Consultation <ArrowRight size={16} />
+                </Link>
+                <a href="tel:+917011473737" className="btn-secondary flex-1 justify-center !border-white/30 !text-white hover:!bg-white hover:!text-[var(--color-primary)]">
+                  <Phone size={15} /> Call Now
+                </a>
               </div>
             </div>
 
-            {/* Right — Inline Lead Form (Desktop) */}
+            {/* Right — Lead Form (Desktop only) */}
             <div className="hidden lg:flex justify-end">
               <InlineLeadForm />
             </div>
           </div>
 
-          {/* Mobile Form — below text */}
-          <div className="mt-10 lg:hidden flex justify-center">
-             <InlineLeadForm />
+          {/* Mobile Form */}
+          <div className="mt-8 lg:hidden flex justify-center">
+            <InlineLeadForm />
           </div>
         </div>
+
+        {/* Bottom fade into the next section */}
+        <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white to-transparent pointer-events-none" />
       </section>
 
       {/* ─── STATS BAR ─────────────────────────────────── */}
