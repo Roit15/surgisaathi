@@ -30,6 +30,10 @@ const OLD_CITY_PAGES = [
   "/piles-surgery-chandigarh",
   "/circumcision-surgery-mumbai",
   "/fissure-treatment-chandigarh",
+  "/fissure-surgery-mumbai",
+  "/fistula-surgery-mumbai",
+  "/fissure-surgery-chandigarh",
+  "/fistula-surgery-chandigarh",
 ];
 
 export default function sitemap() {

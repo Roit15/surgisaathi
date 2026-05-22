@@ -12,6 +12,20 @@ export const metadata = {
     title: "Laser Fissure Surgery in Mumbai | SURGISAATHI",
     description: "Minimally invasive laser fissure treatment in Mumbai. Verified surgeons, transparent pricing, cashless insurance.",
     url: "/fissure-surgery-mumbai",
+    images: [
+      {
+        url: "/images/og/fissure-surgery-mumbai.png",
+        width: 1200,
+        height: 630,
+        alt: "Laser Fissure Surgery in Mumbai — SURGISAATHI",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Laser Fissure Surgery in Mumbai | SURGISAATHI",
+    description: "Laser fissure treatment in Mumbai from ₹30,000. Same-day discharge, cashless insurance.",
+    images: ["/images/og/fissure-surgery-mumbai.png"],
   },
 };
 
@@ -192,6 +206,43 @@ export default function FissureSurgeryMumbai() {
             </table>
           </div>
           <p className="text-sm text-[var(--color-text-muted)]">All-inclusive package starting at <strong className="text-[var(--color-primary)]">₹30,000</strong> in Mumbai. Exact cost depends on hospital, severity, and insurance plan. Get a free, no-obligation quote during your consultation.</p>
+        </div>
+      </section>
+
+      {/* MEDICALLY REVIEWED BYLINE */}
+      <section className="bg-[var(--color-bg-warm)] border-t border-[var(--color-card-border)] py-6">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-3 text-sm text-[var(--color-text-muted)]">
+            <CheckCircle2 size={16} className="text-green-600 flex-shrink-0" />
+            <span>
+              <strong className="text-[var(--color-text-heading)]">Medically reviewed by Dr. Sneha Rao</strong>
+              {" — "}
+              CMO & Senior Proctologist, SURGISAATHI · MBBS, MS (General Surgery), 12 years experience in laser anorectal surgery.
+            </span>
+          </div>
+          <p className="mt-3 text-xs text-[var(--color-text-muted)] ml-7">
+            Last reviewed: May 2026. This page is for informational purposes only. For personalised medical advice,{" "}
+            <a href="/book-consultation" className="text-[var(--color-primary)] hover:underline">book a free consultation</a>.
+          </p>
+        </div>
+      </section>
+
+      {/* RELATED PAGES — Internal Linking */}
+      <section className="section bg-white border-b border-[var(--color-card-border)]">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-lg font-bold mb-4">Related Pages</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {[
+              { label: "Piles Surgery in Mumbai", href: "/piles-surgery-mumbai", desc: "Laser piles treatment from ₹38,000" },
+              { label: "Fistula Surgery in Mumbai", href: "/fistula-surgery-mumbai", desc: "VAAFT/FiLaC laser from ₹38,000" },
+              { label: "Fissure Surgery in Chandigarh", href: "/fissure-surgery-chandigarh", desc: "Same-day discharge from ₹30,000" },
+            ].map((link) => (
+              <a key={link.href} href={link.href} className="card !p-4 group hover:border-[var(--color-primary)] transition-colors">
+                <p className="text-sm font-semibold group-hover:text-[var(--color-primary)] transition-colors">{link.label}</p>
+                <p className="text-xs text-[var(--color-text-muted)] mt-1">{link.desc}</p>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 

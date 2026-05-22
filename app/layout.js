@@ -22,9 +22,9 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 const SITE_TITLE =
-  "Laser Surgery for Piles, Circumcision & Fissure in Mumbai & Chandigarh | SURGISAATHI";
+  "Laser Piles & Surgery in Mumbai & Chandigarh | SURGISAATHI";
 const SITE_DESCRIPTION =
-  "Same-day consultation available. Expert laser surgery for piles, circumcision, fissure, fistula & more in Mumbai & Chandigarh. Verified surgeons, transparent pricing from ₹25,000, cashless insurance. Call +91 70114 73737.";
+  "Same-day consultation available. Expert laser surgery for piles, circumcision, fissure & fistula in Mumbai & Chandigarh. Verified surgeons, from ₹25,000, cashless insurance. Call +91 70114 73737.";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),

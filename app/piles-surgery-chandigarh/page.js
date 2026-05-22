@@ -12,6 +12,20 @@ export const metadata = {
     title: "Laser Piles Surgery in Chandigarh | SURGISAATHI",
     description: "Expert piles treatment in Chandigarh at ₹36K–₹75K. Verified surgeons, cashless insurance.",
     url: "/piles-surgery-chandigarh",
+    images: [
+      {
+        url: "/images/og/piles-surgery-chandigarh.png",
+        width: 1200,
+        height: 630,
+        alt: "Laser Piles Surgery in Chandigarh — SURGISAATHI",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Laser Piles Surgery in Chandigarh | SURGISAATHI",
+    description: "Expert piles treatment in Chandigarh at ₹36K–₹75K. Hindi/Punjabi support.",
+    images: ["/images/og/piles-surgery-chandigarh.png"],
   },
 };
 
