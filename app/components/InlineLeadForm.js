@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { ArrowRight, Phone, ChevronDown, Loader2 } from "lucide-react";
+import { ArrowRight, Phone, ChevronDown, Loader2, Lock } from "lucide-react";
 import { track } from "../../lib/track";
 
 const CONDITIONS = [
@@ -22,7 +22,7 @@ function buildWhatsAppUrl(name, phone, condition, city) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
 }
 
-export default function InlineLeadForm({ className = "" }) {
+export default function InlineLeadForm({ className = "", formId = "hero-lead-form" }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [condition, setCondition] = useState("");
@@ -71,7 +71,7 @@ export default function InlineLeadForm({ className = "" }) {
       onSubmit={handleSubmit}
       noValidate
       className={`bg-white rounded-2xl shadow-2xl p-6 w-full max-w-md ${className}`}
-      id="hero-lead-form"
+      id={formId}
       aria-label="Book Free Consultation"
     >
       <p className="text-sm font-semibold text-[var(--color-primary)] mb-4 flex items-center gap-2">
@@ -180,7 +180,7 @@ export default function InlineLeadForm({ className = "" }) {
       </button>
 
       <p className="text-center text-xs text-gray-400 mt-3 flex items-center justify-center gap-1">
-        🔒 100% private &amp; confidential
+        <Lock size={11} aria-hidden="true" /> 100% private &amp; confidential
       </p>
     </form>
   );

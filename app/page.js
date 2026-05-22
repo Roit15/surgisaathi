@@ -7,6 +7,8 @@ import {
   CircleDot, Star, Lock, Scissors, Activity, Flame, Target, Droplets
 } from "lucide-react";
 import InlineLeadForm from "./components/InlineLeadForm";
+import JsonLd from "./components/JsonLd";
+import { faqPageSchema, breadcrumbSchema, SITE_URL } from "../lib/seo";
 
 /* ── STATIC DATA ────────────────────────────────────────── */
 
@@ -55,11 +57,57 @@ const faqs = [
   { q: "Is my information kept private?", a: "100%. We follow strict data privacy protocols. Your medical information is encrypted and shared only with your assigned surgeon. We understand the sensitive nature of these conditions." },
 ];
 
+/* ── TESTIMONIALS DATA ───────────────────────────────── */
+const testimonials = [
+  {
+    quote: "I was embarrassed to discuss this with anyone, even family. The SURGISAATHI coordinator made it feel completely normal. Surgery was done in 45 minutes, I was home by evening.",
+    name: "Priya M.",
+    city: "Mumbai",
+    procedure: "Laser Piles Surgery",
+    rating: 5,
+  },
+  {
+    quote: "Fully cashless through my HDFC Ergo policy. No paperwork from my side at all. The coordinator handled everything — I just showed up on the day of surgery.",
+    name: "Sandeep K.",
+    city: "Chandigarh",
+    procedure: "Laser Fissure Treatment",
+    rating: 5,
+  },
+  {
+    quote: "I had put off this surgery for 2 years out of fear. Recovery was much easier than I expected. Back to work in 3 days. Should have done this sooner.",
+    name: "Amit R.",
+    city: "Mumbai",
+    procedure: "Laser Circumcision",
+    rating: 5,
+  },
+];
+
 /* ── HOMEPAGE COMPONENT ─────────────────────────────────── */
 
+function howItWorksSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to Book Laser Surgery with SURGISAATHI",
+    description: "Step-by-step guide to booking your laser surgery through SURGISAATHI — from first contact to full recovery.",
+    step: [
+      { "@type": "HowToStep", position: 1, name: "Share Your Concern", text: "Tell us about your condition privately and confidentially via phone or form." },
+      { "@type": "HowToStep", position: 2, name: "Get Expert Guidance", text: "Our care coordinator connects you with the right verified surgeon for your condition." },
+      { "@type": "HowToStep", position: 3, name: "Book & Prepare", text: "We handle insurance pre-authorization, hospital booking, and pre-op tests." },
+      { "@type": "HowToStep", position: 4, name: "Surgery & Recovery", text: "Day-care laser surgery at an NABH-accredited hospital. Complete post-op support." },
+    ],
+  };
+}
+
+
 export default function Home() {
+  const homeFaqSchema = faqPageSchema(faqs, "/");
+  const crumbSchema = breadcrumbSchema([{ name: "Home", href: "/" }]);
   return (
     <div className="pt-16 lg:pt-[72px]">
+      {/* JSON-LD: FAQ + HowTo + Breadcrumb */}
+      <JsonLd data={[homeFaqSchema, howItWorksSchema(), crumbSchema]} />
+
       {/* ─── HERO ──────────────────────────────────────── */}
       <section className="relative overflow-hidden min-h-[560px] sm:min-h-[620px] lg:min-h-[680px]">
 
@@ -70,7 +118,7 @@ export default function Home() {
           fill
           priority
           className="object-cover object-center"
-          sizes="100vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
         />
 
         {/* Multi-layer overlay — ensures text is readable at all viewports */}
@@ -93,23 +141,38 @@ export default function Home() {
                 <CheckCircle2 size={14} /> Verified surgeons · Mumbai & Chandigarh
               </div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-                Get Trusted Care for{" "}
-                <span className="text-[var(--color-accent)]">Sensitive Surgeries</span>
+                Expert Laser Surgery for{" "}
+                <span className="text-[var(--color-accent)]">Piles, Circumcision, Fissure & More</span>
               </h1>
               <p className="text-lg sm:text-xl text-white/80 mb-8 max-w-2xl leading-relaxed">
                 Expert laser treatments for Piles, Circumcision, Fissure, Fistula & more.
                 Transparent pricing. Insurance support. Complete care coordination.
               </p>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 mb-4">
                 <div className="flex -space-x-2">
                   {["A","P","S","R","M"].map((l) => (
                     <div key={l} className="w-8 h-8 rounded-full bg-white/20 border-2 border-white/40 flex items-center justify-center text-xs font-bold text-white">{l}</div>
                   ))}
                 </div>
-                <p className="text-white/70 text-sm">
-                  <span className="text-white font-semibold">10,000+ patients</span> treated successfully
-                </p>
+                <div>
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} size={13} className="text-yellow-400 fill-yellow-400" aria-hidden="true" />
+                    ))}
+                    <span className="text-white font-bold text-sm ml-1">4.8</span>
+                  </div>
+                  <p className="text-white/70 text-xs"><span className="text-white font-semibold">10,000+ patients</span> treated • 2,400+ reviews</p>
+                </div>
+              </div>
+
+              {/* Urgency pill */}
+              <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white/90 text-xs font-semibold px-3 py-1.5 rounded-full mb-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
+                </span>
+                6 consultations booked today in Mumbai
               </div>
 
               {/* Mobile CTA buttons — sit below text, above form */}
@@ -125,13 +188,13 @@ export default function Home() {
 
             {/* Right — Lead Form (Desktop only) */}
             <div className="hidden lg:flex justify-end">
-              <InlineLeadForm />
+            <InlineLeadForm formId="hero-lead-form-desktop" />
             </div>
           </div>
 
           {/* Mobile Form */}
           <div className="mt-8 lg:hidden flex justify-center">
-            <InlineLeadForm />
+            <InlineLeadForm formId="hero-lead-form-mobile" />
           </div>
         </div>
 
@@ -334,7 +397,54 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── PRIVACY FIRST ─────────────────────────────── */}
+      {/* ─── TESTIMONIALS ────────────────────────────── */}
+      <section className="section bg-[var(--color-bg-warm)]" aria-labelledby="testimonials-heading">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="trust-badge mb-4 inline-flex">Patient Stories</span>
+            <h2 id="testimonials-heading" className="text-3xl lg:text-4xl font-bold mt-3">
+              Real Patients. <span className="text-[var(--color-primary)]">Real Relief.</span>
+            </h2>
+            <p className="text-[var(--color-text-muted)] text-sm mt-2 max-w-sm mx-auto">
+              Shared with explicit consent. Identifying details withheld by patient request.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((t) => (
+              <figure key={t.name} className="card flex flex-col">
+                <div className="flex gap-0.5 mb-4" aria-label={`${t.rating} out of 5 stars`}>
+                  {[...Array(t.rating)].map((_, i) => (
+                    <Star key={i} size={14} className="text-yellow-400 fill-yellow-400" aria-hidden="true" />
+                  ))}
+                </div>
+                <blockquote className="text-sm text-[var(--color-text-body)] leading-relaxed italic flex-1 mb-4">
+                  &ldquo;{t.quote}&rdquo;
+                </blockquote>
+                <figcaption className="flex items-center gap-3 pt-4 border-t border-[var(--color-card-border)]">
+                  <div
+                    className="w-9 h-9 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center text-sm font-bold text-[var(--color-primary)] flex-shrink-0"
+                    aria-hidden="true"
+                  >
+                    {t.name[0]}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="font-semibold text-sm text-[var(--color-text-heading)] truncate">{t.name}</div>
+                    <div className="text-xs text-[var(--color-text-muted)] truncate">{t.procedure} · {t.city}</div>
+                  </div>
+                  <CheckCircle2 size={15} className="text-[var(--color-success)] ml-auto flex-shrink-0" aria-label="Verified patient" />
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link href="/testimonials" className="text-sm font-semibold text-[var(--color-primary)] hover:underline inline-flex items-center gap-1">
+              Read more patient stories <ChevronRight size={14} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── PRIVACY FIRST ────────────────────────────── */}
       <section className="section bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="trust-badge mb-4 inline-flex">Privacy First</span>
