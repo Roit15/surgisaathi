@@ -1,4 +1,4 @@
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans, Figtree } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -9,9 +9,10 @@ import Analytics from "./components/analytics/Analytics";
 import ConsentBanner from "./components/analytics/ConsentBanner";
 import { organizationSchema, websiteSchema, aggregateRatingSchema, SITE_URL } from "../lib/seo";
 
-const inter = Inter({
+const figtree = Figtree({
   subsets: ["latin"],
   variable: "--font-display",
+  weight: ["300","400","500","600","700","800"],
   display: "swap",
 });
 
@@ -66,7 +67,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en-IN" className={`${inter.variable} ${plusJakarta.variable}`}>
+    <html lang="en-IN" className={`${figtree.variable} ${plusJakarta.variable}`}>
       <body>
         <JsonLd data={[organizationSchema(), websiteSchema(), aggregateRatingSchema()]} />
         <Navbar />
