@@ -187,7 +187,7 @@ export default function InlineLeadForm({ className = "" }) {
         {submitting ? (
           <><Loader2 size={18} className="animate-spin" /> Connecting you...</>
         ) : (
-          <><Phone size={16} /> Get Free Consultation <ArrowRight size={16} /></>
+          <><Phone size={16} /> Connect Me with a Surgeon <ArrowRight size={16} /></>
         )}
       </button>
 

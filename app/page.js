@@ -73,39 +73,48 @@ export default function Home() {
     <div className="pt-16 lg:pt-[72px]">
 
       {/* ─── HERO ──────────────────────────────────────── */}
-      <section className="hero-mesh relative min-h-[600px] lg:min-h-[680px]">
-        {/* Animated orbs */}
-        <div className="hero-orb hero-orb-1" />
-        <div className="hero-orb hero-orb-2" />
-        <div className="hero-orb hero-orb-3" />
-        {/* Grid pattern */}
-        <div className="hero-grid" />
+      <section className="relative min-h-[620px] lg:min-h-[700px] overflow-hidden">
+        {/* Background photo */}
+        <Image
+          src="/images/hero/hero-doctor.png"
+          alt="Expert surgeon at SurgiSaathi hospital"
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        {/* Multi-layer overlay: strong on left for text legibility, lighter on right for form */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#042F30]/95 via-[#063A3C]/85 to-[#063A3C]/70" />
+        {/* Bottom fade for smooth section transition */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#084B4E] to-transparent" />
+        {/* Subtle teal shimmer layer */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)]/20 via-transparent to-[var(--color-accent)]/10" />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 lg:py-24 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-28 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             {/* Left — Text */}
             <div className="animate-slide-left">
-              {/* Badge */}
+              {/* Live badge */}
               <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 text-white/90 px-4 py-2 rounded-full text-sm font-medium mb-8 backdrop-blur-sm">
                 <BadgeCheck size={16} className="text-green-400" />
                 <span>Trusted by <strong className="text-white">10,000+</strong> patients across India</span>
               </div>
 
               {/* Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-white leading-[1.1] mb-6 tracking-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-white leading-[1.1] mb-5 tracking-tight">
                 Expert Care for{" "}
                 <span className="text-gradient">Sensitive Surgeries</span>
               </h1>
 
               {/* Subheadline */}
-              <p className="text-lg sm:text-xl text-white/70 mb-8 max-w-xl leading-relaxed">
-                Advanced laser treatments for Piles, Circumcision, Fissure, Fistula & more — with transparent pricing, insurance support, and complete care coordination.
+              <p className="text-lg sm:text-xl text-white/75 mb-8 max-w-xl leading-relaxed">
+                Advanced laser treatments for Piles, Circumcision, Fissure, Fistula &amp; more — transparent pricing, insurance support, complete care coordination.
               </p>
 
               {/* Trust chips */}
-              <div className="flex flex-wrap gap-3 mb-8">
+              <div className="flex flex-wrap gap-3 mb-9">
                 {["Free Consultation", "Insurance Support", "Day-care Surgery"].map((label) => (
-                  <span key={label} className="flex items-center gap-1.5 bg-white/8 border border-white/10 text-white/80 px-3.5 py-2 rounded-xl text-sm font-medium backdrop-blur-sm">
+                  <span key={label} className="flex items-center gap-1.5 bg-white/10 border border-white/15 text-white/85 px-4 py-2 rounded-xl text-sm font-semibold backdrop-blur-sm">
                     <CheckCircle2 size={14} className="text-green-400 flex-shrink-0" />
                     {label}
                   </span>
@@ -118,8 +127,8 @@ export default function Home() {
                   {["A","P","S","R","M"].map((l, i) => (
                     <div
                       key={l}
-                      className="w-9 h-9 rounded-full border-2 border-white/30 flex items-center justify-center text-xs font-bold text-white/90 backdrop-blur-sm"
-                      style={{ background: `hsla(${170 + i * 30}, 50%, 45%, 0.5)` }}
+                      className="w-9 h-9 rounded-full border-2 border-white/40 flex items-center justify-center text-xs font-bold text-white"
+                      style={{ background: `hsla(${170 + i * 30}, 50%, 40%, 0.7)` }}
                     >
                       {l}
                     </div>
@@ -130,9 +139,9 @@ export default function Home() {
                     {[...Array(5)].map((_, i) => (
                       <Star key={i} size={14} className="text-[var(--color-gold)] fill-[var(--color-gold)]" />
                     ))}
-                    <span className="text-white/90 text-sm font-semibold ml-1">4.8</span>
+                    <span className="text-white font-bold text-sm ml-1">4.8</span>
                   </div>
-                  <p className="text-white/50 text-xs mt-0.5">Based on patient reviews</p>
+                  <p className="text-white/50 text-xs mt-0.5">Based on verified patient reviews</p>
                 </div>
               </div>
             </div>
@@ -482,37 +491,57 @@ export default function Home() {
       </section>
 
       {/* ─── FINAL CTA ─────────────────────────────────── */}
-      <section className="hero-mesh relative overflow-hidden py-24 lg:py-28">
-        <div className="hero-orb hero-orb-1" />
-        <div className="hero-orb hero-orb-2" />
-        <div className="hero-grid" />
+      <section className="relative overflow-hidden py-24 lg:py-32">
+        {/* Background photo — real doctors, real warmth */}
+        <Image
+          src="/images/hero/hero-team.png"
+          alt="SurgiSaathi surgical team"
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        {/* Strong dark overlay for text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#042F30]/92 via-[#063A3C]/88 to-[#042F30]/95" />
+        {/* Subtle accent shimmer */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-[var(--color-accent)]/8 via-transparent to-[var(--color-primary)]/15" />
 
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          {/* Testimonial snippet */}
-          <div className="inline-flex items-center gap-2 bg-white/8 border border-white/10 text-white/70 px-4 py-2 rounded-full text-sm mb-8 backdrop-blur-sm">
-            <Star size={14} className="text-[var(--color-gold)] fill-[var(--color-gold)]" />
-            <span>&quot;Best decision for my health&quot; — <em className="text-white/90 not-italic font-medium">Verified patient</em></span>
+          {/* Testimonial pill */}
+          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 text-white/80 px-5 py-2.5 rounded-full text-sm mb-8 backdrop-blur-sm">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} size={12} className="text-[var(--color-gold)] fill-[var(--color-gold)]" />
+            ))}
+            <span className="ml-1">&quot;Best decision for my health&quot; — <em className="text-white not-italic font-semibold">Verified patient, Mumbai</em></span>
           </div>
 
           <h2 className="text-3xl lg:text-[2.75rem] font-extrabold text-white mb-5 leading-tight">
-            Take the First Step Towards <span className="text-gradient">Relief</span>
+            You Deserve Care Without <span className="text-gradient">Compromise</span>
           </h2>
-          <p className="text-white/60 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
-            Book a free, private consultation with our care experts. No obligation, no judgment — just trusted guidance.
+          <p className="text-white/65 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+            Talk to a real care coordinator in minutes — privately, judgment-free. We&apos;ll match you with the right surgeon and handle everything else.
           </p>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/book-consultation" className="btn-primary !bg-gradient-to-r !from-[var(--color-accent)] !to-[var(--color-accent-hover)] !text-white !text-base !py-4 !px-10 animate-pulse-glow">
-              Book Free Consultation <ArrowRight size={18} />
+            <Link
+              href="/book-consultation"
+              className="btn-primary !bg-gradient-to-r !from-[var(--color-accent)] !to-[var(--color-accent-hover)] !text-white !text-base !py-4 !px-10 animate-pulse-glow"
+            >
+              Talk to a Care Expert — It&apos;s Free <ArrowRight size={18} />
             </Link>
-            <a href="tel:+917011473737" className="btn-secondary !border-white/20 !text-white hover:!bg-white/10 !text-base !py-4 !px-10">
-              <Phone size={18} /> Call Now
+            <a
+              href="tel:+917011473737"
+              className="btn-secondary !border-white/25 !text-white hover:!bg-white/10 !text-base !py-4 !px-10"
+            >
+              <Phone size={18} /> +91 70114 73737
             </a>
           </div>
-          <p className="text-white/40 text-sm mt-8 flex items-center justify-center gap-2">
-            <Shield size={14} className="text-white/30" /> Your information is 100% confidential
+
+          <p className="text-white/35 text-sm mt-8 flex items-center justify-center gap-2">
+            <Shield size={14} className="text-white/30" /> 100% private &amp; confidential · No spam, ever
           </p>
         </div>
       </section>
     </div>
   );
 }
+
