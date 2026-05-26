@@ -474,6 +474,55 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── CITIES WE SERVE ──────────────────────────── */}
+      <section className="section bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <span className="trust-badge mb-4 inline-flex"><Building2 size={14} /> Nationwide Network</span>
+            <h2 className="text-3xl lg:text-4xl font-bold mt-3">Cities We Serve</h2>
+            <p className="text-[var(--color-text-muted)] mt-3 max-w-xl mx-auto">
+              Expert laser surgery in major cities across India — same quality care, same transparent pricing.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { name: "Mumbai", slug: "mumbai", hospitals: 3, tag: "Top City" },
+              { name: "Chandigarh", slug: "chandigarh", hospitals: 2, tag: null },
+            ].map((city) => (
+              <div key={city.slug} className="card relative overflow-hidden">
+                {city.tag && (
+                  <span className="absolute top-4 right-4 bg-[var(--color-accent)]/10 text-[var(--color-accent)] text-xs font-semibold px-3 py-1 rounded-full">
+                    {city.tag}
+                  </span>
+                )}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center">
+                    <Building2 size={20} className="text-[var(--color-primary)]" />
+                  </div>
+                  <div>
+                    <Link href={`/${city.slug}`} className="text-lg font-semibold hover:text-[var(--color-primary)] transition-colors">
+                      {city.name}
+                    </Link>
+                    <p className="text-xs text-[var(--color-text-muted)]">{city.hospitals} partner hospitals</p>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {["piles", "fissure", "fistula", "circumcision"].map((surgery) => (
+                    <Link
+                      key={surgery}
+                      href={`/${city.slug}/${surgery}`}
+                      className="text-xs bg-[var(--color-bg-warm)] text-[var(--color-text-body)] px-3 py-1.5 rounded-full hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] transition-colors capitalize"
+                    >
+                      {surgery === "piles" ? "Piles" : surgery === "fissure" ? "Fissure" : surgery === "fistula" ? "Fistula" : "Circumcision"}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ─── FAQ ───────────────────────────────────────── */}
       <section className="section bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">

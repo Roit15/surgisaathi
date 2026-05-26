@@ -5,11 +5,11 @@ import { faqPageSchema, breadcrumbSchema, SITE_URL } from "../../lib/seo";
 import InlineLeadForm from "../components/InlineLeadForm";
 
 export const metadata = {
-  title: "Piles Surgery Cost in India 2026 — Mumbai & Chandigarh Price Guide | SURGISAATHI",
+  title: "Piles Surgery Cost in India 2026 — Mumbai & Chandigarh Price Guide ",
   description: "Complete guide to laser piles surgery cost in India 2026. Mumbai: ₹38K–₹80K. Chandigarh: ₹36K–₹75K. What's included, insurance coverage, and how to get an exact quote.",
   alternates: { canonical: "/piles-treatment-cost" },
   openGraph: {
-    title: "Piles Surgery Cost in India 2026 | SURGISAATHI",
+    title: "Piles Surgery Cost in India 2026 ",
     description: "Transparent piles surgery pricing guide for Mumbai and Chandigarh. Know exactly what you'll pay before you book.",
     url: "/piles-treatment-cost",
   },

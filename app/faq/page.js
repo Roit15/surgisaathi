@@ -2,7 +2,7 @@ import JsonLd from "../components/JsonLd";
 import { faqPageSchema, breadcrumbSchema } from "../../lib/seo";
 
 export const metadata = {
-  title: "Frequently Asked Questions | SURGISAATHI",
+  title: "Frequently Asked Questions ",
   description: "Common questions about laser surgery costs, insurance coverage, recovery time, and the SURGISAATHI care process.",
   alternates: { canonical: "/faq" },
 };

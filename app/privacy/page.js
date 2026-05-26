@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Privacy Policy | SURGISAATHI",
+  title: "Privacy Policy ",
   description: "How SURGISAATHI collects, uses, stores, and protects your personal and health information under the DPDP Act 2023.",
   alternates: { canonical: "/privacy" },
 };

@@ -5,7 +5,7 @@ import JsonLd from "../components/JsonLd";
 import { breadcrumbSchema } from "../../lib/seo";
 
 export const metadata = {
-  title: "Piles & Surgery Health Guide — Expert Articles | SURGISAATHI Blog",
+  title: "Piles & Surgery Health Guide — Expert Articles  — Expert Articles",
   description: "Expert articles on piles, fissure, fistula, circumcision, and sensitive surgery. Written and reviewed by SURGISAATHI's clinical team. Understand your condition, treatment options, and recovery.",
   alternates: { canonical: "/blog" },
 };

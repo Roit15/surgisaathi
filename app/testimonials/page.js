@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Lock, Shield, MessageCircle, ArrowRight, Phone } from "lucide-react";
 
 export const metadata = {
-  title: "Patient Stories — Privacy Protected | SURGISAATHI",
+  title: "Patient Stories — Privacy Protected ",
   description: "SURGISAATHI does not publish patient testimonials by default. Surgical conditions like piles, circumcision and fistula are sensitive — we share patient stories only with explicit, written consent. If you would like to share or hear from past patients, contact our care team.",
   alternates: { canonical: "/testimonials" },
   robots: { index: false, follow: true },

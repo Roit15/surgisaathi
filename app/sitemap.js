@@ -24,39 +24,20 @@ const STATIC_ROUTES = [
 
 const SURGERY_SLUGS = Object.keys(surgeryData);
 
-// Old hardcoded city pages (still useful for redirects, but keeping them just in case)
-const OLD_CITY_PAGES = [
-  "/piles-surgery-mumbai",
-  "/piles-surgery-chandigarh",
-  "/circumcision-surgery-mumbai",
-  "/fissure-treatment-chandigarh",
-  "/fissure-surgery-mumbai",
-  "/fistula-surgery-mumbai",
-  "/fissure-surgery-chandigarh",
-  "/fistula-surgery-chandigarh",
-];
-
 export default function sitemap() {
-  const now = new Date();
+  // Use a stable date for static content so Google doesn't think it changes every crawl
+  const staticDate = new Date("2026-05-25T00:00:00Z");
 
   const staticEntries = STATIC_ROUTES.map((path) => ({
     url: `${SITE_URL}${path}`,
-    lastModified: now,
+    lastModified: staticDate,
     changeFrequency: "weekly",
     priority: path === "" ? 1.0 : 0.7,
   }));
 
   const surgeryEntries = SURGERY_SLUGS.map((slug) => ({
     url: `${SITE_URL}/surgeries/${slug}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.8,
-  }));
-
-  // Old hardcoded city landing pages
-  const oldCityEntries = OLD_CITY_PAGES.map((path) => ({
-    url: `${SITE_URL}${path}`,
-    lastModified: now,
+    lastModified: staticDate,
     changeFrequency: "monthly",
     priority: 0.8,
   }));
@@ -64,7 +45,7 @@ export default function sitemap() {
   // Programmatic city landing pages
   const cityEntries = Object.keys(cityData).map((citySlug) => ({
     url: `${SITE_URL}/${citySlug}`,
-    lastModified: now,
+    lastModified: staticDate,
     changeFrequency: "monthly",
     priority: 0.9,
   }));
@@ -75,7 +56,7 @@ export default function sitemap() {
     for (const surgerySlug of Object.keys(surgeryData)) {
       citySurgeryEntries.push({
         url: `${SITE_URL}/${citySlug}/${surgerySlug}`,
-        lastModified: now,
+        lastModified: staticDate,
         changeFrequency: "monthly",
         priority: 0.9,
       });
@@ -90,5 +71,5 @@ export default function sitemap() {
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...surgeryEntries, ...oldCityEntries, ...cityEntries, ...citySurgeryEntries, ...blogEntries];
+  return [...staticEntries, ...surgeryEntries, ...cityEntries, ...citySurgeryEntries, ...blogEntries];
 }

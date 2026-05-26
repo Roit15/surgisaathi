@@ -46,7 +46,7 @@ export async function generateMetadata({ params, searchParams }) {
   const path = `/${p.citySlug}/${p.surgerySlug}`;
   
   return {
-    title: `${surgery.title} in ${city.name} | Top Surgeons | SURGISAATHI`,
+    title: `${surgery.title} in ${city.name} | Top Surgeons`,
     description: `Get the best ${surgery.title.toLowerCase()} in ${city.name}. ${surgery.subtitle}. Starting at ${surgery.priceRange}. Book free consultation.`,
     alternates: { canonical: path },
     openGraph: {

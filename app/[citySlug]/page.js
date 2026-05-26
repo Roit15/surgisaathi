@@ -132,7 +132,7 @@ export default async function CityPage({ params }) {
           <h2 className="text-3xl font-bold mb-10 text-center">Top Treatments We Offer in {data.name}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {topSurgeries.map((surgery) => (
-              <Link href={`/surgeries/${surgery.slug}`} key={surgery.slug} className="card group hover:-translate-y-1 transition-all">
+              <Link href={`/${p.citySlug}/${surgery.slug}`} key={surgery.slug} className="card group hover:-translate-y-1 transition-all">
                 <div className="text-4xl mb-4">{surgery.icon}</div>
                 <h3 className="text-xl font-semibold mb-2 group-hover:text-[var(--color-primary)] transition-colors">{surgery.title}</h3>
                 <p className="text-sm text-[var(--color-text-muted)] flex items-center gap-1 font-medium mt-4">
