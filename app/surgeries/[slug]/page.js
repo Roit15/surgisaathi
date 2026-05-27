@@ -5,6 +5,7 @@ import { CheckCircle2, Clock, IndianRupee, ArrowRight, Phone, Zap, ChevronRight,
 import JsonLd from "../../components/JsonLd";
 import {
   medicalProcedureSchema,
+  medicalConditionSchema,
   faqPageSchema,
   breadcrumbSchema,
 } from "../../../lib/seo";
@@ -48,13 +49,14 @@ export default async function SurgeryPage({ params }) {
       <JsonLd
         data={[
           medicalProcedureSchema({ slug: p.slug, data, path }),
+          medicalConditionSchema({ data, path }),
           faqPageSchema(data.faqs, path),
           breadcrumbSchema([
             { name: "Home", href: "/" },
             { name: "Surgeries", href: "/surgeries" },
             { name: shortName, href: path },
           ]),
-        ]}
+        ].filter(Boolean)}
       />
       {/* HERO */}
       <section className="gradient-hero py-16 lg:py-24">

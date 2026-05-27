@@ -1,13 +1,93 @@
 "use client";
+import { useState, useEffect, useMemo } from "react";
+import { usePathname } from "next/navigation";
 import { track } from "../../lib/track";
 
+/**
+ * Map URL path segments to human-readable surgery names for the
+ * WhatsApp pre-filled message.
+ */
+const SURGERY_LABELS = {
+  piles: "Piles (Hemorrhoids)",
+  circumcision: "Circumcision",
+  fissure: "Fissure",
+  fistula: "Fistula",
+  abscess: "Abscess",
+  "pilonidal-sinus": "Pilonidal Sinus",
+};
+
+const CITY_LABELS = {
+  mumbai: "Mumbai",
+  chandigarh: "Chandigarh",
+};
+
+function buildWhatsAppMessage(pathname) {
+  // Try to detect surgery from URL
+  let surgery = null;
+  let city = null;
+
+  for (const [slug, label] of Object.entries(SURGERY_LABELS)) {
+    if (pathname.includes(slug)) {
+      surgery = label;
+      break;
+    }
+  }
+
+  for (const [slug, label] of Object.entries(CITY_LABELS)) {
+    if (pathname.includes(slug)) {
+      city = label;
+      break;
+    }
+  }
+
+  if (surgery && city) {
+    return `Hi SURGISAATHI, I'd like a free private consultation for ${surgery} in ${city}. Please connect me with a specialist.`;
+  }
+  if (surgery) {
+    return `Hi SURGISAATHI, I'd like a free private consultation for ${surgery}. Please connect me with a specialist.`;
+  }
+  return "Hi SURGISAATHI, I'd like a free private consultation";
+}
+
 export default function WhatsAppFloat() {
+  const pathname = usePathname();
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+
+  const waMessage = useMemo(() => buildWhatsAppMessage(pathname), [pathname]);
+  const waUrl = `https://wa.me/917011473737?text=${encodeURIComponent(waMessage)}`;
+
+  // Auto-show expanded tooltip after 5s on first visit (per session)
+  useEffect(() => {
+    // Don't show if user already dismissed this session
+    if (typeof window === "undefined") return;
+    const alreadyShown = sessionStorage.getItem("wa_tooltip_shown");
+    if (alreadyShown) return;
+
+    const timer = setTimeout(() => {
+      setShowTooltip(true);
+      sessionStorage.setItem("wa_tooltip_shown", "1");
+
+      // Auto-hide after 8 seconds
+      setTimeout(() => setShowTooltip(false), 8000);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  function handleDismiss(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowTooltip(false);
+    setDismissed(true);
+  }
+
   return (
     <a
-      href="https://wa.me/917011473737?text=Hi%20SURGISAATHI%2C%20I%27d%20like%20a%20free%20private%20consultation"
+      href={waUrl}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => track("whatsapp_click", { source: "float_button" })}
+      onClick={() => track("whatsapp_click", { source: "float_button", page: pathname })}
       aria-label="Chat on WhatsApp — Private & Confidential"
       className="fixed bottom-[96px] md:bottom-7 right-6 z-[1000] w-[60px] h-[60px] rounded-full bg-[#25D366] flex items-center justify-center shadow-[0_4px_20px_rgba(37,211,102,0.4)] hover:scale-110 transition-transform duration-300 group isolation-auto"
       id="whatsapp-float-btn"
@@ -15,19 +95,36 @@ export default function WhatsAppFloat() {
       {/* Pulse ring (always visible) */}
       <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-30 pointer-events-none" />
 
-      {/* Desktop label — shows on hover or always */}
-      <span className="
-        hidden sm:flex items-center gap-2
-        absolute right-[70px] top-1/2 -translate-y-1/2
-        bg-white text-gray-800 text-xs font-semibold
-        px-3 py-2 rounded-xl shadow-lg border border-gray-100
-        whitespace-nowrap
-        opacity-0 group-hover:opacity-100
-        translate-x-2 group-hover:translate-x-0
-        transition-all duration-200 pointer-events-none
-      ">
-        💬 Chat Privately
-        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse inline-block" />
+      {/* Expanded tooltip — auto-shows after 5s OR on hover (desktop only) */}
+      <span
+        className={`
+          hidden sm:flex items-center gap-2
+          absolute right-[70px] top-1/2 -translate-y-1/2
+          bg-white text-gray-800 text-xs font-semibold
+          px-4 py-2.5 rounded-xl shadow-lg border border-gray-100
+          whitespace-nowrap
+          transition-all duration-300 pointer-events-auto
+          ${showTooltip && !dismissed
+            ? "opacity-100 translate-x-0"
+            : "opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0"}
+        `}
+      >
+        {/* Online indicator */}
+        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse inline-block flex-shrink-0" />
+        <span className="flex flex-col">
+          <span className="text-[13px] font-semibold text-gray-800">Chat Privately</span>
+          <span className="text-[10px] text-green-600 font-medium">● Online Now</span>
+        </span>
+        {/* Dismiss button (only when auto-shown) */}
+        {showTooltip && !dismissed && (
+          <button
+            onClick={handleDismiss}
+            className="ml-1 text-gray-400 hover:text-gray-600 text-xs leading-none"
+            aria-label="Dismiss"
+          >
+            ✕
+          </button>
+        )}
       </span>
 
       {/* WhatsApp SVG icon */}

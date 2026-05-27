@@ -20,6 +20,10 @@ const STATIC_ROUTES = [
   "/privacy",
   "/terms",
   "/refund",
+  "/abscess-surgery-mumbai",
+  "/abscess-surgery-chandigarh",
+  "/pilonidal-sinus-surgery-mumbai",
+  "/pilonidal-sinus-surgery-chandigarh",
 ];
 
 const SURGERY_SLUGS = Object.keys(surgeryData);
