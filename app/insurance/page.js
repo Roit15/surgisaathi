@@ -29,7 +29,7 @@ export default function InsurancePage() {
       <section className="gradient-hero py-16 lg:py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl lg:text-5xl font-bold text-white mb-4">Complete Insurance Support</h1>
-          <p className="text-lg text-white/80 max-w-2xl">Don't pay out of pocket. Most surgeries are covered by insurance. We handle the entire claim process — from pre-auth to settlement.</p>
+          <p className="text-lg text-white/80 max-w-2xl">Don&apos;t pay out of pocket without checking your policy first. Many medically indicated surgeries are covered by insurance. We help with the claim process — from pre-auth to settlement.</p>
           <div className="flex flex-col sm:flex-row gap-4 mt-8">
             <a href="tel:+917011473737" className="btn-secondary !border-white/30 !text-white hover:!bg-white/10 !py-4 !px-8 inline-flex justify-center items-center gap-2">
               <Phone size={18} /> Talk to Insurance Expert

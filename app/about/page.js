@@ -76,7 +76,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-12">
             <div>
               <p className="text-[var(--color-text-body)] leading-relaxed mb-4">
-                <strong className="text-[var(--color-text-heading)]">Rohit spent 10 years in IT building healthcare software,</strong> watching patients delay life-changing surgeries — not because they couldn't afford it, but because no one explained the process, the cost, or what to expect. Especially for conditions like piles and fistula, the stigma made it worse.
+                <strong className="text-[var(--color-text-heading)]">Rohit spent 10 years in IT building healthcare software,</strong> watching patients delay life-changing surgeries — not because they couldn&apos;t afford it, but because no one explained the process, the cost, or what to expect. Especially for conditions like piles and fistula, the stigma made it worse.
               </p>
               <p className="text-[var(--color-text-body)] leading-relaxed mb-4">
                 <strong className="text-[var(--color-text-heading)]">Neeraj</strong> saw the same problem handling surgeries and working closely with hospitals, doctors, and patients. Patients arriving too late, with complications that could have been avoided — simply because they were too embarrassed to seek help earlier.

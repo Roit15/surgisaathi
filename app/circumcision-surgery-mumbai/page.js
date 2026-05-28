@@ -41,7 +41,7 @@ export default function CircumcisionSurgeryMumbai() {
               title: "Laser Circumcision Surgery Mumbai",
               description: "Safe laser circumcision at NABH hospitals in Mumbai with same-day discharge",
               priceRange: "₹30,000 – ₹42,000",
-              subtitle: "Private, painless circumcision surgery with 3–5 day recovery in Mumbai",
+              subtitle: "Private circumcision surgery options with typical 3–5 day recovery in Mumbai",
               steps: ["Consultation & assessment", "Pre-operative tests", "Local/general anaesthesia", "Laser circumcision", "Same-day discharge", "Follow-up in 3–5 days"],
               recovery: "3–5 days",
             },
@@ -91,7 +91,7 @@ export default function CircumcisionSurgeryMumbai() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl lg:text-3xl font-bold mb-4">Laser vs Stapler Circumcision in Mumbai — Which is Better?</h2>
           <p className="text-[var(--color-text-muted)] mb-8 max-w-2xl">
-            SURGISAATHI offers both techniques. Our surgeons recommend the best option based on your anatomy and medical history during the free consultation.
+            SURGISAATHI offers both techniques. Your surgeon will recommend a suitable option based on your anatomy and medical history during the free consultation.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
             <div className="card border-[var(--color-primary)] ring-2 ring-[var(--color-primary)]/20">

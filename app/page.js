@@ -251,7 +251,7 @@ export default function Home() {
             <span className="trust-badge mb-4 inline-flex">Specialized Procedures</span>
             <h2 className="text-3xl lg:text-4xl font-bold mt-3">Surgeries We Specialize In</h2>
             <p className="text-[var(--color-text-muted)] mt-3 max-w-xl mx-auto">
-              Advanced laser treatments performed by India&apos;s top surgeons at accredited hospitals.
+              Advanced laser treatment options coordinated with credential-checked surgeons at accredited hospitals.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

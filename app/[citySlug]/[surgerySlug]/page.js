@@ -7,6 +7,9 @@ import { cityData } from "../../../lib/city-data";
 import { surgeryData } from "../../../lib/surgery-data";
 import { surgeryContent } from "../../../lib/surgery-content";
 
+const primaryCitySurgeryPath = (citySlug, surgerySlug) =>
+  `/${surgerySlug}-surgery-${citySlug}`;
+
 // A basic translation for Chandigarh Piles page (demo purposes)
 const hindiContent = {
   piles: {
@@ -44,14 +47,19 @@ export async function generateMetadata({ params, searchParams }) {
   if (!city || !surgery) return {};
   
   const path = `/${p.citySlug}/${p.surgerySlug}`;
+  const canonicalPath = primaryCitySurgeryPath(p.citySlug, p.surgerySlug);
   
   return {
-    title: `${surgery.title} in ${city.name} | Top Surgeons`,
-    description: `Get the best ${surgery.title.toLowerCase()} in ${city.name}. ${surgery.subtitle}. Starting at ${surgery.priceRange}. Book free consultation.`,
-    alternates: { canonical: path },
+    title: `${surgery.title} in ${city.name} | Cost & Care Guide`,
+    description: `Understand ${surgery.title.toLowerCase()} options in ${city.name}. ${surgery.subtitle}. Indicative cost: ${surgery.priceRange}. Book a private consultation.`,
+    alternates: { canonical: canonicalPath },
+    robots: {
+      index: false,
+      follow: true,
+    },
     openGraph: {
       title: `${surgery.title} in ${city.name}`,
-      description: `Get the best ${surgery.title.toLowerCase()} in ${city.name}. Starting at ${surgery.priceRange}.`,
+      description: `Understand ${surgery.title.toLowerCase()} options in ${city.name}. Indicative cost: ${surgery.priceRange}.`,
       url: path,
     },
   };
@@ -69,13 +77,14 @@ export default async function CitySurgeryPage({ params, searchParams }) {
   }
 
   const path = `/${p.citySlug}/${p.surgerySlug}`;
+  const canonicalPath = primaryCitySurgeryPath(p.citySlug, p.surgerySlug);
   const shortName = surgery.title.replace("Laser ", "").replace(" Surgery", "");
   
   const isHindi = sp.lang === 'hi';
   const hasHindiTranslation = hindiContent[p.surgerySlug] !== undefined;
 
   const displayTitle = isHindi && hasHindiTranslation ? hindiContent[p.surgerySlug].title : `${surgery.title} in ${city.name}`;
-  const displaySubtitle = isHindi && hasHindiTranslation ? hindiContent[p.surgerySlug].subtitle : `${surgery.subtitle} by top surgeons in ${city.name}`;
+  const displaySubtitle = isHindi && hasHindiTranslation ? hindiContent[p.surgerySlug].subtitle : `${surgery.subtitle} with care coordination in ${city.name}`;
   const displayContent = isHindi && hasHindiTranslation ? hindiContent[p.surgerySlug].description : (surgeryContent[p.surgerySlug] || surgery.description);
 
   return (
@@ -87,7 +96,7 @@ export default async function CitySurgeryPage({ params, searchParams }) {
           breadcrumbSchema([
             { name: "Home", href: "/" },
             { name: city.name, href: `/${p.citySlug}` },
-            { name: shortName, href: path },
+            { name: shortName, href: canonicalPath },
           ]),
         ]}
       />
@@ -124,6 +133,9 @@ export default async function CitySurgeryPage({ params, searchParams }) {
             <div className="flex flex-col sm:flex-row gap-4 items-center">
               <Link href="/book-consultation" className="btn-primary !bg-[var(--color-accent)] animate-pulse-glow !py-4 !px-8 w-full sm:w-auto text-center">
                 {isHindi ? "मुफ्त परामर्श बुक करें" : `Book Consultation in ${city.name}`} <ArrowRight size={18} className="inline ml-2" />
+              </Link>
+              <Link href={canonicalPath} className="btn-secondary !border-white/30 !text-white hover:!bg-white/10 !py-4 !px-6 w-full sm:w-auto text-center">
+                View full cost guide
               </Link>
               
               {hasHindiTranslation && (
@@ -162,13 +174,13 @@ export default async function CitySurgeryPage({ params, searchParams }) {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="bg-white p-6 rounded-xl shadow-sm border border-[var(--color-card-border)]">
               <CheckCircle2 className="text-[var(--color-primary)] mb-4" size={28} />
-              <h3 className="font-bold text-lg mb-2">Expert Surgeons</h3>
-              <p className="text-[var(--color-text-muted)]">Our partnered surgeons in {city.name} have performed thousands of successful {shortName.toLowerCase()} surgeries.</p>
+              <h3 className="font-bold text-lg mb-2">Surgeon Matching</h3>
+              <p className="text-[var(--color-text-muted)]">Our care team helps you shortlist surgeons in {city.name} based on your condition, hospital preference, budget, and insurance network.</p>
             </div>
             <div className="bg-white p-6 rounded-xl shadow-sm border border-[var(--color-card-border)]">
               <Zap className="text-[var(--color-accent)] mb-4" size={28} />
-              <h3 className="font-bold text-lg mb-2">USFDA Approved Tech</h3>
-              <p className="text-[var(--color-text-muted)]">We use the latest minimally invasive laser technology for faster recovery and less pain.</p>
+              <h3 className="font-bold text-lg mb-2">Modern Laser Options</h3>
+              <p className="text-[var(--color-text-muted)]">Your surgeon will confirm whether minimally invasive laser treatment is suitable for your case during consultation.</p>
             </div>
           </div>
         </div>

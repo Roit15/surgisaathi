@@ -191,7 +191,7 @@ export default function BookConsultation() {
                 <ArrowLeft size={14} /> Back
               </button>
               <h1 className="text-2xl lg:text-3xl font-bold mb-2">Choose your city</h1>
-              <p className="text-[var(--color-text-muted)] mb-8">We&apos;ll connect you with the best surgeons in your area.</p>
+              <p className="text-[var(--color-text-muted)] mb-8">We&apos;ll help you connect with a suitable surgeon in your area.</p>
               <div className="grid grid-cols-2 gap-4">
                 {cities.map((c) => (
                   <button

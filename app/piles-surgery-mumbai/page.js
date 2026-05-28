@@ -127,7 +127,7 @@ export default function PilesSurgeryMumbai() {
               "Same-day discharge — go home same evening",
               "Back to work within 2–3 days",
               "Less than 5% recurrence rate with laser",
-              "100% cashless insurance processing",
+              "Cashless insurance assistance where eligible",
               "Confidential — private consultation available",
               "Spinal or local anesthesia — minimal discomfort",
             ].map((p) => (
@@ -223,7 +223,7 @@ export default function PilesSurgeryMumbai() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 article-body">
           <h2 className="text-2xl lg:text-3xl font-bold mb-6">Comprehensive Guide to Piles (Hemorrhoids) Treatment in Mumbai</h2>
           
-          <p>If you're suffering from piles (hemorrhoids) in Mumbai, you are not alone. It is estimated that nearly 50% of adults experience symptoms of hemorrhoids by age 50. With Mumbai's fast-paced lifestyle, dietary habits, and long commuting hours, the incidence of anorectal conditions is rising. Fortunately, advanced medical treatments have made piles surgery virtually painless, with significantly shorter recovery times.</p>
+          <p>If you&apos;re suffering from piles (hemorrhoids) in Mumbai, you are not alone. It is estimated that nearly 50% of adults experience symptoms of hemorrhoids by age 50. With Mumbai&apos;s fast-paced lifestyle, dietary habits, and long commuting hours, the incidence of anorectal conditions is rising. Fortunately, advanced medical treatments can reduce pain, bleeding, and recovery time for suitable patients.</p>
           
           <h3>What Are Piles?</h3>
           <p>Piles, clinically known as hemorrhoids, are swollen and inflamed veins in your anus and lower rectum, similar to varicose veins. They can develop inside the rectum (internal hemorrhoids) or under the skin around the anus (external hemorrhoids).</p>
@@ -235,7 +235,7 @@ export default function PilesSurgeryMumbai() {
             <li><strong>Grade 4:</strong> Permanently prolapsed hemorrhoids that cannot be pushed back inside. These often require immediate surgical intervention.</li>
           </ul>
 
-          <h3>Signs and Symptoms You Shouldn't Ignore</h3>
+          <h3>Signs and Symptoms You Shouldn&apos;t Ignore</h3>
           <p>Early diagnosis is crucial for effective treatment. You should consult a proctologist in Mumbai if you experience:</p>
           <ul>
             <li>Painless bleeding during bowel movements (bright red blood)</li>
@@ -259,10 +259,10 @@ export default function PilesSurgeryMumbai() {
           </ul>
 
           <h3>Preparing for Your Surgery in Mumbai</h3>
-          <p>When you book through SURGISAATHI, our care coordinators handle the logistics. Before the surgery, you will undergo basic blood tests and an ECG. The procedure is usually performed under spinal or short general anesthesia, meaning you won't feel any pain during the operation.</p>
+          <p>When you book through SURGISAATHI, our care coordinators handle the logistics. Before the surgery, you will undergo basic blood tests and an ECG. The procedure is usually performed under spinal or short general anesthesia, meaning you won&apos;t feel any pain during the operation.</p>
           
           <h3>Post-Surgery Care and Diet</h3>
-          <p>Recovery is fast, but following your surgeon's advice is vital to prevent recurrence. A high-fiber diet, plenty of water (at least 3-4 liters a day), and avoiding straining during bowel movements are essential. Sitz baths (sitting in warm water) may be recommended to soothe the area.</p>
+          <p>Recovery is fast, but following your surgeon&apos;s advice is vital to prevent recurrence. A high-fiber diet, plenty of water (at least 3-4 liters a day), and avoiding straining during bowel movements are essential. Sitz baths (sitting in warm water) may be recommended to soothe the area.</p>
         </div>
       </section>
 

@@ -292,7 +292,7 @@ export default function FistulaSurgeryChandigarh() {
           </div>
           <p className="mt-3 text-xs text-[var(--color-text-muted)] ml-7">
             Last reviewed: May 2026. This page is for informational purposes only. For personalised medical advice,{" "}
-            <a href="/book-consultation" className="text-[var(--color-primary)] hover:underline">book a free consultation</a>.
+            <Link href="/book-consultation" className="text-[var(--color-primary)] hover:underline">book a free consultation</Link>.
           </p>
         </div>
       </section>

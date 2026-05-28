@@ -78,7 +78,7 @@ export default function PilesTreatmentCost() {
                 Piles Surgery Cost in India 2026
               </h1>
               <p className="text-lg text-white/80 mb-6 leading-relaxed">
-                A complete, honest guide to laser piles surgery pricing in Mumbai and Chandigarh — what's included, what insurance covers, and how to get an exact quote for your case.
+                A complete, honest guide to laser piles surgery pricing in Mumbai and Chandigarh — what&apos;s included, what insurance covers, and how to get an exact quote for your case.
               </p>
               <div className="flex flex-wrap gap-3 mb-8">
                 {[
@@ -163,7 +163,7 @@ export default function PilesTreatmentCost() {
       {/* WHAT'S INCLUDED */}
       <section className="section gradient-warm">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl lg:text-3xl font-bold mb-8">What's Included in the Price?</h2>
+          <h2 className="text-2xl lg:text-3xl font-bold mb-8">What&apos;s Included in the Price?</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
             {inclusions.map((item) => (
               <div key={item} className="flex items-start gap-3 bg-white p-4 rounded-xl border border-[var(--color-card-border)]">

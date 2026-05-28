@@ -128,7 +128,7 @@ export default function AbscessSurgeryMumbai() {
               "Same-day discharge — go home same evening",
               "Immediate pain relief after drainage",
               "Fistula prevention monitoring included",
-              "100% cashless insurance processing",
+              "Cashless insurance assistance where eligible",
               "Confidential — private consultation available",
               "Follow-up wound care guidance",
             ].map((p) => (

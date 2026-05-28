@@ -37,15 +37,7 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      // Old hardcoded city pages → new dynamic equivalents (301 permanent)
-      { source: "/piles-surgery-mumbai", destination: "/mumbai/piles", permanent: true },
-      { source: "/piles-surgery-chandigarh", destination: "/chandigarh/piles", permanent: true },
-      { source: "/circumcision-surgery-mumbai", destination: "/mumbai/circumcision", permanent: true },
-      { source: "/fissure-surgery-mumbai", destination: "/mumbai/fissure", permanent: true },
-      { source: "/fissure-treatment-chandigarh", destination: "/chandigarh/fissure", permanent: true },
-      { source: "/fissure-surgery-chandigarh", destination: "/chandigarh/fissure", permanent: true },
-      { source: "/fistula-surgery-mumbai", destination: "/mumbai/fistula", permanent: true },
-      { source: "/fistula-surgery-chandigarh", destination: "/chandigarh/fistula", permanent: true },
+      { source: "/fissure-treatment-chandigarh", destination: "/fissure-surgery-chandigarh", permanent: true },
     ];
   },
 };

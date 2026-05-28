@@ -57,7 +57,7 @@ export default function PartnerPage() {
           <h2 className="text-2xl lg:text-3xl font-bold mb-8">For Hospitals</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
             {[
-              "Increase OT utilization with guaranteed patient flow",
+              "Increase OT utilization with qualified patient demand",
               "Dedicated surgery pipeline management",
               "Insurance claim coordination & cashless processing",
               "Real-time bed and OT availability management",

@@ -128,7 +128,7 @@ export default function PilonidalSinusSurgeryMumbai() {
               "Return to desk work within 5–7 days",
               "Low recurrence rate (5–8%) vs open surgery (15–30%)",
               "Less scarring — laser preserves healthy tissue",
-              "100% cashless insurance processing",
+              "Cashless insurance assistance where eligible",
               "Confidential — private consultation available",
               "USFDA-approved laser technology",
             ].map((p) => (

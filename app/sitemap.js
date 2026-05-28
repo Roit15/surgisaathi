@@ -20,6 +20,14 @@ const STATIC_ROUTES = [
   "/privacy",
   "/terms",
   "/refund",
+  "/piles-surgery-mumbai",
+  "/piles-surgery-chandigarh",
+  "/fissure-surgery-mumbai",
+  "/fissure-surgery-chandigarh",
+  "/fistula-surgery-mumbai",
+  "/fistula-surgery-chandigarh",
+  "/circumcision-surgery-mumbai",
+  "/circumcision-surgery-chandigarh",
   "/abscess-surgery-mumbai",
   "/abscess-surgery-chandigarh",
   "/pilonidal-sinus-surgery-mumbai",
@@ -54,19 +62,6 @@ export default function sitemap() {
     priority: 0.9,
   }));
 
-  // Programmatic city + surgery landing pages
-  const citySurgeryEntries = [];
-  for (const citySlug of Object.keys(cityData)) {
-    for (const surgerySlug of Object.keys(surgeryData)) {
-      citySurgeryEntries.push({
-        url: `${SITE_URL}/${citySlug}/${surgerySlug}`,
-        lastModified: staticDate,
-        changeFrequency: "monthly",
-        priority: 0.9,
-      });
-    }
-  }
-
   // Blog posts — medium priority, highest change frequency
   const blogEntries = blogPosts.map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
@@ -75,5 +70,5 @@ export default function sitemap() {
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...surgeryEntries, ...cityEntries, ...citySurgeryEntries, ...blogEntries];
+  return [...staticEntries, ...surgeryEntries, ...cityEntries, ...blogEntries];
 }

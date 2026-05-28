@@ -128,7 +128,7 @@ export default function AbscessSurgeryChandigarh() {
               "Same-day discharge — go home same evening",
               "Immediate pain relief after drainage",
               "Fistula prevention monitoring included",
-              "100% cashless insurance processing",
+              "Cashless insurance assistance where eligible",
               "Confidential — private consultation available",
               "USFDA-approved surgical equipment",
             ].map((p) => (

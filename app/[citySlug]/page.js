@@ -1,18 +1,21 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CheckCircle2, MapPin, Phone, Building2, ChevronRight, Star, ArrowRight } from "lucide-react";
+import { Activity, Building2, CheckCircle2, CircleDot, Droplets, Flame, Languages, MapPin, Phone, Scissors, ShieldCheck, Star, Target, ArrowRight, ChevronRight } from "lucide-react";
 import JsonLd from "../components/JsonLd";
-import { localBusinessSchema, breadcrumbSchema } from "../../lib/seo";
+import { ORG_LOGO, localBusinessSchema, breadcrumbSchema } from "../../lib/seo";
 import { cityData } from "../../lib/city-data";
-import { surgeryData } from "../../lib/surgery-data";
 
-// If surgeryData is not exported, we can just define a minimal array here for the UI
 const topSurgeries = [
-  { slug: "piles", title: "Laser Piles Surgery", icon: "🩺" },
-  { slug: "fissure", title: "Laser Fissure Treatment", icon: "🩺" },
-  { slug: "fistula", title: "Laser Fistula Surgery", icon: "🩺" },
-  { slug: "circumcision", title: "Laser Circumcision", icon: "🩺" },
+  { slug: "piles", title: "Laser Piles Surgery", icon: Activity },
+  { slug: "fissure", title: "Laser Fissure Treatment", icon: Flame },
+  { slug: "fistula", title: "Laser Fistula Surgery", icon: Target },
+  { slug: "circumcision", title: "Laser Circumcision", icon: Scissors },
+  { slug: "abscess", title: "Abscess Drainage Surgery", icon: Droplets },
+  { slug: "pilonidal-sinus", title: "Pilonidal Sinus Surgery", icon: CircleDot },
 ];
+
+const citySurgeryPath = (citySlug, surgerySlug) =>
+  `/${surgerySlug}-surgery-${citySlug}`;
 
 export async function generateStaticParams() {
   return Object.keys(cityData).map((slug) => ({ citySlug: slug }));
@@ -55,7 +58,7 @@ export default async function CityPage({ params }) {
             url: path,
             telephone: data.phone,
             address: data.address,
-            image: "https://surgisaathi.com/logo.png",
+            image: ORG_LOGO,
           }),
           breadcrumbSchema([
             { name: "Home", href: "/" },
@@ -73,7 +76,7 @@ export default async function CityPage({ params }) {
           </nav>
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <MapPin size={16} className="text-[var(--color-accent)]" /> Serving {data.name} & Surrounding Areas
+              <MapPin size={16} className="text-[var(--color-accent)]" /> Serving {data.name} & nearby areas
             </div>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
               {data.title}
@@ -89,6 +92,13 @@ export default async function CityPage({ params }) {
                 <Phone size={18} /> Call {data.phone}
               </a>
             </div>
+            <div className="flex flex-wrap gap-2 mt-8">
+              {data.nearbyAreas.map((area) => (
+                <span key={area} className="bg-white/10 border border-white/15 text-white/85 px-3 py-1.5 rounded-full text-sm">
+                  {area}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -98,29 +108,58 @@ export default async function CityPage({ params }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl font-bold mb-4">Why Choose SURGISAATHI in {data.name}?</h2>
-            <p className="text-[var(--color-text-body)]">We partner with the best hospitals and surgeons in {data.name} to bring you safe, painless, and affordable laser treatments.</p>
+            <p className="text-[var(--color-text-body)]">{data.marketPosition}</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="card text-center p-8">
               <div className="w-16 h-16 rounded-2xl bg-[var(--color-primary)]/10 text-[var(--color-primary)] flex items-center justify-center mx-auto mb-6">
                 <Star size={32} />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Expert Surgeons</h3>
-              <p className="text-[var(--color-text-body)]">Highly qualified and verified proctologists based in {data.name} with 10+ years of experience.</p>
+              <h3 className="text-xl font-semibold mb-3">Verified Surgical Network</h3>
+              <p className="text-[var(--color-text-body)]">We help you shortlist surgeons and hospitals suited to your condition, location, budget, and insurance network.</p>
             </div>
             <div className="card text-center p-8">
               <div className="w-16 h-16 rounded-2xl bg-[var(--color-accent)]/10 text-[var(--color-accent)] flex items-center justify-center mx-auto mb-6">
                 <CheckCircle2 size={32} />
               </div>
-              <h3 className="text-xl font-semibold mb-3">USFDA Approved Laser</h3>
-              <p className="text-[var(--color-text-body)]">Advanced laser technology for minimally invasive, bloodless procedures.</p>
+              <h3 className="text-xl font-semibold mb-3">Private Coordination</h3>
+              <p className="text-[var(--color-text-body)]">WhatsApp-first support, discreet callbacks, and no-pressure guidance before you decide on consultation or surgery.</p>
             </div>
             <div className="card text-center p-8">
               <div className="w-16 h-16 rounded-2xl bg-[var(--color-success)]/10 text-[var(--color-success)] flex items-center justify-center mx-auto mb-6">
                 <Building2 size={32} />
               </div>
-              <h3 className="text-xl font-semibold mb-3">Top Hospitals</h3>
-              <p className="text-[var(--color-text-body)]">Partnered with {data.name}'s leading multi-specialty hospitals for your care.</p>
+              <h3 className="text-xl font-semibold mb-3">Cost & Insurance Help</h3>
+              <p className="text-[var(--color-text-body)]">You get indicative package ranges, policy checks, and help understanding what may be cashless or reimbursable.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* LOCAL PROOF */}
+      <section className="section bg-[var(--color-bg-warm)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 items-start">
+            <div>
+              <span className="trust-badge mb-4 inline-flex">Local care model</span>
+              <h2 className="text-3xl font-bold mb-4">Built for how patients choose surgery in {data.name}</h2>
+              <p className="text-[var(--color-text-body)] leading-relaxed">
+                Sensitive conditions need privacy, clear costs, and a coordinator who can reduce hospital friction. SurgiSaathi keeps the first step simple: share your concern, understand your options, then choose the surgeon and hospital that fits your case.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {data.localProof.map((item) => (
+                <div key={item} className="bg-white border border-[var(--color-card-border)] rounded-lg p-5">
+                  <ShieldCheck size={22} className="text-[var(--color-primary)] mb-3" />
+                  <p className="font-medium text-[var(--color-text-heading)]">{item}</p>
+                </div>
+              ))}
+              <div className="bg-white border border-[var(--color-card-border)] rounded-lg p-5">
+                <Languages size={22} className="text-[var(--color-primary)] mb-3" />
+                <p className="font-medium text-[var(--color-text-heading)]">
+                  Support in {data.languages.join(", ")}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -130,13 +169,13 @@ export default async function CityPage({ params }) {
       <section className="section gradient-warm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold mb-10 text-center">Top Treatments We Offer in {data.name}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {topSurgeries.map((surgery) => (
-              <Link href={`/${p.citySlug}/${surgery.slug}`} key={surgery.slug} className="card group hover:-translate-y-1 transition-all">
-                <div className="text-4xl mb-4">{surgery.icon}</div>
+              <Link href={citySurgeryPath(p.citySlug, surgery.slug)} key={surgery.slug} className="card group hover:-translate-y-1 transition-all">
+                <surgery.icon size={32} className="text-[var(--color-primary)] mb-4" />
                 <h3 className="text-xl font-semibold mb-2 group-hover:text-[var(--color-primary)] transition-colors">{surgery.title}</h3>
                 <p className="text-sm text-[var(--color-text-muted)] flex items-center gap-1 font-medium mt-4">
-                  View details <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                  View {data.name} cost guide <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </p>
               </Link>
             ))}
@@ -163,7 +202,7 @@ export default async function CityPage({ params }) {
       <section className="gradient-hero py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Don&apos;t Delay Your Treatment</h2>
-          <p className="text-white/80 mb-8">Book a free consultation with {data.name}'s best surgeons today. We handle your insurance claims seamlessly.</p>
+          <p className="text-white/80 mb-8">Book a private consultation in {data.name}. Our team will help you understand the likely cost, hospital options, and insurance process before you commit.</p>
           <Link href="/book-consultation" className="btn-primary !bg-[var(--color-accent)] !py-4 !px-10 animate-pulse-glow">
             Book Free Consultation <ArrowRight size={18} />
           </Link>

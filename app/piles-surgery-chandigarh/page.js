@@ -113,7 +113,7 @@ export default function PilesSurgeryChandigarh() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl lg:text-3xl font-bold mb-4">Why Get Piles Treatment in Chandigarh with SURGISAATHI?</h2>
           <p className="text-[var(--color-text-muted)] mb-8 max-w-2xl">
-            Chandigarh is underserved by national piles surgery chains — meaning you get faster appointments, lower costs, and more personal attention than in Mumbai or Delhi. SURGISAATHI&apos;s Chandigarh team has deep relationships with the city&apos;s best proctologists.
+            Chandigarh is underserved by national piles surgery chains, which can mean faster appointment availability, lower package friction, and more personal coordination than larger metros. SURGISAATHI&apos;s Chandigarh team helps you compare suitable proctology options across the Tricity.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
