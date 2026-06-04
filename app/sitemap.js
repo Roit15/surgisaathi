@@ -20,6 +20,7 @@ const STATIC_ROUTES = [
   "/privacy",
   "/terms",
   "/refund",
+  "/piles-treatment-cost",
   "/piles-surgery-mumbai",
   "/piles-surgery-chandigarh",
   "/fissure-surgery-mumbai",
@@ -34,17 +35,33 @@ const STATIC_ROUTES = [
   "/pilonidal-sinus-surgery-chandigarh",
 ];
 
+const MONEY_ROUTES = new Set([
+  "/piles-surgery-mumbai",
+  "/piles-surgery-chandigarh",
+  "/fissure-surgery-mumbai",
+  "/fissure-surgery-chandigarh",
+  "/fistula-surgery-mumbai",
+  "/fistula-surgery-chandigarh",
+  "/circumcision-surgery-mumbai",
+  "/circumcision-surgery-chandigarh",
+  "/abscess-surgery-mumbai",
+  "/abscess-surgery-chandigarh",
+  "/pilonidal-sinus-surgery-mumbai",
+  "/pilonidal-sinus-surgery-chandigarh",
+  "/piles-treatment-cost",
+]);
+
 const SURGERY_SLUGS = Object.keys(surgeryData);
 
 export default function sitemap() {
-  // Use a stable date for static content so Google doesn't think it changes every crawl
   const staticDate = new Date("2026-05-25T00:00:00Z");
+  const seoRefreshDate = new Date("2026-06-04T00:00:00Z");
 
   const staticEntries = STATIC_ROUTES.map((path) => ({
     url: `${SITE_URL}${path}`,
-    lastModified: staticDate,
-    changeFrequency: "weekly",
-    priority: path === "" ? 1.0 : 0.7,
+    lastModified: MONEY_ROUTES.has(path) ? seoRefreshDate : staticDate,
+    changeFrequency: MONEY_ROUTES.has(path) ? "daily" : "weekly",
+    priority: path === "" ? 1.0 : MONEY_ROUTES.has(path) ? 0.95 : 0.7,
   }));
 
   const surgeryEntries = SURGERY_SLUGS.map((slug) => ({

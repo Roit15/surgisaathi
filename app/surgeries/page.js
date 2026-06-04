@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, IndianRupee, Clock } from "lucide-react";
+import { ArrowRight, IndianRupee, Clock, MapPin } from "lucide-react";
 import JsonLd from "../components/JsonLd";
 import { breadcrumbSchema } from "../../lib/seo";
 
@@ -16,6 +16,18 @@ const surgeries = [
   { name: "Laser Fistula Surgery", slug: "fistula", price: "₹38,000 – ₹85,000", recovery: "5-7 days", desc: "Sphincter-preserving FiLaC laser fistula treatment with low recurrence." },
   { name: "Abscess Drainage", slug: "abscess", price: "₹18,000 – ₹40,000", recovery: "2-4 days", desc: "Quick abscess drainage with minimal discomfort." },
   { name: "Pilonidal Sinus Surgery", slug: "pilonidal-sinus", price: "₹30,000 – ₹70,000", recovery: "5-7 days", desc: "Laser pilonidal sinus surgery with low recurrence." },
+];
+
+const cityGuides = [
+  { name: "Piles surgery in Mumbai", href: "/piles-surgery-mumbai" },
+  { name: "Piles surgery in Chandigarh", href: "/piles-surgery-chandigarh" },
+  { name: "Fissure surgery in Mumbai", href: "/fissure-surgery-mumbai" },
+  { name: "Fissure surgery in Chandigarh", href: "/fissure-surgery-chandigarh" },
+  { name: "Fistula surgery in Mumbai", href: "/fistula-surgery-mumbai" },
+  { name: "Fistula surgery in Chandigarh", href: "/fistula-surgery-chandigarh" },
+  { name: "Circumcision surgery in Mumbai", href: "/circumcision-surgery-mumbai" },
+  { name: "Circumcision surgery in Chandigarh", href: "/circumcision-surgery-chandigarh" },
+  { name: "Piles treatment cost guide", href: "/piles-treatment-cost" },
 ];
 
 export default function SurgeriesIndexPage() {
@@ -50,6 +62,28 @@ export default function SurgeriesIndexPage() {
                 </div>
                 <span className="text-sm font-semibold text-[var(--color-primary)] inline-flex items-center gap-1">
                   Learn more <ArrowRight size={14} />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <span className="trust-badge mb-4 inline-flex"><MapPin size={14} /> City Guides</span>
+            <h2 className="text-3xl font-bold mt-3">Procedure Cost Guides by City</h2>
+            <p className="text-[var(--color-text-muted)] mt-3 max-w-2xl mx-auto">
+              High-intent guides for patients comparing surgery cost, recovery, hospital options and insurance support in Mumbai and Chandigarh.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {cityGuides.map((guide) => (
+              <Link key={guide.href} href={guide.href} className="border border-[var(--color-card-border)] rounded-lg px-5 py-4 hover:border-[var(--color-primary)] hover:bg-[var(--color-primary)]/[0.02] transition-colors group">
+                <span className="font-semibold text-[var(--color-text-heading)] group-hover:text-[var(--color-primary)]">{guide.name}</span>
+                <span className="text-sm font-semibold text-[var(--color-primary)] flex items-center gap-1 mt-2">
+                  Open guide <ArrowRight size={14} />
                 </span>
               </Link>
             ))}

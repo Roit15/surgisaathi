@@ -18,7 +18,18 @@ const surgeries = [
   { name: "Fissure", slug: "fissure", icon: Flame, iconColor: "text-emerald-500", price: "₹35,000", desc: "Laser fissure surgery with rapid recovery", tag: null },
   { name: "Fistula", slug: "fistula", icon: Target, iconColor: "text-red-500", price: "₹40,000", desc: "Advanced laser fistula treatment by experts", tag: null },
   { name: "Abscess", slug: "abscess", icon: Droplets, iconColor: "text-amber-500", price: "₹20,000", desc: "Quick abscess drainage with minimal discomfort", tag: null },
-  { name: "Pilonidal Sinus", slug: "pilonidal-sinus", icon: CircleDot, iconColor: "text-purple-500", price: "₹35,000", desc: "Laser pilonidal sinus surgery. No recurrence", tag: null },
+  { name: "Pilonidal Sinus", slug: "pilonidal-sinus", icon: CircleDot, iconColor: "text-purple-500", price: "₹35,000", desc: "Laser pilonidal sinus surgery with lower recurrence risk", tag: null },
+];
+
+const moneyPages = [
+  { label: "Piles surgery in Mumbai", href: "/piles-surgery-mumbai", desc: "Cost, recovery, insurance and consultation options" },
+  { label: "Piles surgery in Chandigarh", href: "/piles-surgery-chandigarh", desc: "Tricity care, Hindi/Punjabi support and package pricing" },
+  { label: "Fissure surgery in Mumbai", href: "/fissure-surgery-mumbai", desc: "Laser fissure treatment cost and recovery guide" },
+  { label: "Fissure surgery in Chandigarh", href: "/fissure-surgery-chandigarh", desc: "Chandigarh fissure treatment and insurance support" },
+  { label: "Fistula surgery in Mumbai", href: "/fistula-surgery-mumbai", desc: "FiLaC/VAAFT options, cost and hospital coordination" },
+  { label: "Fistula surgery in Chandigarh", href: "/fistula-surgery-chandigarh", desc: "Tricity fistula surgery cost and care coordination" },
+  { label: "Circumcision surgery in Mumbai", href: "/circumcision-surgery-mumbai", desc: "Private urology consultation and package pricing" },
+  { label: "Piles treatment cost", href: "/piles-treatment-cost", desc: "Mumbai vs Chandigarh cost comparison" },
 ];
 
 const steps = [
@@ -283,6 +294,30 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── CITY SURGERY GUIDES ──────────────────────── */}
+      <section className="section bg-[var(--color-bg-warm)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <span className="trust-badge mb-4 inline-flex">City Cost Guides</span>
+            <h2 className="text-3xl lg:text-4xl font-bold mt-3">Mumbai &amp; Chandigarh Surgery Pages</h2>
+            <p className="text-[var(--color-text-muted)] mt-3 max-w-2xl mx-auto">
+              Compare procedure costs, recovery timelines, insurance support and private consultation options by city.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {moneyPages.map((page) => (
+              <Link key={page.href} href={page.href} className="bg-white border border-[var(--color-card-border)] rounded-lg p-5 hover:border-[var(--color-primary)] hover:shadow-sm transition-all group">
+                <h3 className="font-semibold text-[var(--color-text-heading)] group-hover:text-[var(--color-primary)] transition-colors">{page.label}</h3>
+                <p className="text-sm text-[var(--color-text-muted)] mt-2">{page.desc}</p>
+                <span className="text-sm font-semibold text-[var(--color-primary)] inline-flex items-center gap-1 mt-4">
+                  View guide <ChevronRight size={14} />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ─── WHY SURGISAATHI ───────────────────────────── */}
       <section className="section gradient-warm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -507,13 +542,18 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {["piles", "fissure", "fistula", "circumcision"].map((surgery) => (
+                  {[
+                    { label: "Piles", href: `/${city.slug === "mumbai" ? "piles-surgery-mumbai" : "piles-surgery-chandigarh"}` },
+                    { label: "Fissure", href: `/${city.slug === "mumbai" ? "fissure-surgery-mumbai" : "fissure-surgery-chandigarh"}` },
+                    { label: "Fistula", href: `/${city.slug === "mumbai" ? "fistula-surgery-mumbai" : "fistula-surgery-chandigarh"}` },
+                    { label: "Circumcision", href: `/${city.slug === "mumbai" ? "circumcision-surgery-mumbai" : "circumcision-surgery-chandigarh"}` },
+                  ].map((surgery) => (
                     <Link
-                      key={surgery}
-                      href={`/${city.slug}/${surgery}`}
+                      key={surgery.label}
+                      href={surgery.href}
                       className="text-xs bg-[var(--color-bg-warm)] text-[var(--color-text-body)] px-3 py-1.5 rounded-full hover:bg-[var(--color-primary)]/10 hover:text-[var(--color-primary)] transition-colors capitalize"
                     >
-                      {surgery === "piles" ? "Piles" : surgery === "fissure" ? "Fissure" : surgery === "fistula" ? "Fistula" : "Circumcision"}
+                      {surgery.label}
                     </Link>
                   ))}
                 </div>

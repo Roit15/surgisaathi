@@ -37,6 +37,18 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      { source: "/mumbai/piles", destination: "/piles-surgery-mumbai", permanent: true },
+      { source: "/chandigarh/piles", destination: "/piles-surgery-chandigarh", permanent: true },
+      { source: "/mumbai/fissure", destination: "/fissure-surgery-mumbai", permanent: true },
+      { source: "/chandigarh/fissure", destination: "/fissure-surgery-chandigarh", permanent: true },
+      { source: "/mumbai/fistula", destination: "/fistula-surgery-mumbai", permanent: true },
+      { source: "/chandigarh/fistula", destination: "/fistula-surgery-chandigarh", permanent: true },
+      { source: "/mumbai/circumcision", destination: "/circumcision-surgery-mumbai", permanent: true },
+      { source: "/chandigarh/circumcision", destination: "/circumcision-surgery-chandigarh", permanent: true },
+      { source: "/mumbai/abscess", destination: "/abscess-surgery-mumbai", permanent: true },
+      { source: "/chandigarh/abscess", destination: "/abscess-surgery-chandigarh", permanent: true },
+      { source: "/mumbai/pilonidal-sinus", destination: "/pilonidal-sinus-surgery-mumbai", permanent: true },
+      { source: "/chandigarh/pilonidal-sinus", destination: "/pilonidal-sinus-surgery-chandigarh", permanent: true },
       { source: "/fissure-treatment-chandigarh", destination: "/fissure-surgery-chandigarh", permanent: true },
     ];
   },
