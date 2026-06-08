@@ -17,6 +17,21 @@ const topSurgeries = [
 const citySurgeryPath = (citySlug, surgerySlug) =>
   `/${surgerySlug}-surgery-${citySlug}`;
 
+const cityHealthGuides = {
+  mumbai: [
+    { label: "Best piles doctor in Mumbai", href: "/blog/best-piles-doctor-mumbai-2026", desc: "How to compare credentials and hospital access" },
+    { label: "Piles surgery cost in Mumbai", href: "/blog/piles-surgery-cost-mumbai-2026", desc: "Cost range, insurance and package inclusions" },
+    { label: "Fissure surgery cost in Mumbai & Chandigarh", href: "/blog/fissure-surgery-cost-mumbai-chandigarh", desc: "Laser fissure pricing by city" },
+    { label: "Piles operation cost in Mumbai", href: "/piles-treatment-cost", desc: "Full piles cost guide with Mumbai comparison" },
+  ],
+  chandigarh: [
+    { label: "Piles surgery cost in Chandigarh", href: "/blog/piles-surgery-cost-chandigarh-2026", desc: "Tricity price range, insurance and inclusions" },
+    { label: "Piles treatment in Chandigarh", href: "/piles-surgery-chandigarh", desc: "Laser piles surgery page for Chandigarh, Mohali and Panchkula" },
+    { label: "Fissure surgery cost in Mumbai & Chandigarh", href: "/blog/fissure-surgery-cost-mumbai-chandigarh", desc: "Chandigarh fissure surgery pricing and recovery" },
+    { label: "Pilonidal sinus laser surgery", href: "/blog/pilonidal-sinus-laser-surgery-guide", desc: "Laser care, recovery and recurrence prevention" },
+  ],
+};
+
 export async function generateStaticParams() {
   return Object.keys(cityData).map((slug) => ({ citySlug: slug }));
 }
@@ -47,6 +62,7 @@ export default async function CityPage({ params }) {
   }
 
   const path = `/${p.citySlug}`;
+  const guides = cityHealthGuides[p.citySlug] || [];
 
   return (
     <div className="pt-16 lg:pt-[72px]">
@@ -182,6 +198,32 @@ export default async function CityPage({ params }) {
           </div>
         </div>
       </section>
+
+      {/* CITY HEALTH GUIDES */}
+      {guides.length > 0 && (
+        <section className="section bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-10">
+              <span className="trust-badge mb-4 inline-flex">Local Health Guides</span>
+              <h2 className="text-3xl font-bold mt-3">{data.name} Cost &amp; Treatment Guides</h2>
+              <p className="text-[var(--color-text-muted)] mt-3 max-w-2xl mx-auto">
+                City-specific explainers for symptoms, pricing, insurance, recovery and when to consult a surgeon.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {guides.map((guide) => (
+                <Link key={guide.href} href={guide.href} className="border border-[var(--color-card-border)] rounded-lg p-5 hover:border-[var(--color-primary)] hover:bg-[var(--color-primary)]/[0.02] transition-colors group">
+                  <h3 className="font-semibold text-[var(--color-text-heading)] group-hover:text-[var(--color-primary)] transition-colors">{guide.label}</h3>
+                  <p className="text-sm text-[var(--color-text-muted)] mt-2">{guide.desc}</p>
+                  <span className="text-sm font-semibold text-[var(--color-primary)] inline-flex items-center gap-1 mt-4">
+                    Read guide <ArrowRight size={14} />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* OUR HOSPITALS IN CITY */}
       <section className="section bg-white">

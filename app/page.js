@@ -32,6 +32,15 @@ const moneyPages = [
   { label: "Piles treatment cost", href: "/piles-treatment-cost", desc: "Mumbai vs Chandigarh cost comparison" },
 ];
 
+const priorityHealthGuides = [
+  { label: "Best piles doctor in Mumbai", href: "/blog/best-piles-doctor-mumbai-2026", desc: "How to compare credentials, hospital access and red flags" },
+  { label: "Piles surgery cost in Chandigarh", href: "/blog/piles-surgery-cost-chandigarh-2026", desc: "Tricity pricing, insurance support and package inclusions" },
+  { label: "Fistula surgery cost in India", href: "/blog/fistula-surgery-cost-india-2026", desc: "FiLaC, VAAFT, LIFT and open surgery cost comparison" },
+  { label: "Perianal abscess treatment", href: "/blog/perianal-abscess-treatment-guide", desc: "Symptoms, urgency, drainage options and recovery basics" },
+  { label: "Pilonidal sinus laser surgery", href: "/blog/pilonidal-sinus-laser-surgery-guide", desc: "Laser treatment, recurrence risk and recovery timeline" },
+  { label: "Chronic fissure treatment", href: "/blog/chronic-fissure-treatment-options-india", desc: "Laser, Botox and LIS compared for chronic fissure" },
+];
+
 const steps = [
   { num: "01", title: "Share Your Concern", desc: "Tell us about your condition — privately and confidentially.", icon: HeartPulse },
   { num: "02", title: "Get Expert Guidance", desc: "Our care coordinator connects you with the right surgeon.", icon: UserCheck },
@@ -311,6 +320,30 @@ export default function Home() {
                 <p className="text-sm text-[var(--color-text-muted)] mt-2">{page.desc}</p>
                 <span className="text-sm font-semibold text-[var(--color-primary)] inline-flex items-center gap-1 mt-4">
                   View guide <ChevronRight size={14} />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── HEALTH GUIDES ────────────────────────────── */}
+      <section className="section bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <span className="trust-badge mb-4 inline-flex">Health Guide</span>
+            <h2 className="text-3xl lg:text-4xl font-bold mt-3">Cost, Symptoms &amp; Recovery Guides</h2>
+            <p className="text-[var(--color-text-muted)] mt-3 max-w-2xl mx-auto">
+              Medically reviewed explainers for patients comparing private surgery options in Mumbai, Chandigarh and nearby areas.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {priorityHealthGuides.map((guide) => (
+              <Link key={guide.href} href={guide.href} className="border border-[var(--color-card-border)] rounded-lg p-5 hover:border-[var(--color-primary)] hover:bg-[var(--color-primary)]/[0.02] transition-colors group">
+                <h3 className="font-semibold text-[var(--color-text-heading)] group-hover:text-[var(--color-primary)] transition-colors">{guide.label}</h3>
+                <p className="text-sm text-[var(--color-text-muted)] mt-2">{guide.desc}</p>
+                <span className="text-sm font-semibold text-[var(--color-primary)] inline-flex items-center gap-1 mt-4">
+                  Read guide <ChevronRight size={14} />
                 </span>
               </Link>
             ))}

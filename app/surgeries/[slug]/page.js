@@ -12,6 +12,39 @@ import {
 
 import { surgeryData } from "../../../lib/surgery-data";
 
+const relatedGuidesBySurgery = {
+  piles: [
+    { label: "Piles surgery cost in Chandigarh", href: "/blog/piles-surgery-cost-chandigarh-2026", desc: "Tricity pricing, inclusions and insurance support" },
+    { label: "Best piles doctor in Mumbai", href: "/blog/best-piles-doctor-mumbai-2026", desc: "How to verify surgeon credentials and hospital access" },
+    { label: "External piles treatment at home", href: "/blog/external-piles-treatment-home-remedies", desc: "Home care options and warning signs" },
+  ],
+  fissure: [
+    { label: "Chronic fissure treatment options", href: "/blog/chronic-fissure-treatment-options-india", desc: "Laser, Botox and LIS compared" },
+    { label: "Fissure surgery cost in Mumbai & Chandigarh", href: "/blog/fissure-surgery-cost-mumbai-chandigarh", desc: "City-wise cost and recovery expectations" },
+    { label: "Can fissure heal on its own?", href: "/blog/can-fissure-heal-on-its-own", desc: "When medicines work and when they do not" },
+  ],
+  fistula: [
+    { label: "Fistula surgery cost in India", href: "/blog/fistula-surgery-cost-india-2026", desc: "FiLaC, VAAFT, LIFT and fistulotomy costs" },
+    { label: "What is anal fistula?", href: "/blog/what-is-anal-fistula-causes-symptoms", desc: "Causes, symptoms and diagnosis" },
+    { label: "Fistula surgery recovery time", href: "/blog/fistula-surgery-recovery-time-tips", desc: "Recovery timeline and aftercare tips" },
+  ],
+  circumcision: [
+    { label: "Circumcision for phimosis", href: "/blog/circumcision-for-phimosis-complete-guide", desc: "When phimosis needs treatment" },
+    { label: "Adult circumcision recovery", href: "/blog/adult-circumcision-recovery-guide", desc: "Day-by-day recovery expectations" },
+    { label: "Laser vs traditional circumcision", href: "/blog/laser-vs-traditional-circumcision", desc: "Compare techniques, healing and comfort" },
+  ],
+  abscess: [
+    { label: "Perianal abscess treatment", href: "/blog/perianal-abscess-treatment-guide", desc: "Symptoms, urgency and drainage options" },
+    { label: "Abscess drainage surgery", href: "/blog/abscess-drainage-surgery-what-to-expect", desc: "What happens before, during and after drainage" },
+    { label: "Anal abscess vs piles", href: "/blog/anal-abscess-vs-piles", desc: "How to tell swelling, pain and bleeding apart" },
+  ],
+  "pilonidal-sinus": [
+    { label: "Pilonidal sinus laser surgery", href: "/blog/pilonidal-sinus-laser-surgery-guide", desc: "Laser treatment and recurrence risk" },
+    { label: "Pilonidal sinus causes and prevention", href: "/blog/pilonidal-sinus-causes-prevention-treatment", desc: "Why it happens and how to reduce recurrence" },
+    { label: "Pilonidal sinus recovery time", href: "/blog/pilonidal-sinus-recovery-time", desc: "Healing timeline after treatment" },
+  ],
+};
+
 export async function generateStaticParams() {
   return Object.keys(surgeryData).map((slug) => ({ slug }));
 }
@@ -43,6 +76,7 @@ export default async function SurgeryPage({ params }) {
 
   const path = `/surgeries/${p.slug}`;
   const shortName = data.title.replace("Laser ", "").replace(" Surgery", "");
+  const relatedGuides = relatedGuidesBySurgery[p.slug] || [];
 
   return (
     <div className="pt-16 lg:pt-[72px]">
@@ -180,6 +214,32 @@ export default async function SurgeryPage({ params }) {
           </div>
         </div>
       </section>
+
+      {/* RELATED HEALTH GUIDES */}
+      {relatedGuides.length > 0 && (
+        <section className="section bg-[var(--color-bg-warm)]">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-10">
+              <span className="trust-badge mb-4 inline-flex">Health Guide</span>
+              <h2 className="text-2xl lg:text-3xl font-bold mt-3">Read More About {shortName}</h2>
+              <p className="text-[var(--color-text-muted)] mt-3 max-w-2xl mx-auto">
+                Cost, symptoms, recovery and treatment explainers reviewed for patients comparing surgery options.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {relatedGuides.map((guide) => (
+                <Link key={guide.href} href={guide.href} className="bg-white border border-[var(--color-card-border)] rounded-lg p-5 hover:border-[var(--color-primary)] hover:shadow-sm transition-all group">
+                  <h3 className="font-semibold text-[var(--color-text-heading)] group-hover:text-[var(--color-primary)] transition-colors">{guide.label}</h3>
+                  <p className="text-sm text-[var(--color-text-muted)] mt-2">{guide.desc}</p>
+                  <span className="text-sm font-semibold text-[var(--color-primary)] inline-flex items-center gap-1 mt-4">
+                    Read guide <ChevronRight size={14} />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* FAQ */}
       <section className="section bg-white">
