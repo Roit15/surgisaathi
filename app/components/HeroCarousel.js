@@ -5,27 +5,27 @@ import Image from "next/image";
 
 const heroSlides = [
   {
-    src: "/images/hero/hero-doctor.png",
+    src: "/images/hero/hero-doctor.webp",
     alt: "Expert surgeon at SURGISAATHI partner hospital",
   },
   {
-    src: "/images/hero/hero-consultation.png",
+    src: "/images/hero/hero-consultation.webp",
     alt: "Doctor consulting with patient using modern technology",
   },
   {
-    src: "/images/hero/hero-hospital.png",
+    src: "/images/hero/hero-hospital.webp",
     alt: "Premium partner hospital exterior",
   },
   {
-    src: "/images/hero/hero-team.png",
+    src: "/images/hero/hero-team.webp",
     alt: "Team of expert surgeons and medical professionals",
   },
   {
-    src: "/images/hero/hero-recovery.png",
+    src: "/images/hero/hero-recovery.webp",
     alt: "Happy patient recovering after successful surgery",
   },
   {
-    src: "/images/hero/hero-laser.png",
+    src: "/images/hero/hero-laser.webp",
     alt: "Advanced laser surgery technology",
   },
 ];
@@ -75,6 +75,7 @@ export default function HeroCarousel() {
             fill
             className="object-cover"
             priority={i === 0}
+            quality={70}
             sizes="(max-width: 1024px) 100vw, 480px"
           />
         </div>

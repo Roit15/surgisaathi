@@ -131,12 +131,13 @@ export default function Home() {
       {/* ─── HERO ──────────────────────────────────────── */}
       <section className="relative overflow-hidden min-h-[560px] sm:min-h-[620px] lg:min-h-[680px]">
 
-        {/* Background photo — doctor + patient (hero-recovery.png) */}
+        {/* Background photo — doctor + patient */}
         <Image
-          src="/images/hero/hero-recovery.png"
+          src="/images/hero/hero-recovery.webp"
           alt="Doctor attending to a patient at a SurgiSaathi partner hospital"
           fill
           priority
+          quality={70}
           className="object-cover object-center"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1920px"
         />

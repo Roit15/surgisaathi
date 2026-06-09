@@ -32,6 +32,10 @@ const SECURITY_HEADERS = [
 ];
 
 const nextConfig = {
+  images: {
+    formats: ["image/webp"],
+    minimumCacheTTL: 31536000,
+  },
   async headers() {
     return [{ source: "/:path*", headers: SECURITY_HEADERS }];
   },
